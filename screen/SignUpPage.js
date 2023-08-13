@@ -1,101 +1,107 @@
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import { TextInput } from "react-native";
+import { TouchableOpacity } from "react-native";
+import { ScrollView } from "react-native";
 
 const SignUpPage = () => {
   return (
-    <>
-      <View style={styles.mainContainer}>
+    <ScrollView>
+    <View style={styles.mainContainer}>
+      <Image
+        style={styles.headerImage}
+        source={require("../assets/AIJadu/Login/sideImage.png")}
+      />
+      <View style={styles.overlayContainer}>
         <Image
-          style={styles.headerImage}
-          source={require("../assets/AIJadu/Login/sideImage.png")}
+          style={styles.arrowPic}
+          source={require("../assets/AIJadu/signUp/leftArrow.png")}
         />
-        <View style={styles.overlayContainer}>
-          <Image
-            style={styles.arrowPic}
-            source={require("../assets/AIJadu/signUp/leftArrow.png")}
-          />
-          <View style={styles.headerContainer}>
-            <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
-          </View>
+        <View style={styles.headerContainer}>
+          <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
         </View>
+      </View>
 
-        <Image source={require("../assets/AIJadu/Login/blueCircle.png")} />
+      <Image source={require("../assets/AIJadu/Login/blueCircle.png")} />
 
-        <Image
-          style={styles.bottomHalfCircle}
-          source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
-        />
+      <Image
+        style={styles.bottomHalfCircle}
+        source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
+      />
 
-        <View style={styles.container}>
-          <Text style={styles.signupText}> SIGNUP / CREATE ACCOUNT</Text>
-          <View style={styles.infoContainer}>
-            <View style={styles.infoTextContainer}>
-              <View style={styles.mrContainer}>
-                <TextInput
-                  placeholder="Mr"
-                  style={styles.mrContainerText}
-                  placeholderTextColor="#000000"
-                />
-                <Image
-                  style={styles.bottomArrow}
-                  source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
-                />
-              </View>
-              <View style={styles.nameContainer}>
-                <Image
-                  style={styles.profile}
-                  source={require("../assets/AIJadu/SignUpPage/profileLogo.png")}
-                />
-                <TextInput
-                  placeholder="Name"
-                  style={styles.nameContainerText}
-                />
-              </View>
+      <View style={styles.container}>
+        <Text style={styles.signupText}> SIGNUP / CREATE ACCOUNT</Text>
+        <View style={styles.infoContainer}>
+          <View style={styles.infoTextContainer}>
+            <View style={styles.mrContainer}>
+              <TextInput
+                placeholder="Mr"
+                style={styles.mrContainerText}
+                placeholderTextColor="#000000"
+              />
+              <Image
+                style={styles.bottomArrow}
+                source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
+              />
+            </View>
+            <View style={styles.nameContainer}>
+              <Image
+                style={styles.profile}
+                source={require("../assets/AIJadu/SignUpPage/profileLogo.png")}
+              />
+              <TextInput
+                placeholder="Name"
+                style={styles.nameContainerText}
+              />
             </View>
           </View>
-          <View style={styles.reusableContainer}>
+        </View>
+        <View style={styles.reuseContainer}>
+          <Image
+            style={styles.reuseContainerImage}
+            source={require("../assets/AIJadu/SignUpPage/emailLogo.png")}
+          />
+          <TextInput
+            style={styles.reuseContainerText}
+            placeholder="  Email"
+          />
+        </View>
+
+        <View style={styles.stateContainer}>
+          <View style={styles.state}>
             <Image
-              style={styles.profile}
-              source={require("../assets/AIJadu/SignUpPage/emailLogo.png")}
+              style={styles.logo}
+              source={require("../assets/AIJadu/SignUpPage/locationLogo.png")}
             />
+
             <TextInput
-              placeholder="Email"
-              style={styles.reusableContainer}
+              style={styles.stateText}
+              placeholder="    State"
               placeholderTextColor={"#000000"}
             />
           </View>
 
-          <View style={styles.stateContainer}>
-            <View style={styles.state}>
-              <Image
-                style={styles.logo}
-                source={require("../assets/AIJadu/SignUpPage/locationLogo.png")}
-              />
-
-              <TextInput
-                style={styles.stateText}
-                placeholder="    State"
-                placeholderTextColor={"#000000"}
-              />
-            </View>
-
-            <View style={styles.city}>
-              <Image
-                style={styles.logo}
-                source={require("../assets/AIJadu/SignUpPage/locationLogo.png")}
-              />
-              <TextInput placeholder=" City" placeholderTextColor={"#000000"} />
-            </View>
+          <View style={styles.city}>
+            <Image
+              style={styles.logo}
+              source={require("../assets/AIJadu/SignUpPage/locationLogo.png")}
+            />
+            <TextInput
+              placeholder=" City"
+              placeholderTextColor={"#000000"}
+            />
           </View>
         </View>
+      </View>
 
         <View style={styles.institute}>
           <Image
             style={styles.instituteLogo}
             source={require("../assets/AIJadu/SignUpPage/instituteLogo.png")}
           />
-          <TextInput placeholder="Organization/ Institute" />
+          <TextInput
+          style={styles.reuseContainerText}
+           placeholder="Organization/ Institute" />
         </View>
 
         <View style={styles.functionContainer}>
@@ -148,13 +154,7 @@ const SignUpPage = () => {
             style={styles.reuseContainerImage}
             source={require("../assets/AIJadu/SignUpPage/phoneLogo.png")}
           />
-
           <TextInput style={styles.reuseContainerText} placeholder="  Phone" />
-
-          {/* <Image
-            style={styles.arrowImage}
-            source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
-          /> */}
         </View>
 
         <View style={styles.reuseContainer}>
@@ -191,27 +191,50 @@ const SignUpPage = () => {
           />
         </View>
 
-        <View style={styles.termConditionContainer} >
-
-        <Image
-            
+        <View style={styles.termConditionContainer}>
+          <Image
+            style={{ margin: 5 }}
             source={require("../assets/AIJadu/SignUpPage/Rectangle.png")}
           />
-          <Text style={styles.termConditionContainer1} >I agree to the</Text>
-          <Text style={styles.termConditionContainer2}  >Terms & Conditions </Text>
-          <Text style={styles.termConditionContainer1}  >     and</Text>
-          <Text style={styles.termConditionContainer2}  >Privacy Policy</Text>
+          <Text style={styles.termConditionContainer1}>I agree to the</Text>
+          <Text style={styles.termConditionContainer2}>
+            Terms & Conditions{" "}
+          </Text>
+          <Text style={styles.termConditionContainer1}>and</Text>
+          <Text style={styles.termConditionContainer2}> Privacy Policy</Text>
+        </View>
 
+        <TouchableOpacity style={styles.loginButton}>
+          <Text style={styles.loginButtonText}> Create Account</Text>
+        </TouchableOpacity>
+
+        <Text
+          style={{
+            fontWeight: "700",
+            fontSize: 13,
+            lineHeight: 15,
+            alignSelf: "center",
+          }}
+        >
+          Signup With
+        </Text>
+
+        <Image
+          style={{ alignSelf: "center", margin:10,  }}
+          source={require("../assets/AIJadu/SignUpPage/socialmediaLogo.png")}
+        />
+        <View style={styles.account} >
+        <Text style={styles.termConditionContainer3}>Already have an account?</Text>
+        <Text style={styles.termConditionContainer4}>Login </Text>
         </View>
       </View>
-    </>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height: "100%",
-    width: "100%",
+    flex: 1,
     backgroundColor: "#E4E4E4",
   },
 
@@ -243,11 +266,12 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 100,
     width: 370,
-    height: 700,
+    height: 800,
     backgroundColor: "#ffffff",
     borderRadius: 15,
     alignSelf: "center",
     position: "absolute",
+    // justifyContent:"space-around",
   },
 
   bottomHalfCircle: {
@@ -305,12 +329,14 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   reusableContainer: {
-    width: 360,
-    height: 51,
-    borderRadius: 27,
-    backgroundColor: "#F1F1F1",
+     marginTop: 10,
     flexDirection: "row",
     alignItems: "center",
+    width: 360,
+    height: 51,
+    backgroundColor: "#F1F1F1",
+    alignSelf: "center",
+    borderRadius: 27,
   },
   reusableContainerText: {
     fontWeight: "500",
@@ -349,7 +375,7 @@ const styles = StyleSheet.create({
   },
 
   stateText: {},
-  reusableContainer1: {},
+  // reusableContainer1: {},
   institute: {
     width: 360,
     height: 51,
@@ -427,26 +453,62 @@ const styles = StyleSheet.create({
     lineHeight: 17,
   },
 
-  termConditionContainer:{
+  termConditionContainer: {
+    width: 250,
+    height: 40,
+    // backgroundColor:'pink',
+    alignSelf: "center",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignSelf: "center",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  termConditionContainer1: {
+    fontWeight: "600",
+    fontSize: 12,
+    lineHeight: 15,
+  },
+  termConditionContainer2: {
+    fontWeight: "700",
+    fontSize: 12,
+    lineHeight: 15,
+    color: "#FEA01A",
+  },
 
-    width:250,
-    height:61,
-    backgroundColor:'pink',
+  loginButton: {
+    width: 208,
+    height: 51,
+    backgroundColor: "#FEA01A",
+    borderRadius: 33,
+    margin: 10,
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+  loginButtonText: {
+    fontWeight: "700",
+    fontSize: 16,
+    alignSelf: "center",
+    lineHeight: 20,
+  },
+  account:{
+    flexDirection:"row",
     alignSelf:"center",
-    flexDirection:'row',
-flexWrap:"wrap", 
- },
-  termConditionContainer1:{
+    marginTop:10,
+  },
+  termConditionContainer3:{
     fontWeight:"600",
-    fontSize:12,
-    lineHeight:15,
+    fontSize:13,
+    lineHeight:16,
 
   },
-  termConditionContainer2:{
+
+  termConditionContainer4:{
     fontWeight:"700",
-    fontSize:12,
-    lineHeight:15,
-    color:"#FEA01A"
+    fontSize:13,
+    lineHeight:16,
+    backgroundColor:"#FEA01A"
     
   },
 });
