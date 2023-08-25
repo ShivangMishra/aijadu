@@ -4,14 +4,28 @@ import Login from './screen/Login';
 import SignUp from './screen/MainPage';
 import MainPage from './screen/MainPage';
 import SignUpPage from './screen/SignUpPage';
+import AnotherPage from './screen/AnotherPage';
+import IcanSell from './screen/IcanSell';
+import AISell from './screen/AISell';
+import Form from './screen/Form';
+import AiJadu from './screen/AiJadu';
 
 export default function App() {
   return (
- <View>
+ <>
   {/* <Login/> */}
   {/* <MainPage/> */}
-  <SignUpPage/>
- </View>
+  {/* <SignUpPage/> */}
+{/* <AnotherPage/> */}
+
+{/* <IcanSell/> */}
+
+{/* <AISell/> */}
+
+{/* <Form/> */}
+<AiJadu/>
+
+ </>
   );
 }
 

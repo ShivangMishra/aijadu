@@ -1,98 +1,159 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { TextInput } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
 
 const SignUpPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentValue, setCurrentValue] = useState([]);
+
+  const [isOpen1, setIsOpen1] = useState(false);
+  const [currentValue1, setCurrentValue1] = useState([]);
+
+  const [isOpen2, setIsOpen2] = useState(false);
+  const [currentValue2, setCurrentValue2] = useState([]);
+
+  const [isOpen3, setIsOpen3] = useState(false);
+  const [currentValue3, setCurrentValue3] = useState([]);
+
+  const items = [
+    { label: "Mr", value: "Mr" },
+    { label: "Mrs", value: "Mrs" },
+    { label: "Ms", value: "Ms" },
+  ];
+
+  const items2 = [
+    { label: "Programming", value: "2000" },
+    { label: "HR", value: "HR" },
+    { label: "Reporting Manager", value: "Reporting" },
+    { label: "Project Manager", value: "Project Manager" },
+  ];
+
+  const items1 = [
+    { label: "2000", value: "2000" },
+    { label: "2001", value: "2001" },
+    { label: "2002", value: "2002" },
+    { label: "2003", value: "2003" },
+    { label: "2004", value: "2004" },
+  ];
+
+  const items3 = [
+    { label: "IT", value: "IT" },
+    { label: "Textile", value: "Textile" },
+    { label: "Steel", value: "Steel" },
+    { label: "Mining", value: "Mining" },
+    { label: "Aviation", value: "Aviation" },
+  ];
+
   return (
     <ScrollView>
-    <View style={styles.mainContainer}>
-      <Image
-        style={styles.headerImage}
-        source={require("../assets/AIJadu/Login/sideImage.png")}
-      />
-      <View style={styles.overlayContainer}>
+      <View style={styles.mainContainer}>
         <Image
-          style={styles.arrowPic}
-          source={require("../assets/AIJadu/signUp/leftArrow.png")}
+          style={styles.headerImage}
+          source={require("../assets/AIJadu/Login/sideImage.png")}
         />
-        <View style={styles.headerContainer}>
-          <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
+        <View style={styles.overlayContainer}>
+          <Image
+            style={styles.arrowPic}
+            source={require("../assets/AIJadu/signUp/leftArrow.png")}
+          />
+          <View style={styles.headerContainer}>
+            <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
+          </View>
         </View>
-      </View>
 
-      <Image source={require("../assets/AIJadu/Login/blueCircle.png")} />
+        <Image source={require("../assets/AIJadu/Login/blueCircle.png")} />
 
-      <Image
-        style={styles.bottomHalfCircle}
-        source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
-      />
+        <Image
+          style={styles.bottomHalfCircle}
+          source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
+        />
 
-      <View style={styles.container}>
-        <Text style={styles.signupText}> SIGNUP / CREATE ACCOUNT</Text>
-        <View style={styles.infoContainer}>
-          <View style={styles.infoTextContainer}>
-            <View style={styles.mrContainer}>
-              <TextInput
+        <View style={styles.container}>
+          <Text style={styles.signupText}> SIGNUP / CREATE ACCOUNT</Text>
+          <View style={styles.infoContainer}>
+            <View style={styles.infoTextContainer}>
+              <View style={styles.mrContainer}>
+                <DropDownPicker
+                  items={items}
+                  open={isOpen}
+                  setOpen={() => setIsOpen(!isOpen)}
+                  value={currentValue}
+                  setValue={(val) => setCurrentValue(val)}
+                  maxHeight={200}
+                  autoScroll
+                  placeholder="Mr "
+                  placeholderStyle={{
+                    fontWeight: "700",
+                    // color: "#FEA01A",
+                    fontSize: 14,
+                    lineHeight: 16,
+                  }}
+                  style={{
+                    // Custom styles for the DropDownPicker
+                    backgroundColor: "#F1F1F1", // Set your desired background color
+                    borderRadius: 27, // Set your desired border radius
+                    borderWidth: 0,
+                  }}
+                />
+                {/* <TextInput
                 placeholder="Mr"
                 style={styles.mrContainerText}
                 placeholderTextColor="#000000"
-              />
-              <Image
+                  />
+                <Image
                 style={styles.bottomArrow}
                 source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
-              />
+                  /> */}
+              </View>
+              <View style={styles.nameContainer}>
+                <Image
+                  style={styles.profile}
+                  source={require("../assets/AIJadu/SignUpPage/profileLogo.png")}
+                />
+                <TextInput
+                  placeholder="Name"
+                  style={styles.nameContainerText}
+                />
+              </View>
             </View>
-            <View style={styles.nameContainer}>
+          </View>
+          <View style={styles.reuseContainer}>
+            <Image
+              style={styles.reuseContainerImage}
+              source={require("../assets/AIJadu/SignUpPage/emailLogo.png")}
+            />
+            <TextInput
+              style={styles.reuseContainerText}
+              placeholder="  Email"
+            />
+          </View>
+
+          <View style={styles.stateContainer}>
+            <View style={styles.state}>
               <Image
-                style={styles.profile}
-                source={require("../assets/AIJadu/SignUpPage/profileLogo.png")}
+                style={styles.logo}
+                source={require("../assets/AIJadu/SignUpPage/locationLogo.png")}
               />
+
               <TextInput
-                placeholder="Name"
-                style={styles.nameContainerText}
+                style={styles.stateText}
+                placeholder="    State"
+                placeholderTextColor={"#000000"}
               />
+            </View>
+
+            <View style={styles.city}>
+              <Image
+                style={styles.logo}
+                source={require("../assets/AIJadu/SignUpPage/locationLogo.png")}
+              />
+              <TextInput placeholder=" City" placeholderTextColor={"#000000"} />
             </View>
           </View>
         </View>
-        <View style={styles.reuseContainer}>
-          <Image
-            style={styles.reuseContainerImage}
-            source={require("../assets/AIJadu/SignUpPage/emailLogo.png")}
-          />
-          <TextInput
-            style={styles.reuseContainerText}
-            placeholder="  Email"
-          />
-        </View>
-
-        <View style={styles.stateContainer}>
-          <View style={styles.state}>
-            <Image
-              style={styles.logo}
-              source={require("../assets/AIJadu/SignUpPage/locationLogo.png")}
-            />
-
-            <TextInput
-              style={styles.stateText}
-              placeholder="    State"
-              placeholderTextColor={"#000000"}
-            />
-          </View>
-
-          <View style={styles.city}>
-            <Image
-              style={styles.logo}
-              source={require("../assets/AIJadu/SignUpPage/locationLogo.png")}
-            />
-            <TextInput
-              placeholder=" City"
-              placeholderTextColor={"#000000"}
-            />
-          </View>
-        </View>
-      </View>
 
         <View style={styles.institute}>
           <Image
@@ -100,45 +161,141 @@ const SignUpPage = () => {
             source={require("../assets/AIJadu/SignUpPage/instituteLogo.png")}
           />
           <TextInput
-          style={styles.reuseContainerText}
-           placeholder="Organization/ Institute" />
+            style={styles.reuseContainerText}
+            placeholder="Organization/ Institute"
+          />
         </View>
 
         <View style={styles.functionContainer}>
           <View style={styles.roleFunctionContainer}>
             <Image
+              style={{ marginLeft: 20 }}
               source={require("../assets/AIJadu/SignUpPage/industryLogo.png")}
             />
-            <TextInput
+            {/* <TextInput
               style={styles.roleFunctionContainerText}
               placeholder="Role/Function"
             />
             <Image
               source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
+            /> */}
+
+            <DropDownPicker
+              items={items2}
+              open={isOpen1}
+              setOpen={() => setIsOpen1(!isOpen1)}
+              value={currentValue1}
+              setValue={(val) => setCurrentValue1(val)}
+              maxHeight={200}
+              autoScroll
+              placeholder="Role/Function"
+              placeholderStyle={{
+                fontWeight: "500",
+                // color: "#FEA01A",
+                fontSize: 14,
+                // lineHeight: 30,
+                flexDirection: "row",
+              }}
+              style={{
+                // Custom styles for the DropDownPicker
+                backgroundColor: "#F1F1F1", // Set your desired background color
+                borderRadius: 27, // Set your desired border radius
+                width: 150,
+                marginRight: 30,
+                alignSelf: "flex-end",
+                borderWidth: 0,
+                flexDirection: "row",
+                // backgroundColor:"red"
+              }}
             />
           </View>
 
           <View style={styles.calenderFunctionContainer}>
             <Image
+              style={{ marginLeft: 20 }}
               source={require("../assets/AIJadu/SignUpPage/yearLogo.png")}
             />
-            <TextInput
+            {/* <TextInput
               style={styles.calenderFunctionContainerText}
               placeholder="Year"
             />
             <Image
               source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
+            /> */}
+
+            <DropDownPicker
+              items={items1}
+              open={isOpen2}
+              setOpen={() => {
+                setIsOpen2(!isOpen2);
+              }}
+              value={currentValue}
+              setValue={(val) => setCurrentValue(val)}
+              maxHeight={200}
+              autoScroll
+              placeholder="Year"
+              placeholderStyle={{
+                fontWeight: "700",
+                // color: "#FEA01A",
+                fontSize: 14,
+                // lineHeight: 30,
+              }}
+              style={{
+                // Custom styles for the DropDownPicker
+                backgroundColor: "#F1F1F1", // Set your desired background color
+                borderRadius: 27, // Set your desired border radius
+                width: 100,
+                // marginRight: 30,
+                alignSelf: "flex-end",
+                borderWidth: 0,
+                flexDirection: "row",
+                // backgroundColor:"red"
+              }}
             />
           </View>
         </View>
 
-        <View style={styles.reuseContainer}>
+        <View style={styles.reuseContainer1}>
           <Image
             style={styles.reuseContainerImage}
             source={require("../assets/AIJadu/SignUpPage/industryLogo.png")}
           />
 
-          <TextInput
+          <DropDownPicker
+            items={items3}
+            open={isOpen3}
+            setOpen={() => {
+              setIsOpen3(!isOpen3);
+            }}
+            value={currentValue3}
+            setValue={(val) => setCurrentValue3(val)}
+            maxHeight={200}
+            autoScroll
+            placeholder="Industry"
+            placeholderStyle={{
+              fontWeight: "700",
+              // color: "#FEA01A",
+              fontSize: 14,
+              // lineHeight: 30,
+            }}
+            style={{
+              // Custom styles for the DropDownPicker
+              backgroundColor: "#F1F1F1", // Set your desired background color
+              borderRadius: 27, // Set your desired border radius
+              width: 320,
+              // marginRight: 30,
+              alignSelf: "flex-end",
+              borderWidth: 0,
+              flexDirection: "row",
+              // backgroundColor: "red",
+              alignSelf: "center",
+              marginRight: 40,
+    //           position:"relative",
+    // zIndex:1,
+            }}
+          />
+
+          {/* <TextInput
             style={styles.reuseContainerText}
             placeholder="  Industry"
           />
@@ -146,7 +303,7 @@ const SignUpPage = () => {
           <Image
             style={styles.arrowImage}
             source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
-          />
+          /> */}
         </View>
 
         <View style={styles.reuseContainer}>
@@ -220,12 +377,14 @@ const SignUpPage = () => {
         </Text>
 
         <Image
-          style={{ alignSelf: "center", margin:10,  }}
+          style={{ alignSelf: "center", margin: 10 }}
           source={require("../assets/AIJadu/SignUpPage/socialmediaLogo.png")}
         />
-        <View style={styles.account} >
-        <Text style={styles.termConditionContainer3}>Already have an account?</Text>
-        <Text style={styles.termConditionContainer4}>Login </Text>
+        <View style={styles.account}>
+          <Text style={styles.termConditionContainer3}>
+            Already have an account?
+          </Text>
+          <Text style={styles.termConditionContainer4}>Login </Text>
         </View>
       </View>
     </ScrollView>
@@ -308,6 +467,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignSelf: "center",
     marginRight: 10,
+    position: "relative",
+    zIndex: 1,
   },
   bottomArrow: {
     alignSelf: "center",
@@ -328,8 +489,8 @@ const styles = StyleSheet.create({
   profile: {
     margin: 10,
   },
-  reusableContainer: {
-     marginTop: 10,
+  reuseContainer1:{
+    marginTop: 10,
     flexDirection: "row",
     alignItems: "center",
     width: 360,
@@ -337,6 +498,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#F1F1F1",
     alignSelf: "center",
     borderRadius: 27,
+    // position: "relative", // Remove this line
+    // zIndex: 1, // Remove this line
+  },
+  reusableContainer: {
+    marginTop: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    width: 360,
+    height: 51,
+    backgroundColor: "#F1F1F1",
+    alignSelf: "center",
+    borderRadius: 27,
+    // position: "relative", // Remove this line
+    // zIndex: 1, // Remove this line
+    // overflow: "hidden", // 
   },
   reusableContainerText: {
     fontWeight: "500",
@@ -406,6 +582,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
+    position: "relative",
+    zIndex: 1,
+    // flexWrap:"wrap"
   },
   roleFunctionContainerText: {
     fontWeight: "500",
@@ -415,13 +594,16 @@ const styles = StyleSheet.create({
   },
 
   calenderFunctionContainer: {
-    width: 145,
+    width: 140,
     height: 51,
     borderRadius: 51,
     backgroundColor: "#F1F1F1",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
+    position: "relative",
+    zIndex: 1,
+    marginRight: 20,
   },
   calenderFunctionContainerText: {
     fontWeight: "500",
@@ -438,6 +620,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#F1F1F1",
     alignSelf: "center",
     borderRadius: 27,
+    // position:"relative",
+    // zIndex:1,
   },
   arrowImage: {
     marginLeft: 10, // Move the arrow to the left side
@@ -492,24 +676,22 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     lineHeight: 20,
   },
-  account:{
-    flexDirection:"row",
-    alignSelf:"center",
-    marginTop:10,
+  account: {
+    flexDirection: "row",
+    alignSelf: "center",
+    marginTop: 10,
   },
-  termConditionContainer3:{
-    fontWeight:"600",
-    fontSize:13,
-    lineHeight:16,
-
+  termConditionContainer3: {
+    fontWeight: "600",
+    fontSize: 13,
+    lineHeight: 16,
   },
 
-  termConditionContainer4:{
-    fontWeight:"700",
-    fontSize:13,
-    lineHeight:16,
-    backgroundColor:"#FEA01A"
-    
+  termConditionContainer4: {
+    fontWeight: "700",
+    fontSize: 13,
+    lineHeight: 16,
+    backgroundColor: "#FEA01A",
   },
 });
 
