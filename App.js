@@ -9,6 +9,12 @@ import IcanSell from './screen/IcanSell';
 import AISell from './screen/AISell';
 import Form from './screen/Form';
 import AiJadu from './screen/AiJadu';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Navigation from './screen/Navigation';
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
@@ -23,7 +29,19 @@ export default function App() {
 {/* <AISell/> */}
 
 {/* <Form/> */}
-<AiJadu/>
+{/* <AiJadu/> */}
+
+<NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Navigation} />
+        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='Form' component={Form} />
+        <Stack.Screen name='AnotherPage' component={AnotherPage} />
+        <Stack.Screen name='SignUpPage' component={SignUpPage} />
+        <Stack.Screen name='MainPage' component={MainPage} />
+        <Stack.Screen name='AiJadu' component={AiJadu} />
+      </Stack.Navigator>
+    </NavigationContainer>
 
  </>
   );
