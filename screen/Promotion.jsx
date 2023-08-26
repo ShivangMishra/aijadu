@@ -40,7 +40,7 @@ const Promotion = () => {
               setValue={(val) => setCurrentValue(val)}
               maxHeight={200}
               autoScroll
-              placeholder="I want to improve in"
+              placeholder="             I want to improve in"
               placeholderStyle={{
                 fontWeight: "700",
                 fontSize: 12,
@@ -82,14 +82,14 @@ const Promotion = () => {
           <View style={styles.inputTextContainer}>
             <TextInput placeholder="     Search By Skills" />
             <Image
-            style={{alignSelf:"center"}}
+            style={{alignSelf:"center",marginRight:10}}
              source={require("../assets/AIJadu/Login/search1.png")} />
           </View>
 
           <View style={styles.inputTextContainer}>
             <TextInput placeholder="      Search By Skills" />
             <Image
-            style={{alignSelf:"center"}}
+            style={{alignSelf:"center",marginRight:10}}
              source={require("../assets/AIJadu/Login/search1.png")} />
           </View>
           <View style={styles.iconContainer}>
@@ -123,7 +123,7 @@ const Promotion = () => {
             />
           </View>
           <Image
-          style={{marginTop:-20}} 
+          style={{marginTop:-20, }} 
           source={require('../assets/AIJadu/Login/bottomHalfCircle.png')} />
         </View>
       </View>
@@ -144,19 +144,20 @@ const styles = StyleSheet.create({
   headerContainer: {
     marginTop: 20,
     flex: 2,
-    // position: "absolute",
+    
     flexDirection: "row",
-    // alignItems: "center",
+    
     justifyContent: "space-evenly",
   },
 
   bottomDownPicker: {
     width: 227,
-    // borderWidth: 0,
+   
     borderRadius: 30,
-    // marginLeft: 20,
+   
     height: 34,
-    // backgroundColor:"red"
+    alignItems:"center"
+   
   },
   searchIcon: {},
 
