@@ -7,6 +7,7 @@ import SignUpPage from './SignUpPage'
 import MainPage from './MainPage'
 import IcanSell from './IcanSell'
 import AiJadu from './AiJadu'
+import Promotion from './Promotion'
 
 
 const Navigation = (props) => {
@@ -19,6 +20,7 @@ const Navigation = (props) => {
     <Button title='SignUp Page Button' onPress={()=>{props.navigation.navigate(SignUpPage)}}  />
     <Button title='Main Page Button' onPress={()=>{props.navigation.navigate(MainPage)}}  />
     <Button title='AiJadu Page Button' onPress={()=>{props.navigation.navigate(AiJadu)}}  />
+    <Button title='Promotion Page Button' onPress={()=>{props.navigation.navigate(Promotion)}}  />
   
     </View>
   )

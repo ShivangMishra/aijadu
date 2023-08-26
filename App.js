@@ -12,6 +12,7 @@ import AiJadu from './screen/AiJadu';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Navigation from './screen/Navigation';
+import Promotion from './screen/Promotion';
 
 
 const Stack = createNativeStackNavigator();
@@ -40,6 +41,7 @@ export default function App() {
         <Stack.Screen name='SignUpPage' component={SignUpPage} />
         <Stack.Screen name='MainPage' component={MainPage} />
         <Stack.Screen name='AiJadu' component={AiJadu} />
+        <Stack.Screen name='Promotion' component={Promotion} />
       </Stack.Navigator>
     </NavigationContainer>
 
