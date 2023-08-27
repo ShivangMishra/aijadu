@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import { SliderBox } from "react-native-image-slider-box";
@@ -23,301 +30,113 @@ const AiJadu = () => {
   ];
 
   return (
-    <View style={styles.mainComponent}>
-      <Image
-        style={{ alignSelf: "flex-end" }}
-        source={require("../assets/AIJadu/Login/sideImage.png")}
-      />
-      <View style={styles.headerContainer}>
-        <Image source={require("../assets/AIJadu/signUp/leftArrow.png")} />
-
-        <View style={styles.spacer} />
-
-        <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
-
-        <View style={styles.searchIconContainer}>
-          <DropDownPicker
-            items={items}
-            open={isOpen}
-            setOpen={() => setIsOpen(!isOpen)}
-            value={currentValue}
-            setValue={(val) => setCurrentValue(val)}
-            maxHeight={200}
-            autoScroll
-            placeholder="I want to improve in"
-            placeholderStyle={{
-              fontWeight: "700",
-              fontSize: 12,
-              lineHeight: 16,
-            }}
-            showTickIcon={true}
-            showArrowIcon={true}
-            dropDownDirection="Bottom"
-            disableBorderRadius={false}
-            theme="LIGHT"
-            style={styles.bottomDownPicker}
-            dropDownContainerStyle={{
-              width: 200,
-              // marginLeft: 20,
-              borderRadius: 18,
-            }}
-          />
-
+    <ScrollView>
+      <View style={styles.mainComponent}>
+        <Image
+          style={styles.sideImage}
+          source={require("../assets/AIJadu/Login/sideImage.png")}
+        />
+        <View style={styles.headerContainer}>
+          <Image source={require("../assets/AIJadu/signUp/leftArrow.png")} />
+          <View style={styles.spacer} />
+          <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
+          <View style={styles.searchIconContainer}>
+            <DropDownPicker
+              items={items}
+              open={isOpen}
+              setOpen={() => setIsOpen(!isOpen)}
+              value={currentValue}
+              setValue={(val) => setCurrentValue(val)}
+              maxHeight={200}
+              autoScroll
+              placeholder="I want to improve in"
+              placeholderStyle={styles.dropdownPlaceholder}
+              showTickIcon={true}
+              showArrowIcon={true}
+              dropDownDirection="Bottom"
+              disableBorderRadius={false}
+              theme="LIGHT"
+              style={styles.bottomDownPicker}
+              dropDownContainerStyle={styles.dropdownContent}
+            />
+            <Image
+              style={styles.searchIcon}
+              source={require("../assets/AIJadu/Login/search1.png")}
+            />
+          </View>
+        </View>
+        <Image source={require("../assets/AIJadu/Login/blueCircle.png")} />
+        <View style={styles.mainPage}>
           <Image
-            style={styles.searchIcon}
-            source={require("../assets/AIJadu/Login/search1.png")}
+            style={styles.mainPageImage}
+            source={require("../assets/AIJadu/Login/AIsell1.png")}
+          />
+          <View style={styles.mainPageHeading}>
+            <Text style={styles.headingText}>WHAT IS AICANSELL{`\n`}</Text>
+            <Text style={styles.subheadingText}>
+              Respond to tough situations
+            </Text>
+            <Text style={styles.subheadingText}>
+              Check Your Skills-on-the-go
+            </Text>
+          </View>
+        </View>
+        <View style={styles.compareSkillsContainer}>
+          <Text style={styles.compareSkillsText}>
+            COMPARE YOURSELF ON SKILLS THAT
+          </Text>
+          <Text style={styles.compareSkillsText}>
+            EMPLOYERS FIND CRITICAL, TO HIRE OR PROMOTE
+          </Text>
+        </View>
+        <View style={styles.doJaduContainer}>
+          <Image source={require("../assets/AIJadu/signUp/RoboatImage.png")} />
+          <View style={styles.doJaduContainerText}>
+            <Text style={styles.doJaduHeading}>WHY DO-JADU?</Text>
+            <Text style={styles.doJaduSubheading}>
+              Employability{`\n`} Promotion &{`\n`} Career Growth
+            </Text>
+          </View>
+        </View>
+        <View style={styles.challengeContainer}>
+          <Text style={styles.challengeText}>
+            Take challenge and Win Something
+          </Text>
+          <SliderBox
+            images={imageUrls}
+            dotColor="#000000"
+            inactiveDotColor="#90A4AE"
+            autoplay={true}
+            circleLoop={true}
+            autoplayInterval={1000}
+            style={styles.sliderBox}
           />
         </View>
-      </View>
-
-      <Image
-        // style={{margin:10}}
-        source={require("../assets/AIJadu/Login/blueCircle.png")}
-      />
-
-      <View style={styles.mainPage}>
-        <Image
-          style={{ margin: 12 }}
-          source={require("../assets/AIJadu/Login/AIsell1.png")}
-        />
-
-        <View style={styles.mainPageHeading}>
-          <Text
-            style={{
-              fontWeight: 700,
-              fontSize: 20,
-              lineHeight: 27,
-              alignSelf: "center",
-              justifyContent: "center",
-              marginTop: 8,
-            }}
-          >
-            WHAT IS AICANSELL{`\n`}
-          </Text>
-          <Text
-            style={{
-              fontWeight: 700,
-              fontSize: 14,
-              lineHeight: 15,
-              alignSelf: "center",
-              justifyContent: "center",
-              marginTop: 8,
-              color: "#371BC6",
-            }}
-          >
-            Respond to tough situations
-          </Text>
-          <Text
-            style={{
-              fontWeight: 700,
-              fontSize: 12,
-              lineHeight: 15,
-              alignSelf: "center",
-              justifyContent: "center",
-              marginTop: 8,
-              color: "#FEA01A",
-            }}
-          >
-            Check Your Skills-on-the-go
-          </Text>
-        </View>
-      </View>
-      <View
-        style={{
-          width: 300,
-          height: 100,
-          // backgroundColor: "blue",
-          alignSelf: "center",
-          marginTop: -12,
-          //   flex:1
-        }}
-      >
-        <Text
-          style={{
-            fontWeight: 700,
-            fontSize: 14,
-            lineHeight: 17,
-
-            justifyContent: "center",
-            color: "#1C6ADC",
-            // backgroundColor:"green",
-            alignSelf: "center",
-          }}
-        >
-          COMPARE YOURSELF ON SKILLS THAT
-        </Text>
-        <Text
-          style={{
-            fontWeight: 700,
-            fontSize: 14,
-            lineHeight: 17,
-
-            justifyContent: "center",
-            color: "#1C6ADC",
-            alignSelf: "center",
-          }}
-        >
-          {" "}
-          EMPLOYERS FIND CRITICAL, TO
-        </Text>
-        <Text
-          style={{
-            fontWeight: 700,
-            fontSize: 14,
-            lineHeight: 17,
-
-            justifyContent: "center",
-            color: "#1C6ADC",
-            alignSelf: "center",
-          }}
-        >
-          {" "}
-          HIRE OR PROMOTE
-        </Text>
-      </View>
-
-      <View style={styles.doJaduContainer}>
-        <Image
-          // style={{ alignSelf: "flex-end" }}
-          source={require("../assets/AIJadu/signUp/RoboatImage.png")}
-        />
-        <View style={styles.doJaduContainerText}>
-          <Text
-            style={{
-              fontWeight: "700",
-              fontSize: 20,
-              lineHeight: 26,
-              alignSelf: "center",
-            }}
-          >
-            {" "}
-            WHY DO-JADU?{" "}
-          </Text>
-          <Text
-            style={{
-              fontWeight: "700",
-              fontSize: 14,
-              lineHeight: 17,
-              color: "#FEA01A",
-              alignSelf: "center",
-            }}
-          >
-            {" "}
-            Employability{`\n`} Promotion &{`\n`} Career Growth{" "}
-          </Text>
-        </View>
-      </View>
-
-      <View style={styles.challengeContainer}>
-        <Text
-          style={{
-            fontWeight: 700,
-            FontSize: 13,
-            alignSelf: "center",
-            margin: 5,
-          }}
-        >
-          {" "}
-          Take challenge and Win Something{" "}
-        </Text>
-        <SliderBox
-          images={imageUrls}
-          // sliderBoxHeight={200} // Adjust the height as needed
-          // sliderBoxWidth={100} // Adjust the height as needed
-          dotColor="#000000"
-          inactiveDotColor="#90A4AE"
-          autoplay={true}
-          circleLoop={true}
-          autoplayInterval={1000}
-          style={{
-            width: 300,
-            alignSelf: "center",
-            borderRadius: 10,
-            height: 140,
-          }}
-        />
-      </View>
-
-      <View style={styles.bottomContainer}>
-        <Image
-          style={{
-            flexDirection: "column",
-            zIndex: 1,
-            marginTop: 140,
-            // position: "relative",
-          }}
-          source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
-        />
-        <View style={styles.bottomContainerBOx}>
-          <Text style={{ fontWeight: "700", fontSize: 13, lineHeight: 16 }}>
-            EXPLORE - HOW OTHERS RESPONDED TO SITUATIONS
-          </Text>
-          <Text style={{ fontWeight: "500", fontSize: 12, lineHeight: 14 }}>
-            and improve your skills
-          </Text>
-
-          <TouchableOpacity
-            style={{
-              width: 200,
-              height: 51,
-              borderRadius: 27,
-              backgroundColor: "#FEA01A",
-              justifyContent: "center",
-            }}
-          >
-            <Text
-              style={{
-                fontWeight: "700",
-                fontSize: 14,
-                lineHeight: 19,
-                alignSelf: "center",
-              }}
-            >
-              LEARN FROM OTHERS JADU{" "}
+        <View style={styles.bottomContainer}>
+          <View style={styles.bottomContainerBox}>
+            <Text style={styles.bottomContainerText}>
+              EXPLORE - HOW OTHERS RESPONDED TO SITUATIONS
             </Text>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            width: 390,
-            // backgroundColor: "red",
-            height: 100,
-            position: "absolute",
-            alignSelf: "center",
-            marginTop: 150,
-            flex: 1,
-            alignSelf: "center",
-            flexDirection: "row",
-            justifyContent:"center"
-          }}
-        >
-          <Text
-            style={{
-              fontWeight: "500",
-              fontSize: 12,
-              lineHeight: 14,
-              // alignSelf: "center",
-              color: "#Ffff",
-
-            }}
-          >
-            Don’t have an account?
-          </Text>
-          <Text
-            style={{
-              fontWeight: "500",
-              fontSize: 12,
-              lineHeight: 14,
-              // alignSelf: "center",
-              color: "#FEA01A",
-            }}
-          >
-            {" "}
-            Please Signup here
-          </Text>
+            <Text style={styles.bottomContainerText}>
+              and improve your skills
+            </Text>
+            <TouchableOpacity style={styles.learnFromOthersButton}>
+              <Text style={styles.buttonText}>LEARN FROM OTHERS JADU</Text>
+            </TouchableOpacity>
+          </View>
+        
+          <View style={styles.signupContainer}>
+          <Image
+            style={styles.bottomHalfCircle}
+            source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
+          />
+            <Text style={styles.signupText}>Don’t have an account?</Text>
+            <Text style={styles.signupLink}>Please Signup here</Text>
+            
+          </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -326,24 +145,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#E4E4E4",
   },
-
+  sideImage: {
+    alignSelf: "flex-end",
+  },
   headerContainer: {
     flexDirection: "row",
-    // backgroundColor: "pink",
     position: "absolute",
     height: 115,
-    width: 360, // Use 100% width to ensure it covers the entire width
+    width: 360,
     alignItems: "center",
     paddingHorizontal: 20,
     justifyContent: "space-evenly",
-    // alignSelf:"center"
   },
   bottomDownPicker: {
     width: 200,
     borderWidth: 0,
     borderRadius: 27,
     marginLeft: 10,
-    // backgroundColor:"red"
   },
   searchIcon: {
     alignSelf: "flex-end",
@@ -356,12 +174,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     flex: 1,
-    marginLeft: 0, // Adjust this margin as needed
+    marginLeft: 0,
   },
   spacer: {
-    width: 10, // Adjust the width as needed for spacing
+    width: 10,
   },
-
   mainPage: {
     flex: 1,
     backgroundColor: "#ffffff",
@@ -374,17 +191,50 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 15,
   },
+  mainPageImage: {
+    margin: 12,
+  },
   mainPageHeading: {
     width: 280,
     alignItems: "center",
     height: 100,
     flex: 1,
   },
+  headingText: {
+    fontWeight: "700",
+    fontSize: 20,
+    lineHeight: 27,
+    alignSelf: "center",
+    justifyContent: "center",
+    marginTop: 8,
+  },
+  subheadingText: {
+    fontWeight: "700",
+    fontSize: 14,
+    lineHeight: 15,
+    alignSelf: "center",
+    justifyContent: "center",
+    marginTop: 8,
+    color: "#371BC6",
+  },
+  compareSkillsContainer: {
+    width: 300,
+    height: 100,
+    alignSelf: "center",
+    marginTop: -12,
+  },
+  compareSkillsText: {
+    fontWeight: "700",
+    fontSize: 14,
+    lineHeight: 17,
+    justifyContent: "center",
+    color: "#1C6ADC",
+    alignSelf: "center",
+  },
   doJaduContainer: {
     width: 380,
     height: 124,
     backgroundColor: "#ffffff",
-    // flex: 1,
     alignSelf: "center",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -392,37 +242,52 @@ const styles = StyleSheet.create({
   },
   doJaduContainerText: {
     alignSelf: "center",
-    // alignSelf:"center",
     width: 230,
-    // backgroundColor:"green"
-
-    flex: 1,
+  },
+  doJaduHeading: {
+    fontWeight: "700",
+    fontSize: 20,
+    lineHeight: 26,
+    alignSelf: "center",
+  },
+  doJaduSubheading: {
+    fontWeight: "700",
+    fontSize: 14,
+    lineHeight: 17,
+    color: "#FEA01A",
+    alignSelf: "center",
   },
   challengeContainer: {
     width: 380,
     height: 175,
-    // flex: 1,
     backgroundColor: "#fff",
     alignSelf: "center",
     margin: 10,
     borderRadius: 15,
   },
+  challengeText: {
+    fontWeight: "700",
+    fontSize: 13,
+    alignSelf: "center",
+    margin: 5,
+  },
+  sliderBox: {
+    width: 300,
+    alignSelf: "center",
+    borderRadius: 10,
+    height: 140,
+  },
   bottomContainer: {
     backgroundColor: "blue",
     flex: 1,
-    // position:"absolute",
     width: 400,
-    height: 220,
-    // flexDirection:"column-reverse"
     borderTopEndRadius: 55,
-
     alignSelf: "center",
     borderTopLeftRadius: 55,
-    // justifyContent:"center"
   },
-  bottomContainerBOx: {
+  bottomContainerBox: {
     width: 350,
-    height: 110,
+    height: 165,
     backgroundColor: "#fff",
     flex: 1,
     position: "absolute",
@@ -432,5 +297,53 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: 10,
   },
+  bottomContainerText: {
+    fontWeight: "700",
+    fontSize: 13,
+    lineHeight: 16,
+  },
+  learnFromOthersButton: {
+    width: 200,
+    height: 51,
+    borderRadius: 27,
+    backgroundColor: "#FEA01A",
+    justifyContent: "center",
+  },
+  buttonText: {
+    fontWeight: "700",
+    fontSize: 14,
+    lineHeight: 19,
+    alignSelf: "center",
+  },
+  bottomHalfCircle: {
+    // flexDirection: "column",
+    zIndex: 1,
+    // marginTop: 140,
+    justifyContent:"flex-start"
+  },
+  signupContainer: {
+    width: 390,
+    // height: 100,
+    // position: "absolute",
+    alignSelf: "center",
+    marginTop: 15,
+    flex: 1,
+    alignSelf: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  signupText: {
+    fontWeight: "500",
+    fontSize: 12,
+    lineHeight: 14,
+    color: "#Ffff",
+  },
+  signupLink: {
+    fontWeight: "500",
+    fontSize: 12,
+    lineHeight: 14,
+    color: "#FEA01A",
+  },
 });
+
 export default AiJadu;

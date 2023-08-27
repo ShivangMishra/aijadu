@@ -44,6 +44,7 @@ export default function App() {
         <Stack.Screen name='AiJadu' component={AiJadu} />
         <Stack.Screen name='Promotion' component={Promotion} />
         <Stack.Screen name='Interview' component={Interview} />
+        <Stack.Screen name='IcanSell' component={IcanSell} />
       </Stack.Navigator>
     </NavigationContainer>
 

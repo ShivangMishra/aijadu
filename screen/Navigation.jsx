@@ -23,6 +23,7 @@ const Navigation = (props) => {
     <Button title='AiJadu Page Button' onPress={()=>{props.navigation.navigate(AiJadu)}}  />
     <Button title='Promotion Page Button' onPress={()=>{props.navigation.navigate(Promotion)}}  />
     <Button title='InterView Page Button' onPress={()=>{props.navigation.navigate(Interview)}}  />
+    <Button title='IcanSell Page Button' onPress={()=>{props.navigation.navigate(IcanSell)}}  />
   
     </View>
   )
