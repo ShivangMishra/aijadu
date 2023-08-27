@@ -113,8 +113,8 @@ const IcanSell = () => {
                 color: "#1C6ADC",
               }}
             >
-              COMPARE YOURSELF ON SKILLS THAT{`\n`} EMPLOYERS FIND CRITICAL, TO
-              {`\n`} HIRE OR PROMOTE
+              COMPARE YOURSELF ON SKILLS THAT{`\n`}        EMPLOYERS FIND CRITICAL, TO
+              {`\n`}                HIRE OR PROMOTE
             </Text>
           </View>
           <View style={styles.container2}>
