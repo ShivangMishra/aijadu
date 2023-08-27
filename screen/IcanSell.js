@@ -206,6 +206,7 @@ const IcanSell = () => {
                 borderRadius: 15,
                 alignSelf: "center",
                 justifyContent: "space-evenly",
+                marginTop:20
               }}
             >
               <Text
@@ -420,7 +421,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   bottomCircle: {
-    marginTop: -40,
+    marginTop: -30,
     // position:"absolute",
     alignSelf: "baseline",
   },
