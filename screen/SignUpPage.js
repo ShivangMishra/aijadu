@@ -215,13 +215,7 @@ const SignUpPage = () => {
               style={{ marginLeft: 20 }}
               source={require("../assets/AIJadu/SignUpPage/yearLogo.png")}
             />
-            {/* <TextInput
-              style={styles.calenderFunctionContainerText}
-              placeholder="Year"
-            />
-            <Image
-              source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
-            /> */}
+          
 
             <DropDownPicker
               items={items1}
@@ -236,26 +230,24 @@ const SignUpPage = () => {
               placeholder="Year"
               placeholderStyle={{
                 fontWeight: "700",
-                // color: "#FEA01A",
+              
                 fontSize: 14,
-                // lineHeight: 30,
+            
               }}
               style={{
-                // Custom styles for the DropDownPicker
-                backgroundColor: "#F1F1F1", // Set your desired background color
-                borderRadius: 27, // Set your desired border radius
+              
+                backgroundColor: "#F1F1F1", 
+                borderRadius: 27, 
                 width: 100,
-                // marginRight: 30,
                 alignSelf: "flex-end",
                 borderWidth: 0,
                 flexDirection: "row",
-                // backgroundColor:"red"
               }}
             />
           </View>
         </View>
 
-        <View style={styles.reuseContainer1}>
+        <View style={styles.reuseContainer2}>
           <Image
             style={styles.reuseContainerImage}
             source={require("../assets/AIJadu/SignUpPage/industryLogo.png")}
@@ -279,31 +271,26 @@ const SignUpPage = () => {
               // lineHeight: 30,
             }}
             style={{
-              // Custom styles for the DropDownPicker
               backgroundColor: "#F1F1F1", // Set your desired background color
               borderRadius: 27, // Set your desired border radius
               width: 320,
-              // marginRight: 30,
               alignSelf: "flex-end",
               borderWidth: 0,
               flexDirection: "row",
-              // backgroundColor: "red",
               alignSelf: "center",
               marginRight: 40,
-    //           position:"relative",
-    // zIndex:1,
+              zIndex:-1
+            }}
+            dropDownContainerStyle={{
+              width: 200,
+              marginLeft: 20,
+              borderRadius: 18,
+              height: 80,
+              zIndex:1,
             }}
           />
 
-          {/* <TextInput
-            style={styles.reuseContainerText}
-            placeholder="  Industry"
-          />
-
-          <Image
-            style={styles.arrowImage}
-            source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
-          /> */}
+       
         </View>
 
         <View style={styles.reuseContainer}>
@@ -621,7 +608,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 27,
     // position:"relative",
-    // zIndex:1,
+    zIndex:1,
   },
   arrowImage: {
     marginLeft: 10, // Move the arrow to the left side
@@ -692,6 +679,18 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 16,
     backgroundColor: "#FEA01A",
+  },
+  reuseContainer2:{
+    marginTop: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    width: 360,
+    height: 51,
+    backgroundColor: "#F1F1F1",
+    alignSelf: "center",
+    borderRadius: 27,
+    // position: "relative", // Remove this line
+    // zIndex: 1, // Remove this line
   },
 });
 
