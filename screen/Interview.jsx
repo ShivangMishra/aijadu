@@ -26,8 +26,12 @@ const Interview = () => {
         source={require("../assets/AIJadu/Login/sideImage.png")}
       />
       <View style={styles.headerContainer}>
-        <Image source={require("../assets/AIJadu/signUp/leftArrow.png")} />
-        <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
+        <Image 
+        style={{alignSelf:"center"}}
+         source={require("../assets/AIJadu/signUp/leftArrow.png")} />
+        <Image
+        style={{alignSelf:"center"}}
+         source={require("../assets/AIJadu/signUp/AILogo.png")} />
 
         <View style={styles.bottomDownPicker}>
           <DropDownPicker
@@ -58,14 +62,14 @@ const Interview = () => {
           />
         </View>
         <Image
-          style={styles.searchIcon}
+          style={{alignSelf:"center",marginTop:8}}
           source={require("../assets/AIJadu/Login/search1.png")}
         />
       </View>
 
       <View style={styles.middleContainer}>
         <Image
-          style={{ position: "absolute", marginTop: -20 }}
+          style={{ position: "absolute", marginTop:-6 }}
           source={require("../assets/AIJadu/Login/blueCircle.png")}
         />
 
@@ -94,14 +98,24 @@ const Interview = () => {
             alignSelf: "center",
             fontWeight: "700",
             fontSize: 15,
-            lineHeight: 12,
+            lineHeight: 15,
             color: "#FF0000",
             marginTop: 20,
           }}
         >
           MY RECORDED VIDEO> PREVIEW
         </Text>
-        <Image source={require("../assets/AIJadu/Interview/Interview.png")} />
+        <Image
+         style={{
+            alignSelf: "center",
+            width:380
+            // fontWeight: "700",
+            // fontSize: 12,
+            // lineHeight: 15,
+            // color: "#371BC6",
+            // marginTop: 20,
+          }}
+         source={require("../assets/AIJadu/Interview/Interview.png")} />
         <Text
           style={{
             alignSelf: "center",
@@ -212,13 +226,13 @@ const Interview = () => {
         >
           <Text
             style={{
-              color: "white",
               fontWeight: "800",
-              fontSize: 10,
+              fontSize: 15,
+              lineHeight:19, 
               alignSelf: "center",
             }}
           >
-            SAVE FOR LATER
+           UPLOAD THIS VIDEO
           </Text>
         </TouchableOpacity>
 
@@ -312,7 +326,7 @@ const Interview = () => {
               source={require("../assets/AIJadu/Interview/leftWhiteArrow.png")}
             />
           </View>
-          <View style={{ flexDirection: "row", }}>
+          <View style={{ flexDirection: "row",marginTop:10 }}>
             <Image
               source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
             />
@@ -350,7 +364,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   bottomDownPicker: {
-    width: 227,
+    width: 200,
 
     borderRadius: 30,
 

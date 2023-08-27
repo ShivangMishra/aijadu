@@ -28,7 +28,9 @@ const IcanSell = () => {
           source={require("../assets/AIJadu/Login/sideImage.png")}
         />
         <View style={styles.headerContainer}>
-          <Image source={require("../assets/AIJadu/signUp/leftArrow.png")} />
+          <Image
+          style={{ alignSelf:"center" }}
+           source={require("../assets/AIJadu/signUp/leftArrow.png")} />
           <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
 
           <View style={styles.bottomDownPicker}>
@@ -60,7 +62,8 @@ const IcanSell = () => {
             />
           </View>
           <Image
-            style={styles.searchIcon}
+             style={{ alignSelf:"center",justifyContent:"center",marginTop:7
+              }}
             source={require("../assets/AIJadu/Login/search1.png")}
           />
         </View>
@@ -212,14 +215,21 @@ const IcanSell = () => {
               <Text
                 style={{
                   fontWeight: "800",
-                  fontSize: 14,
-                  lineHeight: 16,
+                  fontSize: 13,
+                  lineHeight: 15,
                   alignSelf: "center",
-                  margin: 10,
+                  // marginTop: 10,
                 }}
               >
-                TAKE CHALLENGES & RESPOND TO SITUATIONS
+                TEXPLORE - HOW OTHERS RESPONDED TO SITUATIONS
               </Text>
+              <Text    style={{
+                  fontWeight: "500",
+                  fontSize: 12,
+                  lineHeight: 14,
+                  alignSelf: "center",
+                  // marginBottom: 20,
+                }}  >and improve your skills</Text>
 
               <View
                 style={{
@@ -229,10 +239,10 @@ const IcanSell = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Image
+                {/* <Image
                   source={require("../assets/AIJadu/Interview/smartPhone.png")}
-                />
-                <Text
+                /> */}
+                {/* <Text
                   style={{
                     fontWeight: "600",
                     fontSize: 12,
@@ -242,7 +252,7 @@ const IcanSell = () => {
                   }}
                 >
                   win iphones & Laptops
-                </Text>
+                </Text> */}
               </View>
 
               <TouchableOpacity
@@ -315,13 +325,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flex: 2,
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
+    // alignItems:"center",
+    // backgroundColor:"red",
+    // justifyContent:"center"
   },
 
   bottomDownPicker: {
-    width: 227,
+    width: 200,
     borderRadius: 30,
-    height: 34,
+    height: 10,
     alignItems: "center",
   },
   mainBox: {
@@ -361,10 +374,10 @@ const styles = StyleSheet.create({
   container4: {
     flex: 1,
     backgroundColor: "blue",
-    width: 380,
+    width: 400,
     height: 260,
     marginTop: 10,
-    alignSelf: "center",
+    // alignSelf: "center",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     justifyContent: "center",

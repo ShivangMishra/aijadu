@@ -28,7 +28,9 @@ const Promotion = () => {
           source={require("../assets/AIJadu/Login/sideImage.png")}
         />
         <View style={styles.headerContainer}>
-          <Image source={require("../assets/AIJadu/signUp/leftArrow.png")} />
+          <Image
+          style={{alignSelf:"center"}}
+           source={require("../assets/AIJadu/signUp/leftArrow.png")} />
           <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
 
           <View style={styles.bottomDownPicker}>
@@ -60,7 +62,7 @@ const Promotion = () => {
             />
           </View>
           <Image
-            style={styles.searchIcon}
+             style={{alignSelf:"center",marginTop:8}}
             source={require("../assets/AIJadu/Login/search1.png")}
           />
         </View>
@@ -151,12 +153,13 @@ const styles = StyleSheet.create({
   },
 
   bottomDownPicker: {
-    width: 227,
+    width: 200,
    
     borderRadius: 30,
    
     height: 34,
-    alignItems:"center"
+    // alignItems:"center",
+    // alignSelf:"center"
    
   },
   searchIcon: {},
@@ -206,8 +209,7 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: "space-evenly",
     marginTop: 10,
-    // marginTop:20
-  },
+zIndex:1  },
   iconContainerImage: {
     margin: 10,
   },

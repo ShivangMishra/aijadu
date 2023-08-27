@@ -98,15 +98,6 @@ const SignUpPage = () => {
                     borderWidth: 0,
                   }}
                 />
-                {/* <TextInput
-                placeholder="Mr"
-                style={styles.mrContainerText}
-                placeholderTextColor="#000000"
-                  />
-                <Image
-                style={styles.bottomArrow}
-                source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
-                  /> */}
               </View>
               <View style={styles.nameContainer}>
                 <Image
@@ -172,13 +163,6 @@ const SignUpPage = () => {
               style={{ marginLeft: 20 }}
               source={require("../assets/AIJadu/SignUpPage/industryLogo.png")}
             />
-            {/* <TextInput
-              style={styles.roleFunctionContainerText}
-              placeholder="Role/Function"
-            />
-            <Image
-              source={require("../assets/AIJadu/SignUpPage/downArrow.png")}
-            /> */}
 
             <DropDownPicker
               items={items2}
@@ -200,11 +184,12 @@ const SignUpPage = () => {
                 // Custom styles for the DropDownPicker
                 backgroundColor: "#F1F1F1", // Set your desired background color
                 borderRadius: 27, // Set your desired border radius
-                width: 150,
-                marginRight: 30,
+                width: 140,
+                marginRight: 20,
                 alignSelf: "flex-end",
                 borderWidth: 0,
                 flexDirection: "row",
+                // marginLeft:5
                 // backgroundColor:"red"
               }}
             />
@@ -215,7 +200,6 @@ const SignUpPage = () => {
               style={{ marginLeft: 20 }}
               source={require("../assets/AIJadu/SignUpPage/yearLogo.png")}
             />
-          
 
             <DropDownPicker
               items={items1}
@@ -230,14 +214,12 @@ const SignUpPage = () => {
               placeholder="Year"
               placeholderStyle={{
                 fontWeight: "700",
-              
+
                 fontSize: 14,
-            
               }}
               style={{
-              
-                backgroundColor: "#F1F1F1", 
-                borderRadius: 27, 
+                backgroundColor: "#F1F1F1",
+                borderRadius: 27,
                 width: 100,
                 alignSelf: "flex-end",
                 borderWidth: 0,
@@ -266,31 +248,27 @@ const SignUpPage = () => {
             placeholder="Industry"
             placeholderStyle={{
               fontWeight: "700",
-              // color: "#FEA01A",
+
               fontSize: 14,
-              // lineHeight: 30,
             }}
             style={{
-              backgroundColor: "#F1F1F1", // Set your desired background color
-              borderRadius: 27, // Set your desired border radius
+              backgroundColor: "#F1F1F1",
+              borderRadius: 27,
               width: 320,
               alignSelf: "flex-end",
               borderWidth: 0,
               flexDirection: "row",
               alignSelf: "center",
               marginRight: 40,
-              zIndex:-1
             }}
             dropDownContainerStyle={{
-              width: 200,
+              width: 300,
               marginLeft: 20,
               borderRadius: 18,
-              height: 80,
-              zIndex:1,
+              height: 200,
+              // zIndex: 1,
             }}
           />
-
-       
         </View>
 
         <View style={styles.reuseContainer}>
@@ -476,18 +454,17 @@ const styles = StyleSheet.create({
   profile: {
     margin: 10,
   },
-  reuseContainer1:{
-    marginTop: 10,
-    flexDirection: "row",
-    alignItems: "center",
-    width: 360,
-    height: 51,
-    backgroundColor: "#F1F1F1",
-    alignSelf: "center",
-    borderRadius: 27,
-    // position: "relative", // Remove this line
-    // zIndex: 1, // Remove this line
-  },
+  // reuseContainer1:{
+  //   marginTop: 10,
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  //   width: 360,
+  //   height: 51,
+  //   backgroundColor: "#F1F1F1",
+  //   alignSelf: "center",
+  //   borderRadius: 27,
+
+  // },
   reusableContainer: {
     marginTop: 10,
     flexDirection: "row",
@@ -497,9 +474,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F1F1F1",
     alignSelf: "center",
     borderRadius: 27,
-    // position: "relative", // Remove this line
-    // zIndex: 1, // Remove this line
-    // overflow: "hidden", // 
   },
   reusableContainerText: {
     fontWeight: "500",
@@ -562,7 +536,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   roleFunctionContainer: {
-    width: 203,
+    width: 180,
     height: 51,
     borderRadius: 51,
     backgroundColor: "#F1F1F1",
@@ -570,7 +544,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     position: "relative",
-    zIndex: 1,
+    zIndex: 2,
     // flexWrap:"wrap"
   },
   roleFunctionContainerText: {
@@ -589,7 +563,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     position: "relative",
-    zIndex: 1,
+    zIndex: 2,
     marginRight: 20,
   },
   calenderFunctionContainerText: {
@@ -608,7 +582,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 27,
     // position:"relative",
-    zIndex:1,
+    // zIndex:1,
   },
   arrowImage: {
     marginLeft: 10, // Move the arrow to the left side
@@ -680,7 +654,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     backgroundColor: "#FEA01A",
   },
-  reuseContainer2:{
+  reuseContainer2: {
     marginTop: 10,
     flexDirection: "row",
     alignItems: "center",
@@ -690,7 +664,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 27,
     // position: "relative", // Remove this line
-    // zIndex: 1, // Remove this line
+    zIndex: 1, // Remove this line
+  },
+  nameContainerText: {
+    fontWeight: "500",
+    fontSize: 14,
+    lineHeight: 17,
   },
 });
 
