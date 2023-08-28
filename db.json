@@ -1,0 +1,57 @@
+{
+  "users": [
+    {
+      "name": "Avikansh Tiwari",
+      "age": 23,
+      "id": 1
+    },
+    {
+      "name": "Shaktimaan",
+      "age": 200,
+      "email": "Shaktimaan@gmail.com",
+      "id": 2
+    },
+    {
+      "name": "Jaduu",
+      "age": 1000,
+      "email": "Jaduu@gmail.com",
+      "id": 3
+    },
+    {
+      "name": "Avikansh Tiwari",
+      "age": 23,
+      "email": "avikanshtiwari@gmail.com",
+      "id": 4
+    },
+    {
+      "name": "Avikansh Tiwari",
+      "age": 23,
+      "email": "avikanshtiwari@gmail.com",
+      "id": 5
+    },
+    {
+      "name": "Avikansh Tiwari",
+      "age": 23,
+      "email": "avikanshtiwari@gmail.com",
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
+    }
+  ]
+}

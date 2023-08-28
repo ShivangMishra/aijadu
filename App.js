@@ -16,6 +16,8 @@ import Promotion from './screen/Promotion';
 import Interview from './screen/Interview';
 import YourJadu from './screen/YourJadu';
 import ApiAPP from './screen/ApiAPP';
+import MyApi from './screen/MyApi';
+import PostAPi from './screen/PostAPi';
 
 
 const Stack = createNativeStackNavigator();
@@ -48,7 +50,8 @@ export default function App() {
         <Stack.Screen name='Interview' component={Interview} />
         <Stack.Screen name='IcanSell' component={IcanSell} />
         <Stack.Screen name='YourJadu' component={YourJadu} />
-        {/* <Stack.Screen name='ApiAPP' component={ApiAPP} /> */}
+        <Stack.Screen name='MyApi' component={MyApi} />
+        <Stack.Screen name='PostAPi' component={PostAPi} />
       </Stack.Navigator>
     </NavigationContainer>
 
