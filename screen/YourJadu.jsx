@@ -9,14 +9,16 @@ const YourJadu = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [currentValue, setCurrentValue] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
 
   const items1 = [
-    { id: '1', name: 'Value Selling' },
-    { id: '2', name: 'Managing Our Manager' },
-    { id: '3', name: 'Personal Branding' },
-    { id: '4', name: 'Influence' },
+    { id: "1", name: "Value Selling" },
+    { id: "2", name: "Managing Our Manager" },
+    { id: "3", name: "Personal Branding" },
+    { id: "4", name: "Influence" },
+    // { id: "5", name: "JOB" },
+    // { id: "6", name: "freelancer" },
     // Add more items as needed
   ];
 
@@ -200,17 +202,16 @@ const YourJadu = () => {
         </View>
       </View>
       <View>
-      
         <View style={styles.container4}>
-        <Text
+          <Text
             style={{
               fontWeight: "800",
               fontSize: 13,
               lineHeight: 15,
               color: "blue",
               alignSelf: "center",
-            //   backgroundColor: "#E4E4E4",
-              margin:4,
+              //   backgroundColor: "#E4E4E4",
+              margin: 4,
             }}
           >
             AI IntelliSearch - Learn in 3 min
@@ -220,40 +221,47 @@ const YourJadu = () => {
               fontWeight: "500",
               fontSize: 10,
               lineHeight: 12,
-            //   color: "blue",
+              //   color: "blue",
               alignSelf: "center",
-            //   backgroundColor: "#E4E4E4",
-              margin:4,
-
+              //   backgroundColor: "#E4E4E4",
+              margin: 4,
             }}
           >
             Personal Branding, Sales Intelligence and lots more
           </Text>
           <View style={styles.searchContainer}>
-          <TextInput
-        style={styles.input}
-        placeholder="Search items..."
-        onChangeText={(text) => {
-          setSearchQuery(text);
-          filterItems(text);
-        }}
-        value={searchQuery}
-      />
-    <FlatList
-  data={filteredItems.length > 0 ? filteredItems : items1}
-  keyExtractor={(item) => item.id} // Change to `item.id`
-  renderItem={({ item }) => ( // Change to `item`
-    <View style={styles.item1}>
-      <Text>{item.name}</Text>
-    </View>
-  )}
-/>
+            <TextInput
+              style={styles.input}
+              placeholder="Search items..."
+              onChangeText={(text) => {
+                setSearchQuery(text);
+                filterItems(text);
+              }}
+              value={searchQuery}
+            />
+            <Text style={{fontWeight:"800",fontSize:10,lineHeight:12,color:'#371BC6',marginTop:-10,}} >Suggested</Text>
+            <FlatList
+              data={filteredItems.length > 0 ? filteredItems : items1}
+              keyExtractor={(item) => item.id} // Change to `item.id`
+              renderItem={(
+                { item } // Change to `item`
+              ) => (
+                <View style={styles.item1}>
+                  <Text>{item.name}</Text>
+                  <Image
+            style={{ alignSelf:"center" }}
+            source={require("../assets/AIJadu/yourJadu/cross.png")}
+          />
+
+                </View>
+              )}
+            />
           </View>
           <Image
-        style={{marginTop:-30,alignSelf:"flex-start"}}
-         source={require("../assets/AIJadu/Login/bottomHalfCircle.png")} />
+            style={{ marginTop: -30, alignSelf: "flex-start" }}
+            source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
+          />
         </View>
-      
       </View>
     </ScrollView>
   );
@@ -444,32 +452,44 @@ const styles = StyleSheet.create({
   container4: {
     width: 400,
     height: 300,
-    backgroundColor: "#E4DFDF",    
-    alignItems:"center",
-    justifyContent:"center",
-    zIndex:1,
+    backgroundColor: "#E4DFDF",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 1,
+
   },
-  searchContainer:{
-    width:360,
-    height:230,
-    backgroundColor:"#E4DFDF",
-    alignSelf:"center",
-    borderWidth:1,
-    borderRadius:13,
+  searchContainer: {
+    width: 360,
+    height: 230,
+    backgroundColor: "#E4DFDF",
+    alignSelf: "center",
+    borderWidth: 1,
+    borderRadius: 13,
+    // flexDirection:"row",
+    flexWrap:"wrap",
 
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 1,
     padding: 8,
     marginBottom: 16,
     borderRadius: 8,
+    width:355,
+    // height:40,
   },
   item1: {
     padding: 5,
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
+    backgroundColor: "#fff",
+    margin: 5,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    maxWidth: "50%",
+
+    
   },
 });
 
