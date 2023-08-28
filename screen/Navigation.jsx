@@ -9,6 +9,8 @@ import IcanSell from './IcanSell'
 import AiJadu from './AiJadu'
 import Promotion from './Promotion'
 import Interview from './Interview'
+import YourJadu from './YourJadu'
+import ApiAPP from './ApiAPP'
 
 
 const Navigation = (props) => {
@@ -24,6 +26,8 @@ const Navigation = (props) => {
     <Button title='Promotion Page Button' onPress={()=>{props.navigation.navigate(Promotion)}}  />
     <Button title='InterView Page Button' onPress={()=>{props.navigation.navigate(Interview)}}  />
     <Button title='IcanSell Page Button' onPress={()=>{props.navigation.navigate(IcanSell)}}  />
+    <Button title='YourJadu Page Button' onPress={()=>{props.navigation.navigate(YourJadu)}}  />
+    {/* <Button title='ApiAPP Page Button' onPress={()=>{props.navigation.navigate(ApiAPP)}}  /> */}
   
     </View>
   )

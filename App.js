@@ -14,6 +14,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Navigation from './screen/Navigation';
 import Promotion from './screen/Promotion';
 import Interview from './screen/Interview';
+import YourJadu from './screen/YourJadu';
+import ApiAPP from './screen/ApiAPP';
 
 
 const Stack = createNativeStackNavigator();
@@ -45,6 +47,8 @@ export default function App() {
         <Stack.Screen name='Promotion' component={Promotion} />
         <Stack.Screen name='Interview' component={Interview} />
         <Stack.Screen name='IcanSell' component={IcanSell} />
+        <Stack.Screen name='YourJadu' component={YourJadu} />
+        {/* <Stack.Screen name='ApiAPP' component={ApiAPP} /> */}
       </Stack.Navigator>
     </NavigationContainer>
 
