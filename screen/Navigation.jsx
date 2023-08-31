@@ -24,13 +24,13 @@ const Navigation = (props) => {
     <Button title='DropDown Page Button' onPress={()=>{props.navigation.navigate(AnotherPage)}}  />
     <Button title='SignUp Page Button' onPress={()=>{props.navigation.navigate(SignUpPage)}}  />
     <Button title='Main Page Button' onPress={()=>{props.navigation.navigate(MainPage)}}  />
-    <Button title='AiJadu Page Button' onPress={()=>{props.navigation.navigate(AiJadu)}}  />
+    {/* <Button title='AiJadu Page Button' onPress={()=>{props.navigation.navigate(AiJadu)}}  /> */}
     <Button title='Promotion Page Button' onPress={()=>{props.navigation.navigate(Promotion)}}  />
     <Button title='InterView Page Button' onPress={()=>{props.navigation.navigate(Interview)}}  />
     <Button title='IcanSell Page Button' onPress={()=>{props.navigation.navigate(IcanSell)}}  />
     <Button title='YourJadu Page Button' onPress={()=>{props.navigation.navigate(YourJadu)}}  />
-    <Button title='MyApi Page Button' onPress={()=>{props.navigation.navigate(MyApi)}}  />
-    <Button title='PostAPi Page Button' onPress={()=>{props.navigation.navigate(PostAPi)}}  />
+    {/* <Button title='MyApi Page Button' onPress={()=>{props.navigation.navigate(MyApi)}}  />
+    <Button title='PostAPi Page Button' onPress={()=>{props.navigation.navigate(PostAPi)}}  /> */}
   
     </View>
   )

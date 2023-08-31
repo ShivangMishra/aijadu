@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
 
   bottomDownPicker: {
-    width: 200,
+    width: 223,
    
     borderRadius: 30,
    

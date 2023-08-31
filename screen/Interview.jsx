@@ -364,7 +364,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   bottomDownPicker: {
-    width: 200,
+    width: 222,
 
     borderRadius: 30,
 

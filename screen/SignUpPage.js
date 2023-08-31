@@ -340,16 +340,23 @@ const SignUpPage = () => {
         >
           Signup With
         </Text>
-
-        <Image
-          style={{ alignSelf: "center", margin: 10 }}
-          source={require("../assets/AIJadu/SignUpPage/socialmediaLogo.png")}
-        />
+        <TouchableOpacity>
+          <Image
+            style={{ alignSelf: "center", margin: 10 }}
+            source={require("../assets/AIJadu/SignUpPage/socialmediaLogo.png")}
+          />
+        </TouchableOpacity>
         <View style={styles.account}>
-          <Text style={styles.termConditionContainer3}>
-            Already have an account?
-          </Text>
-          <Text style={styles.termConditionContainer4}>Login </Text>
+          <TouchableOpacity>
+            <Text style={styles.termConditionContainer3}>
+              Already have an account?
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.termConditionContainer4}>Login </Text>
+          </TouchableOpacity>
+
+          <View></View>
         </View>
       </View>
     </ScrollView>
@@ -390,7 +397,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 100,
     width: 370,
-    height: 800,
+    height: 780,
     backgroundColor: "#ffffff",
     borderRadius: 15,
     alignSelf: "center",
@@ -402,6 +409,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     left: 0,
+    marginTop:30,
+
+    // marginTop:-10,
   },
 
   signupText: {
@@ -640,19 +650,25 @@ const styles = StyleSheet.create({
   account: {
     flexDirection: "row",
     alignSelf: "center",
-    marginTop: 10,
+    // marginTop: 10,
+    backgroundColor: "#fff",
+    // width: 375,
+    // borderRadius: 15,
+    justifyContent: "center",
   },
   termConditionContainer3: {
     fontWeight: "600",
     fontSize: 13,
     lineHeight: 16,
+    alignSelf: "center",
   },
 
   termConditionContainer4: {
     fontWeight: "700",
     fontSize: 13,
     lineHeight: 16,
-    backgroundColor: "#FEA01A",
+    color: "#FEA01A",
+    marginLeft: 2,
   },
   reuseContainer2: {
     marginTop: 10,

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 60,
+    marginTop: 20,
 
   },
   arrowImage: {
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
   },
   headerContainerImage: {
     alignSelf: "flex-end",
+    // marginTop:-22,
   },
   middleText: {
     // backgroundColor: "red",

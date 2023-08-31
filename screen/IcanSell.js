@@ -29,8 +29,9 @@ const IcanSell = () => {
         />
         <View style={styles.headerContainer}>
           <Image
-          style={{ alignSelf:"center" }}
-           source={require("../assets/AIJadu/signUp/leftArrow.png")} />
+            style={{ alignSelf: "center" }}
+            source={require("../assets/AIJadu/signUp/leftArrow.png")}
+          />
           <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
 
           <View style={styles.bottomDownPicker}>
@@ -62,8 +63,11 @@ const IcanSell = () => {
             />
           </View>
           <Image
-             style={{ alignSelf:"center",justifyContent:"center",marginTop:7
-              }}
+            style={{
+              alignSelf: "center",
+              justifyContent: "center",
+              marginTop: 7,
+            }}
             source={require("../assets/AIJadu/Login/search1.png")}
           />
         </View>
@@ -116,8 +120,8 @@ const IcanSell = () => {
                 color: "#1C6ADC",
               }}
             >
-              COMPARE YOURSELF ON SKILLS THAT{`\n`}        EMPLOYERS FIND CRITICAL, TO
-              {`\n`}                HIRE OR PROMOTE
+              COMPARE YOURSELF ON SKILLS THAT{`\n`} EMPLOYERS FIND CRITICAL, TO
+              {`\n`} HIRE OR PROMOTE
             </Text>
           </View>
           <View style={styles.container2}>
@@ -209,7 +213,7 @@ const IcanSell = () => {
                 borderRadius: 15,
                 alignSelf: "center",
                 justifyContent: "space-evenly",
-                marginTop:20
+                marginTop: 20,
               }}
             >
               <Text
@@ -223,13 +227,17 @@ const IcanSell = () => {
               >
                 TEXPLORE - HOW OTHERS RESPONDED TO SITUATIONS
               </Text>
-              <Text    style={{
+              <Text
+                style={{
                   fontWeight: "500",
                   fontSize: 12,
                   lineHeight: 14,
                   alignSelf: "center",
                   // marginBottom: 20,
-                }}  >and improve your skills</Text>
+                }}
+              >
+                and improve your skills
+              </Text>
 
               <View
                 style={{
@@ -271,7 +279,7 @@ const IcanSell = () => {
                   style={{ fontWeight: "700", fontSize: 14, lineHeight: 18 }}
                 >
                   LEARN FROM{`\n`}
-OTHERS JADU{" "}
+                  OTHERS JADU{" "}
                 </Text>
                 <Image
                   source={require("../assets/AIJadu/Interview/leftWhiteArrow.png")}
@@ -299,9 +307,9 @@ OTHERS JADU{" "}
               </View> */}
             </View>
             <Image
-            style={styles.bottomCircle}
-            source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
-          />
+              style={styles.bottomCircle}
+              source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
+            />
           </View>
         </View>
       </ScrollView>
@@ -332,7 +340,7 @@ const styles = StyleSheet.create({
   },
 
   bottomDownPicker: {
-    width: 200,
+    width: 222,
     borderRadius: 30,
     height: 10,
     alignItems: "center",
@@ -408,7 +416,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 50,
     // backgroundColor: "red",
-    alignSelf:"center"
+    alignSelf: "center",
   },
 
   signUpContainerText1: {
