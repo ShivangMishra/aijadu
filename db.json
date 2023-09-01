@@ -28,6 +28,24 @@
       "age": 23,
       "email": "avikanshtiwari@gmail.com",
       "id": 5
+    },
+    {
+      "name": "Jaduu",
+      "age": 1000,
+      "email": "Jaduu@gmail.com",
+      "id": 6
+    },
+    {
+      "name": "Prateek",
+      "age": 69,
+      "email": "Prateek@gmail.com",
+      "id": 7
+    },
+    {
+      "name": "Shivang",
+      "age": 29,
+      "email": "Shivang@gmail.com",
+      "id": 8
     }
   ]
 }
