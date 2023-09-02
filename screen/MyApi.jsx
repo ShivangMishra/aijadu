@@ -92,7 +92,7 @@ const UserModal = (props) => {
     let result = await fetch(`${url}/${id}`, {
       method: "PUT",
       headers: {
-        "Content/Type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ name, age, email }),
     });

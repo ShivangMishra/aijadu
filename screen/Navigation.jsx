@@ -13,6 +13,7 @@ import YourJadu from './YourJadu'
 import ApiAPP from './ApiAPP'
 import MyApi from './MyApi'
 import PostAPi from './PostAPi'
+import Search from './Search'
 
 
 const Navigation = (props) => {
@@ -29,8 +30,9 @@ const Navigation = (props) => {
     <Button title='InterView Page Button' onPress={()=>{props.navigation.navigate(Interview)}}  />
     <Button title='IcanSell Page Button' onPress={()=>{props.navigation.navigate(IcanSell)}}  />
     <Button title='YourJadu Page Button' onPress={()=>{props.navigation.navigate(YourJadu)}}  />
-     {/* <Button title='MyApi Page Button' onPress={()=>{props.navigation.navigate(MyApi)}}  /> */}
-    {/* <Button title='PostAPi Page Button' onPress={()=>{props.navigation.navigate(PostAPi)}}  />  */}
+     <Button title='MyApi Page Button' onPress={()=>{props.navigation.navigate(MyApi)}}  /> 
+     {/* <Button title='PostAPi Page Button' onPress={()=>{props.navigation.navigate(PostAPi)}}  />  */}
+     {/* <Button title='Search Page Button' onPress={()=>{props.navigation.navigate(Search)}}  />  */}
   
     </View>
   )

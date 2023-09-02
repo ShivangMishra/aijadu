@@ -18,6 +18,7 @@ import YourJadu from './screen/YourJadu';
 import ApiAPP from './screen/ApiAPP';
 import MyApi from './screen/MyApi';
 import PostAPi from './screen/PostAPi';
+import Search from './screen/Search';
 
 
 const Stack = createNativeStackNavigator();
@@ -52,6 +53,7 @@ export default function App() {
         <Stack.Screen name='YourJadu' component={YourJadu} />
         <Stack.Screen name='MyApi' component={MyApi} />
         <Stack.Screen name='PostAPi' component={PostAPi} />
+        <Stack.Screen name='Search' component={Search} />
       </Stack.Navigator>
     </NavigationContainer>
 
