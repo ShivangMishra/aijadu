@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Image } from "react-native";
 import { ApiContext } from "../apis/ApiContext";
 

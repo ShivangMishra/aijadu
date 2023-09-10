@@ -6,8 +6,10 @@ import { ScrollView } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { ApiContext } from "../apis/ApiContext";
 import { Alert } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
 
 const SignUpPage = ({ navigation }) => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [currentValue, setCurrentValue] = useState([]);
 
@@ -20,17 +22,19 @@ const SignUpPage = ({ navigation }) => {
   const [isOpen3, setIsOpen3] = useState(false);
   const [currentValue3, setCurrentValue3] = useState([]);
 
-  const {register} = useContext(ApiContext);
+  const { register } = useContext(ApiContext);
 
   //Form Input data
 
-  const [formData, setFormData] = useState({
+  const [data, setData] = useState({
     first_name: "",
     last_name: "",
     usename: "",
     email: "",
     password: "",
   })
+
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false)
 
   const items = [
     { label: "Mr", value: "Mr" },
@@ -62,21 +66,21 @@ const SignUpPage = ({ navigation }) => {
   ];
 
   const handleNameInput = (inputName) => {
-    const firstName = input.Name.split(" ").length ? inputName.split(" ")[0] : inputName;
-    const lastName = inputName.split(" ").length ? inputName.split(" ")[1] : "";
-    setFormData({ ...formData, first_name: firstName, last_name: lastName })
+    const firstName = inputName?.split(" ")?.length ? inputName.split(" ")[0] : inputName;
+    const lastName = inputName?.split(" ")?.length ? inputName.split(" ")[1] : "";
+    setData({ ...data, first_name: firstName, last_name: lastName })
   }
 
   const handleEmailInput = (inputEmail) => {
-    setFormData({ ...formData, email: inputEmail })
+    setData({ ...data, email: inputEmail })
   }
 
   const handlePasword = (inputUsername) => {
-    setFormData({ ...formData, username: inputUsername })
+    setData({ ...data, username: inputUsername })
   }
 
   const handlePasswordInput = (inputPassword) => {
-    setFormData({ ...formData, password: inputPassword })
+    setData({ ...data, password: inputPassword })
   }
 
   return (
@@ -360,10 +364,15 @@ const SignUpPage = ({ navigation }) => {
         </View>
 
         <View style={styles.termConditionContainer}>
-          <Image
-            style={{ margin: 5 }}
-            source={require("../assets/AIJadu/SignUpPage/Rectangle.png")}
-          />
+          <TouchableOpacity onPress={() => setIsTermsAccepted((prevState) => !prevState)} style={styles.termsTickContainer}>
+            {isTermsAccepted ? (
+              <View style={styles.termsNoAccepted}>
+
+
+              </View>
+            ) : <AntDesign name="checksquare" size={15} color="#371BC6" />}
+          </TouchableOpacity>
+
           <Text style={styles.termConditionContainer1}>I agree to the</Text>
           <Text style={styles.termConditionContainer2}>
             Terms & Conditions{" "}
@@ -372,12 +381,13 @@ const SignUpPage = ({ navigation }) => {
           <Text style={styles.termConditionContainer2}> Privacy Policy</Text>
         </View>
 
-        <TouchableOpacity style={styles.loginButton} onPress={()=> {
-          if(formData.first_name === "" || formData.last_name === "" || formData.email === "" || formData.password === ""){
+        <TouchableOpacity style={styles.loginButton} onPress={() => {
+          console.log(data)
+          if (data.first_name === "" || data.last_name === "" || data.email === "" || data.password === "") {
             Alert.alert("Please fill the mandatory fields");
             return;
           }
-          register({formData, navigation});
+          register({ data, navigation });
         }}>
           <Text style={styles.loginButtonText}> Create Account</Text>
         </TouchableOpacity>
@@ -454,7 +464,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     alignSelf: "center",
     position: "absolute",
-    // justifyContent:"space-around",
   },
 
   bottomHalfCircle: {
@@ -462,8 +471,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     marginTop: 30,
-
-    // marginTop:-10,
   },
 
   signupText: {
@@ -537,10 +544,27 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 27,
   },
+  termsAcceptedContainer: {
+    flex: 1,
+    backgroundColor: "blue",
+  },
   reusableContainerText: {
     fontWeight: "500",
     fontSize: 14,
     lineHeight: 17,
+  },
+
+  termsTickContainer: {
+    marginRight: 10,
+    // backgroundColor: "red",
+  },
+
+  termsNoAccepted: {
+    height: 15,
+    width: 15,
+    borderColor: "black",
+    borderWidth: 1.5,
+    // backgroundColor: "red",
   },
 
   stateContainer: {

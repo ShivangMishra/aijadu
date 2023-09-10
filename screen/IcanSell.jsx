@@ -247,7 +247,7 @@ const IcanSell = () => {
                 </TouchableOpacity>
               </View>
 
-              
+
             </View>
             <Image
               style={styles.bottomCircle}
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#E4E4E4",
     flexDirection: "column",
-    width:'100%',
+    width: '100%',
     marginTop: 20
   },
   sideImage: {
@@ -363,7 +363,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignSelf: "center",
   },
-  leftSideStyle:{
+  leftSideStyle: {
     position: "absolute",
     top: 0,
     right: 0,

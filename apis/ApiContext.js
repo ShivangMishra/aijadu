@@ -47,6 +47,7 @@ export const ApiProvider = ({ children }) => {
         );
 
         const isVerified = await checkVerified();
+        console.log("isVerified", isVerified);
         if (!isVerified) {
           // Alert.alert("Please verify your email");
           navigation.navigate("MainPage");
@@ -54,8 +55,6 @@ export const ApiProvider = ({ children }) => {
         } else {
           navigation.navigate("IcanSell");
         }
-
-        navigation.navigate("SignUpPage");
         // navigation.navigate("DashboardCompliance");
       } catch (e) {
         console.log("saving error token in login\n\n\n " + e);
@@ -94,7 +93,7 @@ export const ApiProvider = ({ children }) => {
       const responseJson = await response.json();
       console.log(responseJson);
       setIsLoading(false);
-      return responseJson.is_email_verified;
+      return responseJson.is_email_confirmed;
     } else {
       const responseJson = await response.json();
       console.log(
