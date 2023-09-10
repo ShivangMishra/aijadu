@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
-const SignUpPage = () => {
+const SignUpPage = ({ navigation }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentValue, setCurrentValue] = useState([]);
 
@@ -17,6 +17,16 @@ const SignUpPage = () => {
 
   const [isOpen3, setIsOpen3] = useState(false);
   const [currentValue3, setCurrentValue3] = useState([]);
+
+  //Form Input data
+
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    usename: "",
+    email: "",
+    password: "",
+  })
 
   const items = [
     { label: "Mr", value: "Mr" },
@@ -47,6 +57,24 @@ const SignUpPage = () => {
     { label: "Aviation", value: "Aviation" },
   ];
 
+  const handleNameInput = (inputName) => {
+    const firstName = input.Name.split(" ").length ? inputName.split(" ")[0] : inputName;
+    const lastName = inputName.split(" ").length ? inputName.split(" ")[1] : "";
+    setFormData({ ...formData, first_name: firstName, last_name: lastName })
+  }
+
+  const handleEmailInput = (inputEmail) => {
+    setFormData({ ...formData, email: inputEmail })
+  }
+
+  const handlePasword = (inputUsername) => {
+    setFormData({ ...formData, username: inputUsername })
+  }
+
+  const handlePasswordInput = (inputPassword) => {
+    setFormData({ ...formData, password: inputPassword })
+  }
+
   return (
     <ScrollView>
       <View style={styles.mainContainer}>
@@ -55,10 +83,12 @@ const SignUpPage = () => {
           source={require("../assets/AIJadu/Login/sideImage.png")}
         />
         <View style={styles.overlayContainer}>
-          <Image
-            style={styles.arrowPic}
-            source={require("../assets/AIJadu/signUp/leftArrow.png")}
-          />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image
+              style={styles.arrowPic}
+              source={require("../assets/AIJadu/signUp/leftArrow.png")}
+            />
+          </TouchableOpacity>
           <View style={styles.headerContainer}>
             <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
           </View>
@@ -107,6 +137,7 @@ const SignUpPage = () => {
                 <TextInput
                   placeholder="Name"
                   style={styles.nameContainerText}
+                  onChangeText={handleNameInput}
                 />
               </View>
             </View>
@@ -119,6 +150,7 @@ const SignUpPage = () => {
             <TextInput
               style={styles.reuseContainerText}
               placeholder="  Email"
+              onChangeText={handleEmailInput}
             />
           </View>
 
@@ -288,6 +320,7 @@ const SignUpPage = () => {
           <TextInput
             style={styles.reuseContainerText}
             placeholder="  Password"
+            onChangeText={handlePasswordInput}
           />
 
           <Image
@@ -409,7 +442,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     left: 0,
-    marginTop:30,
+    marginTop: 30,
 
     // marginTop:-10,
   },

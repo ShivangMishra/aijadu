@@ -52,7 +52,7 @@ const Form = () => {
         mobile: "",
       }}
       validationSchema={SignupSchema}
-      onSubmit={values=>Alert.alert(JSON.stringify(values))}
+      onSubmit={(val) => console.error(val)}
     >
       {({
         values,
@@ -170,10 +170,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
   },
-  warning:{
-    color:"red",
+  warning: {
+    color: "red",
     // alignSelf:"flex-start",
-    marginRight:200,
+    marginRight: 200,
   }
 });
 
