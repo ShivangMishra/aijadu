@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
-const SignUpPage = () => {
+const SignUpPage = ({ navigation }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentValue, setCurrentValue] = useState([]);
 
@@ -83,10 +83,12 @@ const SignUpPage = () => {
           source={require("../assets/AIJadu/Login/sideImage.png")}
         />
         <View style={styles.overlayContainer}>
-          <Image
-            style={styles.arrowPic}
-            source={require("../assets/AIJadu/signUp/leftArrow.png")}
-          />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image
+              style={styles.arrowPic}
+              source={require("../assets/AIJadu/signUp/leftArrow.png")}
+            />
+          </TouchableOpacity>
           <View style={styles.headerContainer}>
             <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
           </View>

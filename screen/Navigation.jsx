@@ -1,4 +1,4 @@
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
 import React from 'react'
 import Login from './Login'
 import Form from './Form'
@@ -18,7 +18,7 @@ import Search from './Search'
 
 const Navigation = (props) => {
   return (
-    <View>
+    <View style={styles.container}>
 
     <Button title='Login Button' onPress={()=>{props.navigation.navigate(Login)}}  />
     <Button title='Form Button' onPress={()=>{props.navigation.navigate(Form)}}  />
@@ -37,5 +37,11 @@ const Navigation = (props) => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 50,
+  }
+})
 
 export default Navigation
