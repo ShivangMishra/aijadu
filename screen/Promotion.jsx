@@ -31,7 +31,7 @@ const Promotion = () => {
           source={require("../assets/AIJadu/Login/sideImage.png")}
         />
       
-        <View style={{flexDirection: "row", alignItems:'center', marginTop:20,width:'60%', backgroundColor:'red', height:34}} >
+        <View style={{flexDirection: "row", alignItems:'center', marginTop:20,width:'60%', height:34}} >
           <Image style={{marginHorizontal:10}} source={require("../assets/AIJadu/signUp/leftArrow.png")} />
           <Image style={{marginRight:10}} source={require("../assets/AIJadu/signUp/AILogo.png")} />
           <View>
