@@ -96,6 +96,11 @@ const SignUpPage = () => {
                     backgroundColor: "#F1F1F1", // Set your desired background color
                     borderRadius: 27, // Set your desired border radius
                     borderWidth: 0,
+                    
+                    
+                  }}
+                  containerStyle={{
+                    paddingLeft: 7
                   }}
                 />
               </View>
@@ -160,7 +165,7 @@ const SignUpPage = () => {
         <View style={styles.functionContainer}>
           <View style={styles.roleFunctionContainer}>
             <Image
-              style={{ marginLeft: 20 }}
+              style={{ marginLeft: 30 }}
               source={require("../assets/AIJadu/SignUpPage/industryLogo.png")}
             />
 
@@ -189,15 +194,19 @@ const SignUpPage = () => {
                 alignSelf: "flex-end",
                 borderWidth: 0,
                 flexDirection: "row",
+             
                 // marginLeft:5
                 // backgroundColor:"red"
+              }}
+              containerStyle={{
+                paddingLeft: 20
               }}
             />
           </View>
 
           <View style={styles.calenderFunctionContainer}>
             <Image
-              style={{ marginLeft: 20 }}
+              style={{ marginLeft: 30 }}
               source={require("../assets/AIJadu/SignUpPage/yearLogo.png")}
             />
 
@@ -231,7 +240,7 @@ const SignUpPage = () => {
 
         <View style={styles.reuseContainer2}>
           <Image
-            style={styles.reuseContainerImage}
+            style={{marginLeft:20}}
             source={require("../assets/AIJadu/SignUpPage/industryLogo.png")}
           />
 
@@ -599,7 +608,7 @@ const styles = StyleSheet.create({
     marginRight: 10, // Provide some space between arrow and text
   },
   reuseContainerImage: {
-    margin: 10,
+    marginLeft: 12,
   },
   reuseContainerText: {
     flex: 1, // Allow the text to take up remaining space
