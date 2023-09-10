@@ -171,6 +171,14 @@ export const ApiProvider = ({ children }) => {
       `https://aicansellapp.com/accounts/register/`,
       requestOptions
     );
+    if (response.ok) {
+      const responseJson = await response.json();
+      console.log(responseJson);
+      Alert.alert("Account created successfully. Proceed to login");
+      navigation.navigate("Login");
+      // navigation.navigate("DashboardCompliance");
+      setIsLoading(false);
+    }
   }
 
   const verifyEmail = async ({ data, setError, navigation, setModal }) => {
