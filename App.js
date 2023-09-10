@@ -40,9 +40,11 @@ export default function App() {
 
       <ApiProvider>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{headerShown: false}}
+        >
           <Stack.Screen name="Home" component={Navigation} />
-          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Login" component={Login} head />
           <Stack.Screen name="Form" component={Form} />
           <Stack.Screen name="AnotherPage" component={AnotherPage} />
           <Stack.Screen name="SignUpPage" component={SignUpPage} />
