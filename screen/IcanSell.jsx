@@ -21,13 +21,14 @@ const IcanSell = () => {
   ];
 
   return (
-    <>
-      <ScrollView style={styles.mainContainer}>
+    <ScrollView>
+      <View style={styles.mainContainer}>
         <Image
           style={styles.sideImage}
           source={require("../assets/AIJadu/Login/sideImage.png")}
         />
-        <View style={styles.headerContainer}>
+
+        {/* <View style={styles.headerContainer}>
           <Image
             style={{ alignSelf: "center" }}
             source={require("../assets/AIJadu/signUp/leftArrow.png")}
@@ -70,7 +71,8 @@ const IcanSell = () => {
             }}
             source={require("../assets/AIJadu/Login/search1.png")}
           />
-        </View>
+        </View> */}
+
         <View style={styles.mainBox}>
           <Image
             style={{ position: "absolute", alignSelf: "baseline" }}
@@ -204,11 +206,30 @@ const IcanSell = () => {
               />
             </TouchableOpacity>
           </View>
-          <View style={styles.container4}>
+          {/* <View style={styles.cutOffBottomLeft} />
+          <View style={styles.cutOffBottomRight} /> */}
+ {/* <View
+      style={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        width: 0,
+        height: 0,
+        borderLeftWidth: 25,
+        borderRightWidth: 25,
+        borderBottomWidth: 35,
+        borderLeftColor: "transparent",
+        borderRightColor: "transparent",
+        borderBottomColor: "white",
+        zIndex: 1, // To overlay the container background
+      }}
+    /> */}
+          <View style={[styles.container4 ]}>
+         
             <View
               style={{
-                width: 370,
-                height: 165,
+                width: "90%",
+                height: "60%",
                 backgroundColor: "#fff",
                 borderRadius: 15,
                 alignSelf: "center",
@@ -220,9 +241,7 @@ const IcanSell = () => {
                 style={{
                   fontWeight: "800",
                   fontSize: 13,
-                  lineHeight: 15,
                   alignSelf: "center",
-                  // marginTop: 10,
                 }}
               >
                 TEXPLORE - HOW OTHERS RESPONDED TO SITUATIONS
@@ -231,9 +250,9 @@ const IcanSell = () => {
                 style={{
                   fontWeight: "500",
                   fontSize: 12,
-                  lineHeight: 14,
+                
                   alignSelf: "center",
-                  // marginBottom: 20,
+              
                 }}
               >
                 and improve your skills
@@ -247,26 +266,13 @@ const IcanSell = () => {
                   justifyContent: "space-between",
                 }}
               >
-                {/* <Image
-                  source={require("../assets/AIJadu/Interview/smartPhone.png")}
-                /> */}
-                {/* <Text
-                  style={{
-                    fontWeight: "600",
-                    fontSize: 12,
-                    lineHeight: 15,
-                    marginLeft: 10,
-                    alignSelf: "center",
-                  }}
-                >
-                  win iphones & Laptops
-                </Text> */}
+  
               </View>
 
               <TouchableOpacity
                 style={{
                   flexDirection: "row",
-                  width: 208,
+                  width: '50%',
                   height: 51,
                   backgroundColor: "#FEA01A",
                   borderRadius: 27,
@@ -300,11 +306,7 @@ const IcanSell = () => {
                 </TouchableOpacity>
               </View>
 
-              {/* <View>
-                <TouchableOpacity>
-                  <Text style={styles.signUpContainerText3}>Skip</Text>
-                </TouchableOpacity>
-              </View> */}
+              
             </View>
             <Image
               style={styles.bottomCircle}
@@ -312,8 +314,8 @@ const IcanSell = () => {
             />
           </View>
         </View>
-      </ScrollView>
-    </>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -321,8 +323,9 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: "#E4E4E4",
-    // justifyContent: "space-evenly",
     flexDirection: "column",
+    width:'100%',
+    marginTop: 20
   },
   sideImage: {
     alignSelf: "flex-end",
@@ -352,7 +355,7 @@ const styles = StyleSheet.create({
   container1: {
     flex: 3,
     backgroundColor: "#fff",
-    width: 380,
+    width: "95%",
     borderRadius: 15,
     alignSelf: "center",
     // height:165,
@@ -362,7 +365,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flexDirection: "row",
     alignSelf: "center",
-    width: 380,
+    width: '95%',
     borderRadius: 15,
     marginTop: 10,
     // justifyContent:"center",
@@ -376,19 +379,26 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     marginTop: 10,
     borderRadius: 15,
-    width: 380,
+    width: "95%",
     height: 165,
   },
   container4: {
-    flex: 1,
-    backgroundColor: "blue",
-    width: 400,
-    height: 260,
-    marginTop: 10,
+    // flex: 1,
+    // backgroundColor: "blue",
+    // width: "100%",
+    // height: 260,
+    // marginTop: 10,
     // alignSelf: "center",
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    justifyContent: "center",
+    // justifyContent: "center",
+    flex: 1,
+  backgroundColor: "blue",
+  width: "100%",
+  height: 260,
+  marginTop: 10,
+  alignSelf: "center",
+  justifyContent: "center",
+  borderTopLeftRadius: 15,  // Adjust the value as needed
+  borderTopRightRadius: 15, // 
   },
   container1UpperTextContainer: {
     flexDirection: "row",
@@ -401,8 +411,6 @@ const styles = StyleSheet.create({
     marginLeft: 30,
   },
   container2Text: {
-    // alignSelf:"center",
-    // justifyContent:"center",
     margin: 30,
   },
   signUpContainer: {
@@ -417,6 +425,20 @@ const styles = StyleSheet.create({
     height: 50,
     // backgroundColor: "red",
     alignSelf: "center",
+  },
+  leftSideStyle:{
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+    borderLeftWidth: 25,
+    borderRightWidth: 25,
+    borderBottomWidth: 35,
+    borderLeftColor: "transparent",
+    borderRightColor: "transparent",
+    borderBottomColor: "white",
+    zIndex: 1,
   },
 
   signUpContainerText1: {
@@ -445,6 +467,24 @@ const styles = StyleSheet.create({
     marginTop: -30,
     // position:"absolute",
     alignSelf: "baseline",
+  },
+  cutOffBottomLeft: {
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+    borderRightWidth: 10,
+    borderBottomWidth: 10,
+    borderBottomColor: "white",
+    borderRightColor: "transparent",
+  },
+  cutOffBottomRight: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    borderLeftWidth: 10,
+    borderBottomWidth: 10,
+    borderBottomColor: "white",
+    borderLeftColor: "transparent",
   },
 });
 

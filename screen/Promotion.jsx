@@ -74,7 +74,7 @@ const Promotion = () => {
             EMPLOYABILITY,PROMOTION{`\n`}      & CAREER GROWTH
           </Text>
 
-          <Image source={require("../assets/AIJadu/Login/infoContainer.png")} />
+          <Image style={{width:'97%', justifyContent:'center', alignSelf:'center'}} source={require("../assets/AIJadu/Login/infoContainer.png")} />
           <Text style={styles.text1}>
             JOBS THAT REQUIRE{`\n`}    SPECIFIC SKILLS
           </Text>

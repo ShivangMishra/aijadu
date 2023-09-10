@@ -50,7 +50,7 @@ export default function App() {
           <Stack.Screen name="AiJadu" component={AiJadu} />
           <Stack.Screen name="Promotion" options={{headerShown: false}} component={Promotion} />
           <Stack.Screen name="Interview" component={Interview} />
-          <Stack.Screen name="IcanSell" component={IcanSell} />
+          <Stack.Screen name="IcanSell" options={{headerShown: false}} component={IcanSell} />
           <Stack.Screen name="YourJadu" component={YourJadu} />
           <Stack.Screen name="MyApi" component={MyApi} />
           <Stack.Screen name="PostAPi" component={PostAPi} />
