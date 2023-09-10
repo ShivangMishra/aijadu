@@ -38,8 +38,8 @@ export default function App() {
 
       {/* <Form/> */}
       {/* <AiJadu/> */}
-      <CustomHeader />
-      {/* <ApiProvider>
+      {/* <CustomHeader /> */}
+      <ApiProvider>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
@@ -106,7 +106,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </ApiProvider> */}
+      </ApiProvider>
     </>
   );
 }

@@ -30,7 +30,7 @@ const Navigation = (props) => {
     <Button title='InterView Page Button' onPress={()=>{props.navigation.navigate(Interview)}}  />
     <Button title='IcanSell Page Button' onPress={()=>{props.navigation.navigate(IcanSell)}}  />
     <Button title='YourJadu Page Button' onPress={()=>{props.navigation.navigate(YourJadu)}}  />
-     <Button title='MyApi Page Button' onPress={()=>{props.navigation.navigate(MyApi)}}  /> 
+     {/* <Button title='MyApi Page Button' onPress={()=>{props.navigation.navigate(MyApi)}}  />  */}
      {/* <Button title='PostAPi Page Button' onPress={()=>{props.navigation.navigate(PostAPi)}}  />  */}
      {/* <Button title='Search Page Button' onPress={()=>{props.navigation.navigate(Search)}}  />  */}
   
