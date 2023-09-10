@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { TextInput } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
+import { ApiContext } from "../apis/ApiContext";
+import { Alert } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 
 const SignUpPage = ({ navigation }) => {
@@ -18,6 +20,8 @@ const SignUpPage = ({ navigation }) => {
 
   const [isOpen3, setIsOpen3] = useState(false);
   const [currentValue3, setCurrentValue3] = useState([]);
+
+  const { register } = useContext(ApiContext);
 
   //Form Input data
 
@@ -61,8 +65,8 @@ const SignUpPage = ({ navigation }) => {
   ];
 
   const handleNameInput = (inputName) => {
-    const firstName = input.Name.split(" ").length ? inputName.split(" ")[0] : inputName;
-    const lastName = inputName.split(" ").length ? inputName.split(" ")[1] : "";
+    const firstName = inputName?.split(" ")?.length ? inputName.split(" ")[0] : inputName;
+    const lastName = inputName?.split(" ")?.length ? inputName.split(" ")[1] : "";
     setFormData({ ...formData, first_name: firstName, last_name: lastName })
   }
 
@@ -367,7 +371,13 @@ const SignUpPage = ({ navigation }) => {
           <Text style={styles.termConditionContainer2}> Privacy Policy</Text>
         </View>
 
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={() => {
+          if (formData.first_name === "" || formData.last_name === "" || formData.email === "" || formData.password === "") {
+            Alert.alert("Please fill the mandatory fields");
+            return;
+          }
+          register({ formData, navigation });
+        }}>
           <Text style={styles.loginButtonText}> Create Account</Text>
         </TouchableOpacity>
 

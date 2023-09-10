@@ -7,10 +7,16 @@ const Header = (props) => {
 
 
     return (
-        <View>
-            <
-    </View>
+        <View style>
+
+        </View>
     )
 }
 
 export default Header
+
+const styles = StyleSheet.create({
+    container: {
+
+    }
+})
