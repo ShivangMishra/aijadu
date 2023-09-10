@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-nati
 import React from "react";
 import { Image } from "react-native";
 
-const MainPage = () => {
+const MainPage = ({props}) => {
   return (
     <ScrollView>
     <View style={styles.mainContainer}>
