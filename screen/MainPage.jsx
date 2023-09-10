@@ -1,8 +1,20 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { Image } from "react-native";
+import { ApiContext } from "../apis/ApiContext";
 
 const MainPage = ({props}) => {
+  const { verifyEmail, checkVerified } = useContext(ApiContext);
+
+  const verify = async () => {
+    await verifyEmail();
+    Alert.alert("Email Resent", "Please check your email for verification link");
+  };
+
+
+  useEffect(() => {
+    verifyEmail();
+  }, []);
   return (
     <ScrollView>
     <View style={styles.mainContainer}>
@@ -49,7 +61,7 @@ const MainPage = ({props}) => {
        <Text style={styles.emailButton} > Did not receive verification email? </Text>
 
        <TouchableOpacity style={styles.resendButton} >
-        <Text style={styles.resendButtonText} >RESEND NOW</Text>
+        <Text style={styles.resendButtonText} onPress={this.verify}>RESEND NOW</Text>
        </TouchableOpacity>
 
        <Image
