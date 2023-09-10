@@ -122,7 +122,7 @@ const Login = () => {
                 Don’t have an account?{" "}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>{navigation.navigate("SignUpPage")}}>
               <Text style={styles.signUpContainerText2}>
                 Please Signup here
               </Text>

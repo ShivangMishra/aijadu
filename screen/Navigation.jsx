@@ -20,16 +20,16 @@ const Navigation = (props) => {
   return (
     <View style={styles.container}>
 
-    <Button title='Login Button' onPress={()=>{props.navigation.navigate(Login)}}  />
-    <Button title='Form Button' onPress={()=>{props.navigation.navigate(Form)}}  />
-    <Button title='DropDown Page Button' onPress={()=>{props.navigation.navigate(AnotherPage)}}  />
-    <Button title='SignUp Page Button' onPress={()=>{props.navigation.navigate(SignUpPage)}}  />
-    <Button title='Main Page Button' onPress={()=>{props.navigation.navigate(MainPage)}}  />
+    <Button title='Login Screen' onPress={()=>{props.navigation.navigate(Login)}}  />
+    {/* <Button title='Form Button' onPress={()=>{props.navigation.navigate(Form)}}  /> */}
+    {/* <Button title='DropDown Page Button' onPress={()=>{props.navigation.navigate(AnotherPage)}}  /> */}
+    <Button title='SignUp Page Screen' onPress={()=>{props.navigation.navigate(SignUpPage)}}  />
+    <Button title='Email Verification Screen' onPress={()=>{props.navigation.navigate(MainPage)}}  />
     {/* <Button title='AiJadu Page Button' onPress={()=>{props.navigation.navigate(AiJadu)}}  /> */}
-    <Button title='Promotion Page Button' onPress={()=>{props.navigation.navigate(Promotion)}}  />
-    <Button title='InterView Page Button' onPress={()=>{props.navigation.navigate(Interview)}}  />
-    <Button title='IcanSell Page Button' onPress={()=>{props.navigation.navigate(IcanSell)}}  />
-    <Button title='YourJadu Page Button' onPress={()=>{props.navigation.navigate(YourJadu)}}  />
+    <Button title='Promotion Page Screen' onPress={()=>{props.navigation.navigate(Promotion)}}  />
+    <Button title='InterView Page Screen' onPress={()=>{props.navigation.navigate(Interview)}}  />
+    <Button title='IcanSell Page Screen' onPress={()=>{props.navigation.navigate(IcanSell)}}  />
+    <Button title='YourJadu Page Screen' onPress={()=>{props.navigation.navigate(YourJadu)}}  />
      {/* <Button title='MyApi Page Button' onPress={()=>{props.navigation.navigate(MyApi)}}  />  */}
      {/* <Button title='PostAPi Page Button' onPress={()=>{props.navigation.navigate(PostAPi)}}  />  */}
      {/* <Button title='Search Page Button' onPress={()=>{props.navigation.navigate(Search)}}  />  */}

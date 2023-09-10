@@ -45,6 +45,16 @@ export const ApiProvider = ({ children }) => {
         console.log(
           "\n\n\nsucess saving token in async storage by login\n\n\n"
         );
+
+        const isVerified = await checkVerified();
+        if (!isVerified) {
+          // Alert.alert("Please verify your email");
+          navigation.navigate("MainPage");
+          
+        } else {
+          navigation.navigate("IcanSell");
+        }
+
         navigation.navigate("SignUpPage");
         // navigation.navigate("DashboardCompliance");
       } catch (e) {
@@ -61,6 +71,40 @@ export const ApiProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+
+  const checkVerified = async () => {
+    setIsLoading(true);
+
+    const headers = new Headers();
+    const token = await AsyncStorage.getItem("accessToken");
+    console.log("token", token);
+    headers.append("Authorization", "Bearer " + (token));
+
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      headers: headers,
+    };
+    console.log("requestOptions", JSON.stringify(requestOptions));
+    const response = await fetch(
+      `https://aicansellapp.com/accounts/api/me/`,
+      requestOptions
+    );
+    if (response.ok) {
+      const responseJson = await response.json();
+      console.log(responseJson);
+      setIsLoading(false);
+      return responseJson.is_email_verified;
+    } else {
+      const responseJson = await response.json();
+      console.log(
+        "check verified response not OK",
+        JSON.stringify(responseJson)
+      );
+      Alert.alert("An error occurred", responseJson.detail);
+      setIsLoading(false);
+    }
+  }
 
   const forgotPassword = async ({ data }) => {
     setIsLoading(true);
@@ -181,9 +225,8 @@ export const ApiProvider = ({ children }) => {
     }
   }
 
-  const verifyEmail = async ({ data, setError, navigation, setModal }) => {
+  const verifyEmail = async () => {
     setIsLoading(true);
-    console.log(data);
 
     const requestOptions = {
       method: "POST",
@@ -193,13 +236,17 @@ export const ApiProvider = ({ children }) => {
     const response = await fetch(
       `https://aicansellapp.com/api/send-confirmation-email/`,
       requestOptions
-    );
-    
+    );    
   }
   return (
     <ApiContext.Provider
       value={{
         login,
+        forgotPassword,
+        resetPassword,
+        register,
+        verifyEmail,
+        isLoading,
       }}
     >
       {children}

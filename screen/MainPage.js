@@ -1,71 +1,97 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  Alert,
+} from "react-native";
+import React, { useContext, useEffect } from "react";
 import { Image } from "react-native";
+import { ApiContext } from "../apis/ApiContext";
+import { async } from "validate.js";
 
 const MainPage = () => {
+  const { verifyEmail, checkVerified } = useContext(ApiContext);
+
+  const verify = async () => {
+    await verifyEmail();
+    Alert.alert("Email Resent", "Please check your email for verification link");
+  };
+
+
+  useEffect(() => {
+    verifyEmail();
+  }, []);
+
   return (
     <ScrollView>
-    <View style={styles.mainContainer}>
-      <Image
-        style={styles.headerContainerImage}
-        source={require("../assets/AIJadu/Login/sideImage.png")}
-      />
-      <View style={styles.overlayContainer}>
-        <View style={styles.headerContainer}>
-          <Image
-            style={[styles.arrowImage]}
-            source={require("../assets/AIJadu/signUp/leftArrow.png")}
-          />
-
-          <View style={styles.headerContainerImageBlock}>
+      <View style={styles.mainContainer}>
+        <Image
+          style={styles.headerContainerImage}
+          source={require("../assets/AIJadu/Login/sideImage.png")}
+        />
+        <View style={styles.overlayContainer}>
+          <View style={styles.headerContainer}>
             <Image
-              style={styles.logoImage}
-              source={require("../assets/AIJadu/signUp/AILogo.png")}
+              style={[styles.arrowImage]}
+              source={require("../assets/AIJadu/signUp/leftArrow.png")}
             />
+
+            <View style={styles.headerContainerImageBlock}>
+              <Image
+                style={styles.logoImage}
+                source={require("../assets/AIJadu/signUp/AILogo.png")}
+              />
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={styles.middleText}>
-        <Image
-          style={styles.middleTextImage}
-          source={require("../assets/AIJadu/Login/blueCircle.png")}
-        />
-        <View style={styles.middleTextHeadings} >
-          <Text style={styles.middleTextHeadingsText1}>You Are Ready To</Text>
-          <Text style={styles.middleTextHeadingsText2} >DO JADU</Text>
-          <Text style={styles.middleTextHeadingsText3} >     Thank you for signing-up{`\n`}We have sent a verification link{`\n`}     on your registered Email.</Text>
+        <View style={styles.middleText}>
+          <Image
+            style={styles.middleTextImage}
+            source={require("../assets/AIJadu/Login/blueCircle.png")}
+          />
+          <View style={styles.middleTextHeadings}>
+            <Text style={styles.middleTextHeadingsText1}>You Are Ready To</Text>
+            <Text style={styles.middleTextHeadingsText2}>DO JADU</Text>
+            <Text style={styles.middleTextHeadingsText3}>
+              {" "}
+              Thank you for signing-up{`\n`}We have sent a verification link
+              {`\n`} on your registered Email.
+            </Text>
+          </View>
         </View>
+
+        <Image source={require("../assets/AIJadu/signUp/mainLogo.png")} />
+        <View style={styles.registerButton}>
+          <Text style={styles.registerButtonText}>
+            GO TO REGISTERED EMAIL & VERIFY NOW
+          </Text>
+        </View>
+
+        <Text style={styles.emailButton}>
+          {" "}
+          Did not receive verification email?{" "}
+        </Text>
+
+        <TouchableOpacity style={styles.resendButton} onPress={verify}>
+          <Text style={styles.resendButtonText}>RESEND NOW</Text>
+        </TouchableOpacity>
+
+        <Image
+          style={styles.bottomHalfCircle}
+          source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
+        />
       </View>
-
-      <Image 
-      source={require("../assets/AIJadu/signUp/mainLogo.png")}
-       />
-       <TouchableOpacity style={styles.registerButton} >
-        <Text style={styles.registerButtonText} >GO TO REGISTERED EMAIL & VERIFY NOW</Text>
-       </TouchableOpacity>
-
-       <Text style={styles.emailButton} > Did not receive verification email? </Text>
-
-       <TouchableOpacity style={styles.resendButton} >
-        <Text style={styles.resendButtonText} >RESEND NOW</Text>
-       </TouchableOpacity>
-
-       <Image
-       style={styles.bottomHalfCircle}
-        source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
-       />
-       
-    </View>
     </ScrollView>
-
   );
 };
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height:"100%",
-    width:"100%",
+    height: "100%",
+    width: "100%",
     backgroundColor: "#E4E4E4",
   },
   overlayContainer: {
@@ -80,7 +106,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 20,
-
   },
   arrowImage: {
     marginRight: 10,
@@ -103,94 +128,88 @@ const styles = StyleSheet.create({
     // backgroundColor: "red",
     width: 380,
     height: 100,
-    flexDirection:"row",
-    alignItems:"center",
+    flexDirection: "row",
+    alignItems: "center",
     // justifyContent:"space-between"
-
-},
-  middleTextHeadings:{
-    justifyContent:"center",
-    alignItems:"center",
-    alignSelf:"center",
-    alignSelf:"center",
-    marginLeft:50,
-    
-
-
-},
+  },
+  middleTextHeadings: {
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    alignSelf: "center",
+    marginLeft: 50,
+  },
   middleTextImage: {
-    alignSelf:"baseline",
-    marginTop:-22
-    
-
-},
-middleTextHeadingsText1:{
-    fontWeight:"600",
-    fontSize:20,
-    lineHeight:25,
-    color:"#FDA100",
-    alignSelf:"center"
-},
-middleTextHeadingsText2:{
-    fontWeight:"600",
-    fontSize:38,
-    lineHeight:46,
-    color:"#371BC6"
-},
-middleTextHeadingsText3:{
-    fontWeight:"600",
-    fontSize:13,
-    lineHeight:16,
-    color:"#000000"
-},
-registerButton:{
-    backgroundColor:"#371BC6",
-    width:346,
-    height:51,
-    alignSelf:"center",
-    borderRadius:27,
-    justifyContent:"center",
-    marginTop:30,
-},
-registerButtonText:{
-    fontWeight:"600",
-    fontSize:14,
-    lineHeight:17,
-    color:"#ffffff",
-    alignSelf:"center"
-},
-emailButton:{
-    fontWeight:"600",
-    fontSize:13,
-    lineHeight:16,
-    color:"#000",
-    width:213,
-    height:16,
-    alignSelf:"center",
-    marginTop:30,
-},
-resendButton:{
-    backgroundColor:"#FEA01A",
-    width:208,
-    height:51,
-    alignSelf:"center",
-    borderRadius:27,
-    justifyContent:"center",
-    marginTop:30,
-    marginBottom:30,
-},
-resendButtonText:{
-    fontWeight:"700",
-    fontSize:14,
-    lineHeight:19,
-    alignSelf:"center"
-},
-bottomHalfCircle:{
-    alignSelf:"baseline",
-    justifyContent:"flex-start",
-    flexDirection:"column-reverse",
-    marginTop:15
-},
+    alignSelf: "baseline",
+    marginTop: -22,
+  },
+  middleTextHeadingsText1: {
+    fontWeight: "600",
+    fontSize: 20,
+    lineHeight: 25,
+    color: "#FDA100",
+    alignSelf: "center",
+  },
+  middleTextHeadingsText2: {
+    fontWeight: "600",
+    fontSize: 38,
+    lineHeight: 46,
+    color: "#371BC6",
+  },
+  middleTextHeadingsText3: {
+    fontWeight: "600",
+    fontSize: 13,
+    lineHeight: 16,
+    color: "#000000",
+  },
+  registerButton: {
+    backgroundColor: "#371BC6",
+    width: 346,
+    height: 51,
+    alignSelf: "center",
+    borderRadius: 27,
+    justifyContent: "center",
+    marginTop: 30,
+  },
+  registerButtonText: {
+    fontWeight: "600",
+    fontSize: 14,
+    lineHeight: 17,
+    color: "#ffffff",
+    alignSelf: "center",
+  },
+  emailButton: {
+    fontWeight: "600",
+    fontSize: 13,
+    lineHeight: 16,
+    color: "#000",
+    width: 213,
+    height: 16,
+    alignSelf: "center",
+    marginTop: 30,
+  },
+  resendButton: {
+    backgroundColor: "#FEA01A",
+    width: 208,
+    height: 51,
+    alignSelf: "center",
+    borderRadius: 27,
+    justifyContent: "center",
+    marginTop: 30,
+    marginBottom: 30,
+  },
+  resendButtonText: {
+    fontWeight: "700",
+    fontSize: 14,
+    lineHeight: 19,
+    alignSelf: "center",
+  },
+  bottomHalfCircle: {
+    alignSelf: "baseline",
+    justifyContent: "flex-start",
+    flexDirection: "column-reverse",
+    marginTop: 15,
+  },
 });
 
-export default MainPage ;
+export default MainPage;
