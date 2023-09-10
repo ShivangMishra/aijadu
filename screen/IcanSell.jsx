@@ -84,7 +84,7 @@ const IcanSell = () => {
 
               <View style={styles.container1UpperText}>
                 <Text
-                  style={{ fontWeight: "700", fontSize: 20, lineHeight: 27 }}
+                  style={{ fontWeight: "700", fontSize: 20, marginTop:15 }}
                 >
                   WHAT IS AICANSELL
                 </Text>
@@ -92,9 +92,8 @@ const IcanSell = () => {
                   style={{
                     fontWeight: "700",
                     fontSize: 12,
-                    lineHeight: 15,
                     color: "#371BC6",
-                    marginTop: 20,
+                    marginTop: 15,
                   }}
                 >
                   Respond to tough situations
@@ -105,30 +104,43 @@ const IcanSell = () => {
                     fontSize: 12,
                     lineHeight: 14,
                     color: "#FEA01A",
-                    marginTop: 10,
+                    marginTop: 6,
                   }}
                 >
                   Check Your Skills-on-the-go
                 </Text>
               </View>
             </View>
-            <Text
-              style={{
+            <Text style={{
                 alignSelf: "center",
-                margin: 30,
+                marginTop: 30,
                 fontWeight: "900",
                 fontSize: 14,
                 lineHeight: 17,
                 color: "#1C6ADC",
-              }}
-            >
-              COMPARE YOURSELF ON SKILLS THAT{`\n`} EMPLOYERS FIND CRITICAL, TO
-              {`\n`} HIRE OR PROMOTE
+              }}>
+            COMPARE YOURSELF ON SKILLS THAT
             </Text>
+            <Text style={{
+                alignSelf: "center",
+                fontWeight: "900",
+                fontSize: 14,
+                lineHeight: 17,
+                color: "#1C6ADC",
+              }}> EMPLOYERS FIND CRITICAL, TO</Text>
+            <Text style={{
+                alignSelf: "center",
+                fontWeight: "900",
+                fontSize: 14,
+                lineHeight: 17,
+                marginBottom:20,
+                color: "#1C6ADC",
+              }}>HIRE OR PROMOTE</Text>
+           
           </View>
           <View style={styles.container2}>
             <Image
-              style={{ height: 140, borderRadius: 15 }}
+              style={{ height: "100%", borderBottomLeftRadius:15, borderTopLeftRadius:15 }}
               source={require("../assets/AIJadu/Interview/robo.png")}
             />
             <View style={styles.container2Text}>
@@ -136,18 +148,12 @@ const IcanSell = () => {
                 WHY DO-JADU?
               </Text>
               <Text
-                style={{
-                  fontWeight: "800",
-                  fontSize: 14,
-                  lineHeight: 17,
-                  color: "#FEA01A",
-                  alignSelf: "center",
-                }}
+                style={styles.doJaduTextStyle}
               >
-                Employability{`\n`}
-                Promotion &{`\n`}
-                Career Growth
+                Employability
               </Text>
+              <Text style={styles.doJaduTextStyle}> Promotion &</Text>
+              <Text style={styles.doJaduTextStyle}> Career Growth</Text>
             </View>
           </View>
           <View style={styles.container3}>
@@ -155,9 +161,8 @@ const IcanSell = () => {
               style={{
                 fontWeight: "800",
                 fontSize: 14,
-                lineHeight: 16,
                 alignSelf: "center",
-                margin: 10,
+                marginTop: 10,
               }}
             >
               TAKE CHALLENGES & RESPOND TO SITUATIONS
@@ -167,8 +172,7 @@ const IcanSell = () => {
               style={{
                 flexDirection: "row",
                 alignSelf: "center",
-                justifyContent: "space-evenly",
-                justifyContent: "space-between",
+                marginVertical:15
               }}
             >
               <Image
@@ -190,16 +194,17 @@ const IcanSell = () => {
             <TouchableOpacity
               style={{
                 flexDirection: "row",
-                width: 208,
+                width: "50%",
                 height: 51,
                 backgroundColor: "#FEA01A",
                 borderRadius: 27,
                 justifyContent: "space-around",
                 alignItems: "center",
+                marginBottom:10
               }}
             >
               <Text style={{ fontWeight: "700", fontSize: 14, lineHeight: 18 }}>
-                Do Jadu{" "}
+                Do Jadu
               </Text>
               <Image
                 source={require("../assets/AIJadu/Interview/leftWhiteArrow.png")}
@@ -208,24 +213,9 @@ const IcanSell = () => {
           </View>
           {/* <View style={styles.cutOffBottomLeft} />
           <View style={styles.cutOffBottomRight} /> */}
- {/* <View
-      style={{
-        position: "absolute",
-        top: 0,
-        right: 0,
-        width: 0,
-        height: 0,
-        borderLeftWidth: 25,
-        borderRightWidth: 25,
-        borderBottomWidth: 35,
-        borderLeftColor: "transparent",
-        borderRightColor: "transparent",
-        borderBottomColor: "white",
-        zIndex: 1, // To overlay the container background
-      }}
-    /> */}
-          <View style={[styles.container4 ]}>
-         
+
+          <View style={styles.container4 }>
+     
             <View
               style={{
                 width: "90%",
@@ -234,7 +224,7 @@ const IcanSell = () => {
                 borderRadius: 15,
                 alignSelf: "center",
                 justifyContent: "space-evenly",
-                marginTop: 20,
+                marginTop: 30,
               }}
             >
               <Text
@@ -242,43 +232,35 @@ const IcanSell = () => {
                   fontWeight: "800",
                   fontSize: 13,
                   alignSelf: "center",
+                  paddingTop:15
                 }}
               >
-                TEXPLORE - HOW OTHERS RESPONDED TO SITUATIONS
+                EXPLORE - HOW OTHERS RESPONDED TO SITUATIONS
               </Text>
               <Text
                 style={{
                   fontWeight: "500",
                   fontSize: 12,
-                
                   alignSelf: "center",
-              
+                  marginTop: 0,
                 }}
               >
                 and improve your skills
               </Text>
-
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignSelf: "center",
-                  justifyContent: "space-evenly",
-                  justifyContent: "space-between",
-                }}
-              >
-  
-              </View>
 
               <TouchableOpacity
                 style={{
                   flexDirection: "row",
                   width: '50%',
                   height: 51,
+                  marginTop: "11.5%" ,
                   backgroundColor: "#FEA01A",
                   borderRadius: 27,
                   justifyContent: "space-around",
                   alignItems: "center",
                   alignSelf: "center",
+                  marginBottom:10
+                 
                 }}
               >
                 <Text
@@ -337,9 +319,6 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: "row",
     justifyContent: "space-around",
-    // alignItems:"center",
-    // backgroundColor:"red",
-    // justifyContent:"center"
   },
 
   bottomDownPicker: {
@@ -360,14 +339,23 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     // height:165,
   },
+  doJaduTextStyle:{
+    fontWeight: "800",
+    fontSize: 14,
+    lineHeight: 17,
+    color: "#FEA01A",
+    alignSelf: "center",
+  },
   container2: {
     flex: 2,
     backgroundColor: "#fff",
     flexDirection: "row",
     alignSelf: "center",
     width: '95%',
+    height:'100%',
     borderRadius: 15,
     marginTop: 10,
+    paddingVertical:1,
     // justifyContent:"center",
     alignItems: "center",
   },
@@ -380,25 +368,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 15,
     width: "95%",
-    height: 165,
+  
   },
   container4: {
-    // flex: 1,
-    // backgroundColor: "blue",
-    // width: "100%",
-    // height: 260,
-    // marginTop: 10,
-    // alignSelf: "center",
-    // justifyContent: "center",
     flex: 1,
   backgroundColor: "blue",
   width: "100%",
-  height: 260,
-  marginTop: 10,
+  paddingTop:12,
+ 
   alignSelf: "center",
   justifyContent: "center",
-  borderTopLeftRadius: 15,  // Adjust the value as needed
-  borderTopRightRadius: 15, // 
+ 
+ 
   },
   container1UpperTextContainer: {
     flexDirection: "row",
@@ -414,16 +395,11 @@ const styles = StyleSheet.create({
     margin: 30,
   },
   signUpContainer: {
-    // flexDirection: "row",
     alignItems: "center",
-    // alignSelf:"flex-start",
     justifyContent: "space-around",
     justifyContent: "center",
     marginTop: 20,
-    // position:"absolute"
-    width: 300,
-    height: 50,
-    // backgroundColor: "red",
+    width: "100%",
     alignSelf: "center",
   },
   leftSideStyle:{
