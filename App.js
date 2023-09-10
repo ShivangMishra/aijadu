@@ -39,24 +39,44 @@ export default function App() {
       {/* <AiJadu/> */}
 
       <ApiProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Navigation} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Form" component={Form} />
-          <Stack.Screen name="AnotherPage" component={AnotherPage} />
-          <Stack.Screen name="SignUpPage" component={SignUpPage} />
-          <Stack.Screen name="MainPage" component={MainPage} />
-          <Stack.Screen name="AiJadu" component={AiJadu} />
-          <Stack.Screen name="Promotion" component={Promotion} />
-          <Stack.Screen name="Interview" component={Interview} />
-          <Stack.Screen name="IcanSell" component={IcanSell} />
-          <Stack.Screen name="YourJadu" component={YourJadu} />
-          <Stack.Screen name="MyApi" component={MyApi} />
-          <Stack.Screen name="PostAPi" component={PostAPi} />
-          <Stack.Screen name="Search" component={Search} />
-        </Stack.Navigator>
-      </NavigationContainer>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={Navigation}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Form" component={Form} />
+            <Stack.Screen name="AnotherPage" component={AnotherPage} />
+            <Stack.Screen
+              name="SignUpPage"
+              component={SignUpPage}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="MainPage"
+              component={MainPage}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="AiJadu" component={AiJadu} />
+            <Stack.Screen name="Promotion" component={Promotion} />
+            <Stack.Screen name="Interview" component={Interview} />
+            <Stack.Screen name="IcanSell" component={IcanSell} />
+            <Stack.Screen
+              name="YourJadu"
+              component={YourJadu}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="MyApi" component={MyApi} />
+            <Stack.Screen name="PostAPi" component={PostAPi} />
+            <Stack.Screen name="Search" component={Search} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </ApiProvider>
     </>
   );

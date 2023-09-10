@@ -4,6 +4,7 @@ import { TextInput } from "react-native";
 import { TouchableOpacity } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { FlatList } from "react-native";
+import { FontAwesome5, Entypo } from "@expo/vector-icons";
 
 const YourJadu = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -11,6 +12,13 @@ const YourJadu = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
+  const [todayQuestion, setTodayQuestion] = useState([
+    "option1",
+    "option2",
+    "option3",
+    "option4",
+  ]);
+  const [selectedOption, setSelectedOption] = useState();
 
   const items1 = [
     { id: "1", name: "Value Selling" },
@@ -44,7 +52,7 @@ const YourJadu = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: "#E4E4E4" }}>
       <View style={styles.mainContainer}>
         <View style={styles.container1}>
           <Image
@@ -83,184 +91,354 @@ const YourJadu = () => {
             <Text style={styles.yourJaduText}> Today</Text>
           </View>
         </View>
-        <View style={styles.container2}>
-          <View style={styles.submitFormContainer}>
-            <Text style={styles.submitFormContainerOrangeText}>
-              Angry Customer
-            </Text>
-            <Text style={styles.submitFormContainerBlueText}>
-              Demanding Boss
-            </Text>
-            <Text style={styles.submitFormContainerOrangeText1}>
-              Father of rich{`\n`}
-              girl-friend
+
+        <View
+          style={{
+            ...styles.youJaduContainer,
+            backgroundColor: "white",
+            marginHorizontal: 20,
+            borderWidth: 1,
+            borderRadius: 13,
+            width: "100%",
+          }}
+        >
+          <View
+            style={{
+              ...styles.youJaduHeaderContainer,
+              height: 40,
+              flexDirection: "row",
+              borderBottomWidth: 1,
+            }}
+          >
+            <View
+              style={{
+                ...styles.youJaduHeaderContainer1,
+                backgroundColor: "#FEA01A",
+                borderTopLeftRadius: 13,
+                width: "33%",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ fontWeight: "bold", fontSize: 12 }}>
+                Angry Customer
+              </Text>
+            </View>
+            <View
+              style={{
+                ...styles.youJaduHeaderContainer2,
+                backgroundColor: "#360DFF",
+                width: "34%",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{ fontWeight: "bold", fontSize: 12, color: "white" }}
+              >
+                Demanding Boss
+              </Text>
+            </View>
+            <View
+              style={{
+                ...styles.youJaduHeaderContainer3,
+                backgroundColor: "#FEA01A",
+                borderTopRightRadius: 13,
+                width: "33%",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: 12,
+                }}
+              >
+                Father of rich {`\n`} girl-friend
+              </Text>
+            </View>
+          </View>
+          <View
+            style={{
+              ...styles.youJaduBodyHeaderContainer,
+              justifyContent: "center",
+              alignItems: "center",
+              paddingVertical: 7,
+            }}
+          >
+            <Text style={{ fontWeight: "700", fontSize: 10, color: "#360DFF" }}>
+              How would you respond to this situation. (Max 30 words)
             </Text>
           </View>
-          <Text style={styles.submitFormContainerBlueTextHeading}>
-            How would you respond to this situation. (Max 30 words)
-          </Text>
-          <View style={styles.submitFormContainerForm}>
+          <View
+            style={{
+              ...styles.youJaduBodyContainer,
+              justifyContent: "center",
+              alignItems: "flex-start",
+              paddingVertical: 7,
+              flexDirection: "row",
+            }}
+          >
             <Image
-              style={{ margin: 10 }}
+              style={{ height: "90%", borderRadius: 13 }}
               source={require("../assets/AIJadu/yourJadu/Hr.png")}
             />
-            <View>
+            <View
+              style={{
+                ...styles.youJaduBodyContainer1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <TextInput
-                style={styles.inputTextContainer}
-                placeholder="  I need this by yesterday! I don't care if 
-            you have to work till late night"
+                style={{
+                  ...styles.inputTextContainer,
+                  height: 70,
+                  paddingHorizontal: 9,
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                }}
+                placeholder="I need this by yesterday! I don't care if
+you have to work till late night."
               />
-
               <TextInput
-                style={styles.inputTextContainer1}
-                placeholder="  Type Your Response Here "
+                style={{
+                  ...styles.inputTextContainer,
+                  height: 20,
+                  paddingHorizontal: 9,
+                }}
+                placeholder="Type Your Response Here "
               />
               <TouchableOpacity
                 style={{
-                  fontWeight: "800",
-                  fontSize: 8,
-                  lineHeight: 10,
-                  borderWidth: 1,
-                  borderColor: "#360DFF",
-                  alignSelf: "center",
-                  borderRadius: 4,
-                  width: 65,
-                  height: 18,
+                  ...styles.submitFormContainerOrangeText,
+                  marginTop: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  margin: 5,
+                  alignSelf: "center",
+                  borderRadius: 3,
+                  borderColor: "#371BC6",
                 }}
               >
-                <Text style={{ fontWeight: "800", fontSize: 8, lineHeight: 9 }}>
-                  Submit
-                </Text>
+                <Text style={{ fontWeight: "bold", fontSize: 10 }}>Submit</Text>
               </TouchableOpacity>
-              <View
-                style={{ flexDirection: "row", justifyContent: "space-around" }}
-              >
+              <View style={{ flexDirection: "row", marginTop: 9 }}>
+                <Image
+                  style={{ marginHorizontal: 10 }}
+                  source={require("../assets/AIJadu/yourJadu/images09.png")}
+                />
                 <Image
                   source={require("../assets/AIJadu/yourJadu/Group.png")}
-                />
-
-                <Image
-                  source={require("../assets/AIJadu/yourJadu/images09.png")}
                 />
               </View>
             </View>
           </View>
         </View>
-        <View style={styles.container3}>
-          <Text style={styles.yourJaduTextBlue1}>JADU Quiz for Today</Text>
-          <View style={styles.bottomDownPicker}>
-            <DropDownPicker
-              items={items}
-              open={isOpen}
-              setOpen={() => setIsOpen(true)}
-              value={currentValue}
-              setValue={(val) => setCurrentValue(val)}
-              maxHeight={200}
-              autoScroll
-              placeholder="  Personal Sales Excellence is"
-              showTickIcon={true}
-              showArrowIcon={true}
-              closeAfterSelect={false}
-              dropDownDirection="Bottom"
-              //   disableBorderRadius={false}
-              theme="LIGHT"
-              style={styles.bottomDownPicker}
-              dropDownContainerStyle={{
-                width: 380,
-                // marginLeft: 20,
-                borderRadius: 13,
-                backgroundColor: "#E4E4E4",
-                height: 160,
-              }}
-              //
-              placeholderStyle={{
-                fontSize: 16,
 
-                backgroundColor: "#E4E4E4",
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 13,
+            color: "#360DFF",
+            alignSelf: "center",
+            marginVertical: 10,
+          }}
+        >
+          JADU Quiz for Today
+        </Text>
+
+        <View
+          style={{
+            ...styles.jaduQuizContainer,
+            marginHorizontal: 20,
+            borderWidth: 1,
+            borderRadius: 13,
+            width: "100%",
+            justifyContent: "center",
+            backgroundColor: "#F2F2F2",
+          }}
+        >
+          <View style={{ ...styles.jaduQuizHeaderContainer }}>
+            <Text
+              style={{
+                flexDirection: "row",
+                fontWeight: "bold",
+                fontSize: 13,
+                alignSelf: "flex-start",
+                marginVertical: 16,
+                paddingHorizontal: 16,
               }}
-              textStyle={{
-                // Styling the text inside the dropdown
-                fontSize: 16, // Font size
-                color: "#000000",
-                backgroundColor: "#fff",
-                fontWeight: "700",
-                fontSize: 12,
-                lineHeight: 15,
-                height: 29,
-                // textAlign:"center",
-                textAlignVertical: "center",
-                // borderWidth:1
-              }}
-            />
+            >
+              Personal Sales Excellence is
+            </Text>
           </View>
-          <Text style={styles.selectedValueText}>
-            Correct Response: {currentValue}
-          </Text>
-        </View>
-      </View>
-      <View>
-        <View style={styles.container4}>
-          <Text
-            style={{
-              fontWeight: "800",
-              fontSize: 13,
-              lineHeight: 15,
-              color: "blue",
-              alignSelf: "center",
-              //   backgroundColor: "#E4E4E4",
-              margin: 4,
-            }}
-          >
-            AI IntelliSearch - Learn in 3 min
-          </Text>
-          <Text
-            style={{
-              fontWeight: "500",
-              fontSize: 10,
-              lineHeight: 12,
-              //   color: "blue",
-              alignSelf: "center",
-              //   backgroundColor: "#E4E4E4",
-              margin: 4,
-            }}
-          >
-            Personal Branding, Sales Intelligence and lots more
-          </Text>
-          <View style={styles.searchContainer}>
-            <TextInput
-              style={styles.input}
-              placeholder="Search items..."
-              onChangeText={(text) => {
-                setSearchQuery(text);
-                filterItems(text);
-              }}
-              value={searchQuery}
-            />
-            <Text style={{fontWeight:"800",fontSize:10,lineHeight:12,color:'#371BC6',marginTop:-10,}} >Suggested</Text>
-            <FlatList
-              data={filteredItems.length > 0 ? filteredItems : items1}
-              keyExtractor={(item) => item.id} // Change to `item.id`
-              renderItem={(
-                { item } // Change to `item`
-              ) => (
-                <View style={styles.item1}>
-                  <Text>{item.name}</Text>
-                  <Image
-            style={{ alignSelf:"center" }}
-            source={require("../assets/AIJadu/yourJadu/cross.png")}
-          />
-
+          <FlatList
+            data={todayQuestion}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => {
+              console.log("option", item);
+              return (
+                <View
+                  style={{
+                    ...styles.jaduQuizBodyContainer,
+                    backgroundColor: "white",
+                    height: 30,
+                    marginVertical: 5,
+                    width: "90%",
+                    alignSelf: "center",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    flexDirection: "row",
+                    paddingHorizontal: 10,
+                  }}
+                >
+                  <Text style={{}}>{item}</Text>
+                  <TouchableOpacity
+                    style={{
+                      height: 15,
+                      width: 15,
+                      borderRadius: 10,
+                      borderWidth: 1,
+                      borderColor: "black",
+                      backgroundColor:
+                        selectedOption === index ? "#FEA01A" : "white",
+                    }}
+                    onPress={() => {
+                      setSelectedOption(index);
+                    }}
+                  ></TouchableOpacity>
                 </View>
-              )}
-            />
-          </View>
-          <Image
-            style={{ marginTop: -30, alignSelf: "flex-start" }}
-            source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
+              );
+            }}
           />
+          <View
+            style={{
+              ...styles.jaduQuizFooterContainer,
+              flexDirection: "row",
+              alignItems: "center",
+              marginHorizontal: 16,
+              marginTop: 30,
+              marginBottom: 20,
+            }}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 13 }}>
+              Correct Response-{" "}
+            </Text>
+            <Text
+              style={{
+                fontWeight: "bold",
+                fontSize: 10,
+                paddingTop: 2,
+              }}
+            >
+              Inherited
+            </Text>
+          </View>
+        </View>
+
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 13,
+            color: "#360DFF",
+            marginTop: 10,
+          }}
+        >
+          AI IntelliSearch - Learn in 3 min
+        </Text>
+        <Text style={{ fontSize: 10, marginBottom: 5 }}>
+          Personal Branding, Sales Intelligence and lots more
+        </Text>
+        <View
+          style={{
+            ...styles.jaduQuizContainer,
+            marginHorizontal: 20,
+            borderWidth: 1,
+            borderRadius: 13,
+            width: "100%",
+            justifyContent: "center",
+            backgroundColor: "#E4DFDF",
+          }}
+        >
+          <View
+            style={{
+              ...styles.jaduQuizHeaderContainer,
+              backgroundColor: "white",
+              width: "90%",
+              borderRadius: 3,
+              borderWidth: 1,
+              borderColor: "#371BC6",
+              alignSelf: "center",
+              marginVertical: 10,
+              paddingHorizontal: 10,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <TextInput style={{ width: "90%" }} placeholder="Search Anything" />
+            <FontAwesome5 name="search" size={15} color="#FEA01A" />
+          </View>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 13,
+              marginHorizontal: 16,
+              color: "#371BC6",
+            }}
+          >
+            Suggested
+          </Text>
+          {/* <FlatList
+            style={{}}
+            data={todayQuestion}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={}
+          /> */}
+          <View
+            style={{
+              flexDirection: "row",
+              flexWrap: "wrap",
+              marginBottom: "20%",
+              marginHorizontal: 11,
+            }}
+          >
+            {todayQuestion.map((item) => {
+              console.log("item", item);
+              return (
+                <View
+                  style={{
+                    ...styles.jaduQuizBodyContainer,
+                    backgroundColor: "white",
+                    height: 25,
+                    margin: 5,
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    flexDirection: "row",
+                    paddingHorizontal: 5,
+                    borderRadius: 3,
+                    borderWidth: 1,
+                    borderColor: "#371BC6",
+                  }}
+                >
+                  <Text style={{}}>{item}</Text>
+                  <Entypo name="cross" size={15} color="black" />
+                </View>
+              );
+            })}
+          </View>
+        </View>
+        <View
+          style={{
+            zIndex: -1,
+            marginTop: -50,
+            alignSelf: "flex-start",
+            marginLeft: -20,
+          }}
+        >
+          <Image source={require("../assets/AIJadu/yourJadu/lastCircle.png")} />
         </View>
       </View>
     </ScrollView>
@@ -274,7 +452,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     justifyContent: "space-between",
-    paddingVertical: 20,
+    paddingHorizontal: 16,
   },
   container1: {
     flex: 3,
@@ -295,10 +473,11 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     alignSelf: "center",
-    marginTop: 20,
+    marginTop: 10,
   },
   titleTextContainer: {
     flexDirection: "row",
+    justifyContent: "center",
   },
   titleText: {
     fontWeight: "700",
@@ -317,7 +496,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 16,
     alignSelf: "center",
-    margin: 30,
+    margin: 10,
   },
   yourJaduTextContainer: {
     flexDirection: "row",
@@ -355,17 +534,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   submitFormContainerOrangeText: {
-    width: 126,
-    height: 38,
+    width: 70,
+    height: 24,
     fontWeight: "700",
     fontSize: 10,
-    backgroundColor: "#FEA01A",
-    borderTopLeftRadius: 12,
-    // justifyContent:"center",
-    // alignItems:"center",
-    // alignSelf:"center",
     textAlign: "center",
     textAlignVertical: "center",
+    borderWidth: 1,
   },
   submitFormContainerOrangeText1: {
     width: 126,
@@ -402,14 +577,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   inputTextContainer: {
-    width: 203,
+    width: "90%",
     height: 74,
     borderRadius: 4,
     borderWidth: 1,
     borderColor: "#360DFF",
     fontWeight: "400",
     fontSize: 10,
-    lineHeight: 12,
     margin: 5,
   },
   inputTextContainer1: {
@@ -456,7 +630,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     zIndex: 1,
-
   },
   searchContainer: {
     width: 360,
@@ -466,8 +639,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 13,
     // flexDirection:"row",
-    flexWrap:"wrap",
-
+    flexWrap: "wrap",
   },
   input: {
     height: 40,
@@ -476,7 +648,7 @@ const styles = StyleSheet.create({
     padding: 8,
     marginBottom: 16,
     borderRadius: 8,
-    width:355,
+    width: 355,
     // height:40,
   },
   item1: {
@@ -488,8 +660,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     maxWidth: "50%",
-
-    
   },
 });
 
