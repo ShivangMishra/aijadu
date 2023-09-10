@@ -48,7 +48,7 @@ export default function App() {
           <Stack.Screen name="SignUpPage" component={SignUpPage} />
           <Stack.Screen name="MainPage" component={MainPage} />
           <Stack.Screen name="AiJadu" component={AiJadu} />
-          <Stack.Screen name="Promotion" component={Promotion} />
+          <Stack.Screen name="Promotion" options={{headerShown: false}} component={Promotion} />
           <Stack.Screen name="Interview" component={Interview} />
           <Stack.Screen name="IcanSell" component={IcanSell} />
           <Stack.Screen name="YourJadu" component={YourJadu} />
