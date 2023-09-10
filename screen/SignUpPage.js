@@ -4,6 +4,7 @@ import { TextInput } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
+import { AntDesign } from '@expo/vector-icons';
 
 const SignUpPage = ({ navigation }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +28,8 @@ const SignUpPage = ({ navigation }) => {
     email: "",
     password: "",
   })
+
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false)
 
   const items = [
     { label: "Mr", value: "Mr" },
@@ -347,10 +350,15 @@ const SignUpPage = ({ navigation }) => {
         </View>
 
         <View style={styles.termConditionContainer}>
-          <Image
-            style={{ margin: 5 }}
-            source={require("../assets/AIJadu/SignUpPage/Rectangle.png")}
-          />
+          <TouchableOpacity onPress={() => setIsTermsAccepted((prevState) => !prevState)} style={styles.termsTickContainer}>
+            {isTermsAccepted ? (
+              <View style={styles.termsNoAccepted}>
+
+
+              </View>
+            ) : <AntDesign name="checksquare" size={15} color="#371BC6" />}
+          </TouchableOpacity>
+
           <Text style={styles.termConditionContainer1}>I agree to the</Text>
           <Text style={styles.termConditionContainer2}>
             Terms & Conditions{" "}
@@ -435,7 +443,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     alignSelf: "center",
     position: "absolute",
-    // justifyContent:"space-around",
   },
 
   bottomHalfCircle: {
@@ -443,8 +450,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     marginTop: 30,
-
-    // marginTop:-10,
   },
 
   signupText: {
@@ -518,10 +523,27 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 27,
   },
+  termsAcceptedContainer: {
+    flex: 1,
+    backgroundColor: "blue",
+  },
   reusableContainerText: {
     fontWeight: "500",
     fontSize: 14,
     lineHeight: 17,
+  },
+
+  termsTickContainer: {
+    marginRight: 10,
+    // backgroundColor: "red",
+  },
+
+  termsNoAccepted: {
+    height: 15,
+    width: 15,
+    borderColor: "black",
+    borderWidth: 1.5,
+    // backgroundColor: "red",
   },
 
   stateContainer: {
