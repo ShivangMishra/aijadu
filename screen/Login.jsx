@@ -6,10 +6,36 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import { useNavigation } from "@react-navigation/core";
+import React, { useContext, useEffect, useState } from "react";
 import { Image } from "react-native";
-
+import { ApiContext } from "../apis/ApiContext";
+import { ValidateLogin } from "../utils/Validation";
 const Login = () => {
+  const navigation = useNavigation();
+
+  const { login } = useContext(ApiContext);
+
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState([]);
+  const [modal, setModal] = useState(false);
+
+  useEffect(() => {
+    console.log(loginData.email);
+    setError(ValidateLogin(loginData.email, loginData.password));
+  }, [loginData.password, loginData.email]);
+
+  const checkDisable = () => {
+    if (error) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <ScrollView>
       <View style={styles.mainContainer}>
@@ -40,6 +66,9 @@ const Login = () => {
             <TextInput
               style={styles.infoContainerText}
               placeholder="Email Here "
+              onChangeText={(text) => {
+                setLoginData({ ...loginData, email: text });
+              }}
             />
           </View>
 
@@ -52,38 +81,55 @@ const Login = () => {
             <TextInput
               style={styles.infoContainerText}
               placeholder="Password"
+              onChangeText={(text) => {
+                console.log(text);
+                setLoginData({ ...loginData, password: text });
+              }}
             />
           </View>
 
           <View style={styles.passwordContainer}>
-          <TouchableOpacity>
-            <Text style={styles.passwordContainerText1}>Forgot Password?</Text>
+            <TouchableOpacity>
+              <Text style={styles.passwordContainerText1}>
+                Forgot Password?
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity>
-            <Text style={styles.passwordContainerText2}> Reset here </Text>
+              <Text style={styles.passwordContainerText2}> Reset here </Text>
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.loginButton}>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={async () => {
+              await login({
+                data: loginData,
+                setError: setError,
+                navigation: navigation,
+                setModal: setModal,
+              });
+            }}
+          >
             <Text style={styles.loginButtonText}> Login</Text>
           </TouchableOpacity>
 
           <View style={styles.signUpContainer}>
-          <View style={{flexDirection:"row"}} >
-          <TouchableOpacity>
-            <Text style={styles.signUpContainerText1}>
-              Don’t have an account?{" "}
-            </Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-            <Text style={styles.signUpContainerText2}>Please Signup here</Text>
-            </TouchableOpacity>
+            <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity>
+                <Text style={styles.signUpContainerText1}>
+                  Don’t have an account?{" "}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={styles.signUpContainerText2}>
+                  Please Signup here
+                </Text>
+              </TouchableOpacity>
             </View>
-            
 
             <View>
-              <TouchableOpacity >
-                <Text style={styles.signUpContainerText3} >Skip</Text>
+              <TouchableOpacity>
+                <Text style={styles.signUpContainerText3}>Skip</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -164,7 +210,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginTop:10,
+    marginTop: 10,
   },
 
   passwordContainerText1: {
