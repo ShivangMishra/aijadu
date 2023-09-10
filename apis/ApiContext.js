@@ -194,12 +194,13 @@ export const ApiProvider = ({ children }) => {
       `https://aicansellapp.com/api/send-confirmation-email/`,
       requestOptions
     );
-    
+
   }
   return (
     <ApiContext.Provider
       value={{
         login,
+        register
       }}
     >
       {children}

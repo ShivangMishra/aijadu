@@ -20,6 +20,7 @@ import MyApi from "./screen/MyApi";
 import PostAPi from "./screen/PostAPi";
 import Search from "./screen/Search";
 import { ApiProvider } from "./apis/ApiContext";
+import CustomHeader from "./components/header";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,7 +38,7 @@ export default function App() {
 
       {/* <Form/> */}
       {/* <AiJadu/> */}
-
+      {/* <CustomHeader /> */}
       <ApiProvider>
         <NavigationContainer>
           <Stack.Navigator>
@@ -63,18 +64,46 @@ export default function App() {
               component={MainPage}
               options={{ headerShown: false }}
             />
-            <Stack.Screen name="AiJadu" component={AiJadu} />
-            <Stack.Screen name="Promotion" component={Promotion} />
-            <Stack.Screen name="Interview" component={Interview} />
-            <Stack.Screen name="IcanSell" component={IcanSell} />
+            <Stack.Screen
+              name="AiJadu"
+              component={AiJadu}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Promotion"
+              component={Promotion}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Interview"
+              component={Interview}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="IcanSell"
+              component={IcanSell}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="YourJadu"
               component={YourJadu}
               options={{ headerShown: false }}
             />
-            <Stack.Screen name="MyApi" component={MyApi} />
-            <Stack.Screen name="PostAPi" component={PostAPi} />
-            <Stack.Screen name="Search" component={Search} />
+            <Stack.Screen
+              name="MyApi"
+              component={MyApi}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="PostAPi"
+              component={PostAPi}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Search"
+              component={Search}
+              options={{ headerShown: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </ApiProvider>

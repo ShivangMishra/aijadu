@@ -9,6 +9,7 @@ import { Alert } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 
 const SignUpPage = ({ navigation }) => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [currentValue, setCurrentValue] = useState([]);
 
@@ -25,7 +26,7 @@ const SignUpPage = ({ navigation }) => {
 
   //Form Input data
 
-  const [formData, setFormData] = useState({
+  const [data, setData] = useState({
     first_name: "",
     last_name: "",
     usename: "",
@@ -67,19 +68,19 @@ const SignUpPage = ({ navigation }) => {
   const handleNameInput = (inputName) => {
     const firstName = inputName?.split(" ")?.length ? inputName.split(" ")[0] : inputName;
     const lastName = inputName?.split(" ")?.length ? inputName.split(" ")[1] : "";
-    setFormData({ ...formData, first_name: firstName, last_name: lastName })
+    setData({ ...data, first_name: firstName, last_name: lastName })
   }
 
   const handleEmailInput = (inputEmail) => {
-    setFormData({ ...formData, email: inputEmail })
+    setData({ ...data, email: inputEmail })
   }
 
   const handlePasword = (inputUsername) => {
-    setFormData({ ...formData, username: inputUsername })
+    setData({ ...data, username: inputUsername })
   }
 
   const handlePasswordInput = (inputPassword) => {
-    setFormData({ ...formData, password: inputPassword })
+    setData({ ...data, password: inputPassword })
   }
 
   return (
@@ -372,11 +373,12 @@ const SignUpPage = ({ navigation }) => {
         </View>
 
         <TouchableOpacity style={styles.loginButton} onPress={() => {
-          if (formData.first_name === "" || formData.last_name === "" || formData.email === "" || formData.password === "") {
+          console.log(data)
+          if (data.first_name === "" || data.last_name === "" || data.email === "" || data.password === "") {
             Alert.alert("Please fill the mandatory fields");
             return;
           }
-          register({ formData, navigation });
+          register({ data, navigation });
         }}>
           <Text style={styles.loginButtonText}> Create Account</Text>
         </TouchableOpacity>
