@@ -64,9 +64,11 @@ const MainPage = () => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height:"100%",
+   
     width:"100%",
     backgroundColor: "#E4E4E4",
+    paddingTop:40,
+    marginTop:20
   },
   overlayContainer: {
     position: "absolute",
@@ -132,7 +134,7 @@ middleTextHeadingsText1:{
     alignSelf:"center"
 },
 middleTextHeadingsText2:{
-    fontWeight:"600",
+    fontWeight:"bold",
     fontSize:38,
     lineHeight:46,
     color:"#371BC6"
@@ -145,7 +147,7 @@ middleTextHeadingsText3:{
 },
 registerButton:{
     backgroundColor:"#371BC6",
-    width:346,
+    width:"80%",
     height:51,
     alignSelf:"center",
     borderRadius:27,
@@ -164,14 +166,14 @@ emailButton:{
     fontSize:13,
     lineHeight:16,
     color:"#000",
-    width:213,
+    width:'53%',
     height:16,
     alignSelf:"center",
     marginTop:30,
 },
 resendButton:{
     backgroundColor:"#FEA01A",
-    width:208,
+    width:'50%',
     height:51,
     alignSelf:"center",
     borderRadius:27,

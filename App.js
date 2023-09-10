@@ -46,7 +46,7 @@ export default function App() {
           <Stack.Screen name="Form" component={Form} />
           <Stack.Screen name="AnotherPage" component={AnotherPage} />
           <Stack.Screen name="SignUpPage" component={SignUpPage} />
-          <Stack.Screen name="MainPage" component={MainPage} />
+          <Stack.Screen name="MainPage" options={{headerShown: false}} component={MainPage} />
           <Stack.Screen name="AiJadu" component={AiJadu} />
           <Stack.Screen name="Promotion" options={{headerShown: false}} component={Promotion} />
           <Stack.Screen name="Interview" component={Interview} />
