@@ -167,10 +167,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    width: 412,
-    // height: 390,
+    width: 400,
     backgroundColor: "#371BC6",
-    marginTop: 100,
+    marginTop: 20,
     borderTopLeftRadius: 79,
     borderTopRightRadius: 79,
     alignItems: "center",
