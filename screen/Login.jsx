@@ -11,8 +11,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Image } from "react-native";
 import { ApiContext } from "../apis/ApiContext";
 import { ValidateLogin } from "../utils/Validation";
+import { Dimensions } from "react-native";
 const Login = () => {
   const navigation = useNavigation();
+
+  const { height, width } = Dimensions.get("window");
 
   const { login } = useContext(ApiContext);
 
@@ -37,110 +40,108 @@ const Login = () => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.mainContainer}>
-        <Image
-          style={styles.sideImage}
-          source={require("../assets/AIJadu/Login/sideImage.png")}
-        />
+    <View style={styles.mainContainer}>
+      <Image
+        style={styles.sideImage}
+        source={require("../assets/AIJadu/Login/sideImage.png")}
+      />
 
-        <Image
-          style={styles.blueCircle}
-          source={require("../assets/AIJadu/Login/blueCircle.png")}
-        />
+      <Image
+        style={styles.blueCircle}
+        source={require("../assets/AIJadu/Login/blueCircle.png")}
+      />
 
-        <Image
-          style={styles.heading}
-          source={require("../assets/AIJadu/Login/heading.png")}
-        />
+      <Image
+        style={styles.heading}
+        source={require("../assets/AIJadu/Login/heading.png")}
+      />
 
-        <View style={styles.container}>
-          <Text style={styles.signInText}> Sign In </Text>
+      <View style={styles.container}>
+        <Text style={styles.signInText}> Sign In </Text>
 
-          <View style={styles.infoContainer}>
-            <Image
-              style={styles.infoContainerImage}
-              source={require("../assets/AIJadu/Login/profile.png")}
-            />
+        <View style={styles.infoContainer}>
+          <Image
+            style={styles.infoContainerImage}
+            source={require("../assets/AIJadu/Login/profile.png")}
+          />
 
-            <TextInput
-              style={styles.infoContainerText}
-              placeholder="Email Here "
-              onChangeText={(text) => {
-                setLoginData({ ...loginData, email: text });
-              }}
-            />
-          </View>
+          <TextInput
+            style={styles.infoContainerText}
+            placeholder="Email Here "
+            onChangeText={(text) => {
+              setLoginData({ ...loginData, email: text });
+            }}
+          />
+        </View>
 
-          <View style={styles.infoContainer}>
-            <Image
-              style={styles.infoContainerImage}
-              source={require("../assets/AIJadu/Login/lock.png")}
-            />
+        <View style={styles.infoContainer}>
+          <Image
+            style={styles.infoContainerImage}
+            source={require("../assets/AIJadu/Login/lock.png")}
+          />
 
-            <TextInput
-              style={styles.infoContainerText}
-              placeholder="Password"
-              onChangeText={(text) => {
-                console.log(text);
-                setLoginData({ ...loginData, password: text });
-              }}
-            />
-          </View>
+          <TextInput
+            style={styles.infoContainerText}
+            placeholder="Password"
+            onChangeText={(text) => {
+              console.log(text);
+              setLoginData({ ...loginData, password: text });
+            }}
+          />
+        </View>
 
-          <View style={styles.passwordContainer}>
+        <View style={styles.passwordContainer}>
+          <TouchableOpacity>
+            <Text style={styles.passwordContainerText1}>
+              Forgot Password?
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.passwordContainerText2}> Reset here </Text>
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={async () => {
+            await login({
+              data: loginData,
+              setError: setError,
+              navigation: navigation,
+              setModal: setModal,
+            });
+          }}
+        >
+          <Text style={styles.loginButtonText}> Login</Text>
+        </TouchableOpacity>
+
+        <View style={styles.signUpContainer}>
+          <View style={{ flexDirection: "row" }}>
             <TouchableOpacity>
-              <Text style={styles.passwordContainerText1}>
-                Forgot Password?
+              <Text style={styles.signUpContainerText1}>
+                Don’t have an account?{" "}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={styles.passwordContainerText2}> Reset here </Text>
+              <Text style={styles.signUpContainerText2}>
+                Please Signup here
+              </Text>
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity
-            style={styles.loginButton}
-            onPress={async () => {
-              await login({
-                data: loginData,
-                setError: setError,
-                navigation: navigation,
-                setModal: setModal,
-              });
-            }}
-          >
-            <Text style={styles.loginButtonText}> Login</Text>
-          </TouchableOpacity>
-
-          <View style={styles.signUpContainer}>
-            <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity>
-                <Text style={styles.signUpContainerText1}>
-                  Don’t have an account?{" "}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.signUpContainerText2}>
-                  Please Signup here
-                </Text>
-              </TouchableOpacity>
-            </View>
-
-            <View>
-              <TouchableOpacity>
-                <Text style={styles.signUpContainerText3}>Skip</Text>
-              </TouchableOpacity>
-            </View>
+          <View>
+            <TouchableOpacity>
+              <Text style={styles.signUpContainerText3}>Skip</Text>
+            </TouchableOpacity>
           </View>
-
-          <Image
-            style={styles.bottomCircle}
-            source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
-          />
         </View>
+
+        <Image
+          style={styles.bottomCircle}
+          source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
+        />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
     // width: "100%",
     backgroundColor: "#E4E4E4",
     alignItems: "center",
-    flex: 1,
+    flex: 1
   },
   sideImage: {
     alignSelf: "flex-end",
@@ -167,10 +168,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    width: 412,
-    // height: 390,
+    width: 400,
     backgroundColor: "#371BC6",
-    marginTop: 100,
+    marginTop: 20,
     borderTopLeftRadius: 79,
     borderTopRightRadius: 79,
     alignItems: "center",
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   bottomCircle: {
-    marginTop: -40,
+    // marginTop: -40,
     // position:"absolute",
     alignSelf: "baseline",
   },
