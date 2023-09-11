@@ -227,15 +227,21 @@ export const ApiProvider = ({ children }) => {
   const verifyEmail = async () => {
     setIsLoading(true);
 
+    const headers = new Headers();
+    const token = await AsyncStorage.getItem("accessToken");
+    console.log("token", token);
+    headers.append("Authorization", "Bearer " + (token));
     const requestOptions = {
       method: "POST",
       redirect: "follow",
+      headers: headers,
     };
     console.log("requestOptions", JSON.stringify(requestOptions));
     const response = await fetch(
       `https://aicansellapp.com/api/send-confirmation-email/`,
       requestOptions
     );    
+    return response.detail ? false : true;
   }
   return (
     <ApiContext.Provider

@@ -1,14 +1,17 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from "react-native";
 import React, { useContext, useEffect } from "react";
 import { Image } from "react-native";
 import { ApiContext } from "../apis/ApiContext";
 
-const MainPage = ({props}) => {
+const MainPage = (props) => {
   const { verifyEmail, checkVerified } = useContext(ApiContext);
 
   const verify = async () => {
-    await verifyEmail();
-    Alert.alert("Email Resent", "Please check your email for verification link");
+    const emailSent = await verifyEmail();
+    if(emailSent)
+      Alert.alert("Email Resent", "Please check your email for verification link");
+    else
+      Alert.alert("Error", "Something went wrong");
   };
 
 
@@ -54,9 +57,9 @@ const MainPage = ({props}) => {
       <Image 
       source={require("../assets/AIJadu/signUp/mainLogo.png")}
        />
-       <TouchableOpacity style={styles.registerButton} >
+       <View style={styles.registerButton} >
         <Text style={styles.registerButtonText} >GO TO REGISTERED EMAIL & VERIFY NOW</Text>
-       </TouchableOpacity>
+       </View>
 
        <Text style={styles.emailButton} > Did not receive verification email? </Text>
 
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
    
     width:"100%",
     backgroundColor: "#E4E4E4",
-   marginTop:50,
+   marginTop:0,
   
   },
   overlayContainer: {
@@ -94,6 +97,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",
+    marginTop: 25,
    paddingTop:10
 
   },
