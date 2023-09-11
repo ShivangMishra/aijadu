@@ -60,7 +60,7 @@ const MainPage = ({props}) => {
 
        <Text style={styles.emailButton} > Did not receive verification email? </Text>
 
-       <TouchableOpacity style={styles.resendButton} >
+       <TouchableOpacity style={styles.resendButton} onPress={verify} >
         <Text style={styles.resendButtonText} onPress={this.verify}>RESEND NOW</Text>
        </TouchableOpacity>
 
