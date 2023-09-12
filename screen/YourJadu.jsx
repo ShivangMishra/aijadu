@@ -1,10 +1,13 @@
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TextInput } from "react-native";
 import { TouchableOpacity } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { FlatList } from "react-native";
 import { FontAwesome5, Entypo } from "@expo/vector-icons";
+import { gray, purple, white } from "../colors";
+import { ApiContext } from "../apis/ApiContext";
+import CustomButton from "../components/CustomButton";
 
 const YourJadu = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -18,8 +21,9 @@ const YourJadu = () => {
     "option3",
     "option4",
   ]);
-  const [selectedOption, setSelectedOption] = useState();
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(-1);
 
+  const [feedback, setFeedback] = useState("");
   const items1 = [
     { id: "1", name: "Value Selling" },
     { id: "2", name: "Managing Our Manager" },
@@ -29,13 +33,124 @@ const YourJadu = () => {
     // { id: "6", name: "freelancer" },
     // Add more items as needed
   ];
+  const [quizListData, setQuizListData] = useState([]);
+  const [quizResult, setQuizResult] = useState([]);
+  const { fetchQuizList, fetchQuizResult, fetchSituations, submitSituationResponse } =
+    useContext(ApiContext);
 
+  const [currentQuestion, setCurrentQuestion] = useState({
+    id: 4,
+    text: "uga",
+    options: [
+      { id: 1, text: "option1" },
+      { id: 2, text: "option2" },
+      { id: 3, text: "option3" },
+    ],
+  });
+
+  const [selectedSituationIndex, setSelectedSituationIndex] = useState(0);
+
+  const [situations, setSituations] = useState([
+    {category: "Category 1"},{category: "Category 2"},{category: "Category 3"}
+  ]);
+
+  const [situationResponses, setSituationResponses] = useState([
+    "", "", ""
+  ]);
+
+  useEffect(() => {
+    fetchQuizList({ setQuizListData });
+  }, []);
+
+  useEffect(() => {
+    fetchSituations({ setSituations });
+  }, []);
+
+  useEffect(() => {
+    // {
+    //   id: 4,
+    //   item_name: "where does the sun rose",
+    //   option1: "east",
+    //   option2: "west",
+    //   option3: "south",
+    //   QuizAnswer_CHOICES: [
+    //     ["Opt1", "Option 1"],
+    //     ["Opt2", "Option 2"],
+    //     ["Opt3", "Option 3"],
+    //   ],
+    // },
+    console.log("quizData", quizListData);
+    if (!quizListData[0]) {
+      return;
+    }
+    const curQues = quizListData[0];
+    const curQuesObj = {
+      id: curQues.id,
+      text: curQues.item_name,
+      options: [
+        { id: "1", text: curQues.option1 },
+        { id: "2", text: curQues.option2 },
+        { id: "3", text: curQues.option3 },
+      ],
+    };
+
+    console.log("CurQuesObj", JSON.stringify(curQuesObj));
+    setCurrentQuestion(curQuesObj);
+  }, [quizListData]);
+
+  useEffect(() => {
+    const testResponse = [
+      {
+        category: "Personal",
+        id: 8,
+        item_description: "tell no confidently",
+        item_name: "how to do",
+        role: "ai_rs",
+        thumbnail:
+          "https://aicansellbucket.s3.amazonaws.com/media/BookmarkItems.png?AWSAccessKeyId=AKIAWYG4QYUOBEA5YRLZ&Signature=4WB%2BCaxFOrO5st94zSRcg8m2O44%3D&Expires=1694542207",
+      },
+      {
+        category: "Personal",
+        id: 4,
+        item_description: "emotional bankbalance",
+        item_name: "emotional bankbalance",
+        role: "ai_rs",
+        thumbnail:
+          "https://aicansellbucket.s3.amazonaws.com/c.png?AWSAccessKeyId=AKIAWYG4QYUOBEA5YRLZ&Signature=%2BM8%2BnT1irMuxeTLwz2tH3ieKVSQ%3D&Expires=1694542207",
+      },
+    ];
+    console.log("situations", situations);
+    if (!situations[0]) {
+      return;
+    }
+
+    // const
+    // setTodayQuestion();
+  }, [situations]);
   // Function to filter items based on the search query
   const filterItems = (query) => {
     const filtered = items1.filter((item1) =>
       item1.name.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredItems(filtered);
+  };
+
+  useEffect(() => {
+    console.log("quiz result", quizResult);
+    if (!quizResult.feedback1) {
+      return;
+    }
+    const { feedback1, feedback2, feedback3 } = quizResult;
+    const feedbacks = [feedback1, feedback2, feedback3];
+
+    const feedback = feedbacks[selectedOptionIndex];
+    setFeedback(feedback);
+  }, [quizResult]);
+
+  const handleMcqSubmit = () => {
+    console.log("selectedOptionIndex", selectedOptionIndex);
+    fetchQuizResult({ setQuizResult, questionId: currentQuestion.id });
+    // fetchQuizResult({ data });
   };
 
   const items = [
@@ -62,8 +177,7 @@ const YourJadu = () => {
           <Image
             style={styles.logoImage}
             source={require("../assets/AIJadu/yourJadu/LOGOO.png")}
-          />
-
+          /> 
           <Image
             style={styles.blueCircle}
             source={require("../assets/AIJadu/Login/blueCircle.png")}
@@ -94,7 +208,7 @@ const YourJadu = () => {
 
         <View
           style={{
-            ...styles.youJaduContainer,
+            // ...styles.youJaduContainer,
             backgroundColor: "white",
             marginHorizontal: 20,
             borderWidth: 1,
@@ -108,6 +222,7 @@ const YourJadu = () => {
               height: 40,
               flexDirection: "row",
               borderBottomWidth: 1,
+
             }}
           >
             <View
@@ -121,7 +236,7 @@ const YourJadu = () => {
               }}
             >
               <Text style={{ fontWeight: "bold", fontSize: 12 }}>
-                Angry Customer
+                {situations[0].category}
               </Text>
             </View>
             <View
@@ -136,7 +251,7 @@ const YourJadu = () => {
               <Text
                 style={{ fontWeight: "bold", fontSize: 12, color: "white" }}
               >
-                Demanding Boss
+                {situations[1].category}
               </Text>
             </View>
             <View
@@ -156,7 +271,7 @@ const YourJadu = () => {
                   fontSize: 12,
                 }}
               >
-                Father of rich {`\n`} girl-friend
+                {situations[2] ? situations[2].category : "Default"}
               </Text>
             </View>
           </View>
@@ -187,22 +302,27 @@ const YourJadu = () => {
             />
             <View
               style={{
-                ...styles.youJaduBodyContainer1,
+                // ...styles.youJaduBodyContainer1,
+                width: "53%",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              <TextInput
+              <Text
                 style={{
                   ...styles.inputTextContainer,
                   height: 70,
                   paddingHorizontal: 9,
-                  justifyContent: "flex-start",
-                  alignItems: "flex-start",
-                }}
-                placeholder="I need this by yesterday! I don't care if
-you have to work till late night."
-              />
+                  paddingVertical: 5,
+                  // justifyContent: "flex-start",
+                  // alignItems: "flex-start",
+                }}>
+                {/* placeholder="I need this by yesterday! I don't care if
+you have to work till late night." */}
+                {situations[selectedSituationIndex].item_name + "\n" + 
+                situations[selectedSituationIndex].item_description + 
+                "\n" + situations[selectedSituationIndex].role}
+              </Text>
               <TextInput
                 style={{
                   ...styles.inputTextContainer,
@@ -210,6 +330,11 @@ you have to work till late night."
                   paddingHorizontal: 9,
                 }}
                 placeholder="Type Your Response Here "
+                onChangeText={(text) => {
+                  const newSituationResponses = [...situationResponses];
+                  newSituationResponses[selectedSituationIndex] = text;
+                  setSituationResponses(newSituationResponses);
+                }}
               />
               <TouchableOpacity
                 style={{
@@ -220,6 +345,14 @@ you have to work till late night."
                   alignSelf: "center",
                   borderRadius: 3,
                   borderColor: "#371BC6",
+                }}
+                onPress={() => {
+                  console.log("Submit");
+                  submitSituationResponse({
+                    response: situationResponses[selectedSituationIndex],
+                     situationId: situations[selectedSituationIndex].id
+                    });
+                  // fetchQuizResult();
                 }}
               >
                 <Text style={{ fontWeight: "bold", fontSize: 10 }}>Submit</Text>
@@ -271,11 +404,11 @@ you have to work till late night."
                 paddingHorizontal: 16,
               }}
             >
-              Personal Sales Excellence is
+              {currentQuestion.text}
             </Text>
           </View>
           <FlatList
-            data={todayQuestion}
+            data={currentQuestion.options}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => {
               console.log("option", item);
@@ -294,7 +427,7 @@ you have to work till late night."
                     paddingHorizontal: 10,
                   }}
                 >
-                  <Text style={{}}>{item}</Text>
+                  <Text style={{}}>{item.text}</Text>
                   <TouchableOpacity
                     style={{
                       height: 15,
@@ -303,15 +436,31 @@ you have to work till late night."
                       borderWidth: 1,
                       borderColor: "black",
                       backgroundColor:
-                        selectedOption === index ? "#FEA01A" : "white",
+                        selectedOptionIndex === index ? "#FEA01A" : "white",
                     }}
                     onPress={() => {
-                      setSelectedOption(index);
+                      setSelectedOptionIndex(index);
                     }}
                   ></TouchableOpacity>
                 </View>
               );
             }}
+          />
+          <CustomButton
+            disabled={selectedOptionIndex === -1}
+            text="Submit"
+            buttonStyle={{
+              backgroundColor: white,
+              borderColor: purple,
+              borderWidth: 1,
+              borderRadius: 5,
+              elevation: 0,
+              alignSelf: "center",
+              width: 100,
+              height: 30,
+              marginTop: 20,
+            }}
+            onPress={handleMcqSubmit}
           />
           <View
             style={{
@@ -324,7 +473,7 @@ you have to work till late night."
             }}
           >
             <Text style={{ fontWeight: "bold", fontSize: 13 }}>
-              Correct Response-{" "}
+              Feedback {" - "}
             </Text>
             <Text
               style={{
@@ -333,7 +482,7 @@ you have to work till late night."
                 paddingTop: 2,
               }}
             >
-              Inherited
+              {feedback}
             </Text>
           </View>
         </View>
@@ -448,11 +597,10 @@ you have to work till late night."
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: "#E4E4E4",
+    backgroundColor: gray,
     alignItems: "center",
-    justifyContent: "space-around",
-    justifyContent: "space-between",
     paddingHorizontal: 16,
+    // backgroundColor: 'red'
   },
   container1: {
     flex: 3,
@@ -470,6 +618,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     marginTop: 140,
     position: "absolute",
+    left: 0,
   },
   titleContainer: {
     alignSelf: "center",

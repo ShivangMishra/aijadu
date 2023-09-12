@@ -115,7 +115,7 @@ const Login = () => {
               });
             }}
           >
-            <Text style={styles.loginButtonText}> Login</Text>
+            <Text style={styles.loginButtonText}> LOGIN</Text>
           </TouchableOpacity>
 
           <View style={styles.signUpContainer}>
@@ -132,11 +132,11 @@ const Login = () => {
               </TouchableOpacity>
             </View>
 
-            <View>
+            {/* <View>
               <TouchableOpacity>
                 <Text style={styles.signUpContainerText3}>Skip</Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
           </View>
 
 

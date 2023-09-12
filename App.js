@@ -21,6 +21,12 @@ import PostAPi from "./screen/PostAPi";
 import Search from "./screen/Search";
 import { ApiProvider } from "./apis/ApiContext";
 import CustomHeader from "./components/header";
+import SignUpScreen from "./screen/SignUpPage2";
+import ForgotPassword from "./screen/ForgotPassword";
+import CustomSwiper from "./components/CustomSwiper";
+import SwiperComponent from "./components/CustomSwiper";
+import EmailVerification from "./screen/EmailVerification";
+import Login2 from "./screen/Login2";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,12 +48,19 @@ export default function App() {
       <ApiProvider>
         <NavigationContainer>
           <Stack.Navigator>
-             <Stack.Screen
+            
+          
+            <Stack.Screen
               name="Home"
               component={Navigation}
               options={{ headerShown: false }}
             />
               <Stack.Screen
+              name="Login2"
+              component={Login2}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
               name="Login"
               component={Login}
               options={{ headerShown: false }}
@@ -104,6 +117,28 @@ export default function App() {
               component={Search}
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+              name="SignUpScreen"
+              component={SignUpScreen}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+
+            <Stack.Screen
+              name="ForgotPassword"
+              component={ForgotPassword}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+
+            <Stack.Screen
+              name="SwiperComponent"
+              component={SwiperComponent}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+             <Stack.Screen
+              name="EmailVerification"
+              component={EmailVerification}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
       </ApiProvider>

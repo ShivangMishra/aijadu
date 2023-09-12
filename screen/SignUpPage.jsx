@@ -75,7 +75,7 @@ const SignUpPage = ({ navigation }) => {
     setData({ ...data, email: inputEmail })
   }
 
-  const handlePasword = (inputUsername) => {
+  const handleUsernameInput = (inputUsername) => {
     setData({ ...data, username: inputUsername })
   }
 

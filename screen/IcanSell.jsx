@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
+import { purple } from "../colors";
 
 const IcanSell = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -235,16 +236,16 @@ const IcanSell = () => {
             </View>
             <View style={styles.signUpContainer}>
               <View style={{ flexDirection: "row" }}>
-                <TouchableOpacity>
+                {/* <TouchableOpacity>
                   <Text style={styles.signUpContainerText1}>
                     Don’t have an account?{" "}
                   </Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
+                </TouchableOpacity> */}
+                {/* <TouchableOpacity>
                   <Text style={styles.signUpContainerText2}>
                     Please Signup here
                   </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
 
 
@@ -331,7 +332,7 @@ const styles = StyleSheet.create({
   },
   container4: {
     flex: 1,
-  backgroundColor: "blue",
+  backgroundColor: purple,
   width: "100%",
   paddingTop:12,
  
