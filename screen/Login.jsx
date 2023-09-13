@@ -98,7 +98,9 @@ const Login = () => {
                 Forgot Password?
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> {
+              navigation.navigate("ResetPassword");
+            }}>
               <Text style={styles.passwordContainerText2}> Reset here </Text>
             </TouchableOpacity>
           </View>

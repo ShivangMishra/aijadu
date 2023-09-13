@@ -26,9 +26,8 @@ import { ApiContext } from "../apis/ApiContext";
 import ErrorModal from "../components/ErrorModal";
 import { ValidateLogin } from "../utils/Validation";
 import { useNavigation } from "@react-navigation/native";
-// import { StatusBar } from "expo-status-bar";
 
-export default function Login2() {
+export default function ResetPassword() {
     const navigation = useNavigation();
 
     const { login } = useContext(ApiContext);
@@ -50,7 +49,7 @@ export default function Login2() {
     // }, [loginData.password, loginData.email]);
   
   const validateEmail = (email) => {
-    return true;
+    // return true;
     return String(email)
       .toLowerCase()
       .match(
@@ -59,7 +58,7 @@ export default function Login2() {
   };
 
   const validatePassword = (password) => {
-    return true;
+    // return true;
     return password.trim() !== "";
   }
 
@@ -77,10 +76,10 @@ export default function Login2() {
       // behavior="padding"
       // keyboardVerticalOffset={40}>
       <View style={styles.bottomContainer}>
-        <Text style={styles.headerText}>SIGN IN</Text>
+        <Text style={styles.headerText}>RESET PASSWORD</Text>
 
         <CustomTextInput
-          placeholder="Email Here"
+          placeholder="Password"
           inputStyle={{ textAlign: "center", fontWeight: "bold" }}
           containerStyle={{
             marginTop: "8%",
@@ -91,7 +90,8 @@ export default function Login2() {
             setEmail(text);
             setError(false);
           }}
-          imgSrc={profileIcon}
+          imgSrc={passwordIcon}
+          password={true}
         />
 
         <CustomTextInput
@@ -109,47 +109,47 @@ export default function Login2() {
           imgSrc={passwordIcon}
           password={true}
         />
-
-        <View style={{ flexDirection: "row", marginTop: "2.5%" }}>
-          <TouchableOpacity onPress={()=>{
-            navigation.navigate("ForgotPassword");
+    {/* <TouchableOpacity onPress={()=>{
+            navigation.navigate("Login2");
           }}>
-          <Text style={{ color: "white" }}>Forgot Password?&nbsp;</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={()=> {
-              navigation.navigate("ResetPassword");
-            }}>
-          <Text style={{ color: orange, fontWeight: "bold" }}>Reset here</Text>
-          </TouchableOpacity>
+        <View style={{ flexDirection: "row", marginTop: "2.5%" }}>
+      
+          <Text style={{ color: "white" }}>Back to&nbsp;</Text>
+          
+          <Text style={{ color: orange, fontWeight: "bold" }}>Sign In</Text>
         </View>
+        </TouchableOpacity> */}
         <CustomButton
-          text="LOGIN"
-          buttonStyle={{ marginTop: "5%" }}
+          text="Reset Password"
+          buttonStyle={{ marginTop: "5%", elevation: 5}}
           onPress={() => {
-            if (!validateEmail(email)) {
-              setError("Please enter a valid email");
+            if (!validatePassword(email)) {
+              setError("Password cannot be empty");
               setModal(true)
-            } else if(!validatePassword(password)) {
-              setError("Please enter a valid password");
+            } else if(email !== password) {
+                setError("Passwords do not match");
               setModal(true);
-            } else {
-              login({ data: { email: email, password: password }, navigation, setError, setModal });
+            }
+            else {
+                setError("Failed to load token");
+                setModal(true);
+            //   login({ data: { email: email, password: password }, navigation, setError, setModal });
             }
             Keyboard.dismiss();
           }}
         />
         <View style={{ flexDirection: "row", marginTop: "2.5%" }}>
-          <Text style={{ color: "white" }}>Don't have an account?&nbsp;</Text>
+          <Text style={{ color: "white" }}>Back to&nbsp;</Text>
           <TouchableOpacity onPress={()=> {navigation.navigate("SignUpScreen")}}>
           <Text style={{ color: orange, fontWeight: "bold" }}>
-            Please Sign up here
+            Sign In
           </Text>
           </TouchableOpacity>
         </View>
         {error && (
           <View style={{ flexDirection: "row", marginTop: "2%" }}>
             <Text style={{ color: "white" }}>
-              Please Enter a Valid Email Address&nbsp;
+              Please enter a valid passwordContainer&nbsp;
             </Text>
           </View>
         )}
@@ -180,7 +180,6 @@ export default function Login2() {
       <Image source={blueBubble} style={styles.blueBubble} />
       <Image source={bottomBubble} style={styles.bottomBubble} />
       {/* </View> */}
-      {/* <StatusBar style="light" /> */}
     </KeyboardAvoidingView>
   );
 }

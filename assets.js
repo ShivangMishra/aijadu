@@ -18,3 +18,11 @@ export const blueBubble = require("./assets/AIJadu/Login/blueCircle.png");
 export const bottomBubble = require("./assets/AIJadu/Login/bottomHalfCircle.png");
 
 export const errorIcon = require("./assets/error-icon.png");
+
+export const whatIsImg1 = require("./assets/human-ai-hand.png");
+
+export const thumb = require("./assets/thumb.png");
+
+export const plus = require("./assets/plus.png");
+export const minus = require("./assets/minus.png");
+

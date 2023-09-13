@@ -221,7 +221,7 @@ export const ApiProvider = ({ children }) => {
       const responseJson = await response.json();
       console.log(responseJson);
       Alert.alert("Account created successfully. Proceed to login");
-      navigation.navigate("Login");
+      navigation.navigate("Login2");
       // navigation.navigate("DashboardCompliance");
       setIsLoading(false);
     }

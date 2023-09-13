@@ -4,7 +4,7 @@
     "slug": "aijadu",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/header-image.png",
+    "icon": "./assets/ai-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -19,9 +19,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/header-image.png",
+        "foregroundImage": "./assets/ai-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.vivek_pathak.aijadu"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -8,9 +8,10 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
-import { purple } from "../colors";
+import { gray, purple, white } from "../colors";
+import { backArrow, smallLogo } from "../assets";
 
-const IcanSell = () => {
+const IcanSell = ({navigation}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentValue, setCurrentValue] = useState([]);
   const items = [
@@ -20,10 +21,25 @@ const IcanSell = () => {
     { label: "Speaking", value: "Speaking" },
     { label: "Front-End", value: "Front" },
   ];
+  const renderHeader = () => {
+    return (
+      <View style={styles.headerContainer}>
+        <TouchableOpacity style={styles.backArrow} onPress={navigation.goBack}>
+          <Image source={backArrow} />
+        </TouchableOpacity>
+        <View style={styles.header}>
+          <Image source={smallLogo} />
+        </View>
+      </View>
+    );
+  };
+
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: gray}}>
+      {renderHeader()}
       <View style={styles.mainContainer}>
+      
         <Image
           style={styles.sideImage}
           source={require("../assets/AIJadu/Login/sideImage.png")}
@@ -31,7 +47,7 @@ const IcanSell = () => {
 
         <View style={styles.mainBox}>
           <Image
-            style={{ position: "absolute", alignSelf: "baseline" }}
+            style={{ position: "absolute", alignSelf: "baseline", marginTop: 50 }}
             source={require("../assets/AIJadu/Login/blueCircle.png")}
           />
           <View style={styles.container1}>
@@ -267,19 +283,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#E4E4E4",
     flexDirection: "column",
     width: '100%',
-    marginTop: 20
+    marginTop: 70
   },
   sideImage: {
     alignSelf: "flex-end",
     position: "absolute",
-    marginTop: -20,
+    marginTop: -70,
   },
-  headerContainer: {
-    marginTop: 20,
-    flex: 2,
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
+  // headerContainer: {
+  //   marginTop: 20,
+  //   flex: 2,
+  //   flexDirection: "row",
+  //   justifyContent: "space-around",
+  // },
 
   bottomDownPicker: {
     width: 222,
@@ -335,12 +351,12 @@ const styles = StyleSheet.create({
   backgroundColor: purple,
   width: "100%",
   paddingTop:12,
- 
+  // height
   alignSelf: "center",
   justifyContent: "center",
-  borderTopLeftRadius:30,
-  borderTopRightRadius:30
- 
+  borderTopLeftRadius:60,
+  borderTopRightRadius:60,
+  height: 300,
  
   },
   container1UpperTextContainer: {
@@ -402,7 +418,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   bottomCircle: {
-    marginTop: -30,
+    // marginTop: -30,
     // position:"absolute",
     alignSelf: "baseline",
   },
@@ -423,6 +439,30 @@ const styles = StyleSheet.create({
     borderBottomWidth: 10,
     borderBottomColor: "white",
     borderLeftColor: "transparent",
+  },
+  backArrow: {
+    position: "relative",
+    left: -40,
+    top: "2%",
+  },
+  headerContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    position: "absolute",
+    alignSelf: "center",
+    top: 45,
+    // backgroundColor: "red",
+    // marginBottom: "-18%",
+    zIndex: 1
+  },
+  header: {
+    backgroundColor: white,
+    width: "70%",
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 13,
+    zIndex: 1,
   },
 });
 

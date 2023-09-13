@@ -532,8 +532,8 @@ you have to work till late night." */}
             onChangeText={(text)=> {setSearchQuery(text)}}
             />
             <TouchableOpacity onPress={() => {
-              console.log("Search");
-              chatbotApi({user_input: searchQuery});
+              console.log("Search: ", searchQuery);
+              chatbotApi({userInput: searchQuery});
             }}>
             <FontAwesome5 name="search" size={15} color="#FEA01A" />
             </TouchableOpacity>
@@ -605,6 +605,7 @@ you have to work till late night." */}
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    position:"relative",
     backgroundColor: gray,
     alignItems: "center",
     paddingHorizontal: 16,
@@ -615,8 +616,11 @@ const styles = StyleSheet.create({
     width: 380,
   },
   sideImage: {
+    posiion: "absolute",
     alignSelf: "flex-end",
-    marginTop: -20,
+    marginRight: -16,
+    right: 0
+    // marginTop: -20,
   },
   logoImage: {
     alignSelf: "center",
@@ -626,6 +630,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     marginTop: 140,
     position: "absolute",
+    marginLeft: -16,
     left: 0,
   },
   titleContainer: {

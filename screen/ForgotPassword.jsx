@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity
 } from "react-native";
 import { gray, orange, purple, white } from "../colors";
 import { aiCanSellLogo, blueBubble, bottomBubble, emailBlackLogo, emailIcon, topBubble } from "../assets";
@@ -15,7 +16,8 @@ import CustomButton from "../components/CustomButton";
 import { ApiContext } from "../apis/ApiContext";
 import ErrorModal from "../components/ErrorModal";
 
-export default function ForgotPassword() {
+
+export default function ForgotPassword({navigation}) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [modal, setModal] = useState(false);
@@ -67,10 +69,12 @@ export default function ForgotPassword() {
             Keyboard.dismiss();
           }}
         />
-        <View style={{ flexDirection: "row", marginTop: "2.5%" }}>
-          <Text style={{ color: "white" }}>Back to&nbsp;</Text>
+        <TouchableOpacity onPress={()=> {navigation.navigate("Login2")} }>
+        <View style={{ flexDirection: "row", marginTop: "2.5%" }}>    
+          <Text style={{ color: "white" }}>Back to&nbsp;</Text>         
           <Text style={{ color: orange }}>SIGN-IN</Text>
         </View>
+        </TouchableOpacity>
         {error && (
           <View style={{ flexDirection: "row", marginTop: "5%" }}>
             <Text style={{ color: "white" }}>

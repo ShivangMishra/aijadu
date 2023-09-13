@@ -19,6 +19,9 @@ import ForgotPassword from './ForgotPassword'
 import SwiperComponent from '../components/CustomSwiper'
 import EmailVerification from './EmailVerification'
 import Login2 from './Login2'
+import WhatIs from './WhatIs'
+import ResetPassword from './ResetPassword'
+import Analysis from './Analysis'
 
 
 const Navigation = (props) => {
@@ -44,6 +47,9 @@ const Navigation = (props) => {
      {/* <Button title='Search Page Button' onPress={()=>{props.navigation.navigate(Search)}}  />  */}
      <Button title='Sign Up Screen' onPress={()=>{props.navigation.navigate(SignUpScreen)}}  />
      <Button title='Email verification Screen' onPress={()=>{props.navigation.navigate(EmailVerification)}}  />
+     <Button title='What is Screen' onPress={()=>{props.navigation.navigate(WhatIs)}}  />
+     <Button title='Reset Password' onPress={()=>{props.navigation.navigate(ResetPassword)}}  />
+     <Button title='Analysis' onPress={()=>{props.navigation.navigate(Analysis)}}  />
     </View>
   )
 }

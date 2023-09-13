@@ -10,12 +10,12 @@ const styles = StyleSheet.create({
   wrapper: {},
 });
 
-export default function SwiperComponent() {
+export default function SwiperComponent({navigation}) {
   return (
     <Swiper style={styles.wrapper} showsButtons={false} showsPagination={false}>
-      <IcanSell />
-      <Promotion />
-      <YourJadu/>
+      <IcanSell navigation={navigation}/>
+      <Promotion navigation={navigation}/>
+      <YourJadu navigation={navigation}/>
     </Swiper>
   );
 }
