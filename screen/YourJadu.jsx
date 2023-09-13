@@ -35,7 +35,7 @@ const YourJadu = () => {
   ];
   const [quizListData, setQuizListData] = useState([]);
   const [quizResult, setQuizResult] = useState([]);
-  const { fetchQuizList, fetchQuizResult, fetchSituations, submitSituationResponse } =
+  const { fetchQuizList, fetchQuizResult, fetchSituations, submitSituationResponse, chatbotApi } =
     useContext(ApiContext);
 
   const [currentQuestion, setCurrentQuestion] = useState({
@@ -123,7 +123,7 @@ const YourJadu = () => {
     if (!situations[0]) {
       return;
     }
-
+    setSelectedSituationIndex(1);
     // const
     // setTodayQuestion();
   }, [situations]);
@@ -299,6 +299,7 @@ const YourJadu = () => {
             <Image
               style={{ height: "90%", borderRadius: 13 }}
               source={require("../assets/AIJadu/yourJadu/Hr.png")}
+              // source={{uri: situations[selectedSituationIndex].thumbnail}}
             />
             <View
               style={{
@@ -527,8 +528,15 @@ you have to work till late night." */}
               alignItems: "center",
             }}
           >
-            <TextInput style={{ width: "90%" }} placeholder="Search Anything" />
+            <TextInput style={{ width: "90%" }} placeholder="Search Anything" value={searchQuery}
+            onChangeText={(text)=> {setSearchQuery(text)}}
+            />
+            <TouchableOpacity onPress={() => {
+              console.log("Search");
+              chatbotApi({user_input: searchQuery});
+            }}>
             <FontAwesome5 name="search" size={15} color="#FEA01A" />
+            </TouchableOpacity>
           </View>
           <Text
             style={{

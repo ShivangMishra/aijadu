@@ -57,9 +57,9 @@ const Promotion = () => {
              
             />
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity style={{alignSelf:'flex-end', marginLeft: -50, }}>
             <Image
-             style={{alignSelf:'flex-end', marginLeft: -50, }}
+            //  style={{alignSelf:'flex-end', marginLeft: -50, }}
             source={require("../assets/AIJadu/Login/search1.png")}
           />
           </TouchableOpacity>

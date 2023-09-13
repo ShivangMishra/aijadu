@@ -49,13 +49,17 @@ export default function Login2() {
     // }, [loginData.password, loginData.email]);
   
   const validateEmail = (email) => {
-    return true;
-    // return String(email)
-    //   .toLowerCase()
-    //   .match(
-    //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    //   );
+    // return true;
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
   };
+
+  const validatePassword = (password) => {
+    return password.trim() !== "";
+  }
 
   const renderLogo = () => {
     return (
@@ -117,7 +121,11 @@ export default function Login2() {
           buttonStyle={{ marginTop: "5%" }}
           onPress={() => {
             if (!validateEmail(email)) {
-              setError(true);
+              setError("Please enter a valid email");
+              setModal(true)
+            } else if(!validatePassword(password)) {
+              setError("Please enter a valid password");
+              setModal(true);
             } else {
               login({ data: { email: email, password: password }, navigation, setError, setModal });
             }
@@ -154,6 +162,7 @@ export default function Login2() {
       <ErrorModal
         message={error}
         visible={modal}
+        containerStyle = {{elevation: 10}}
         toggleModal={() => {
           setModal(false);
         }}

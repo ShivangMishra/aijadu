@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
+  Alert,
   Image,
   KeyboardAvoidingView,
   ScrollView,
@@ -27,6 +28,7 @@ import {
 import CheckBox from "expo-checkbox";
 import CustomButton from "../components/CustomButton";
 import CustomHeader from "../components/CustomHeader";
+import { ApiContext } from "../apis/ApiContext";
 
 export default function SignUpScreen({ navigation }) {
   const [firstName, setFirstName] = useState("");
@@ -37,7 +39,43 @@ export default function SignUpScreen({ navigation }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [tncAccepted, setTncAccepted] = useState(false);
 
-  const submit = () => {};
+  const {register} = useContext(ApiContext)
+
+  const submit = () => {
+    if(firstName.trim() === "") {
+      Alert.alert("First Name cannot be blank");
+      return;
+    } 
+    if(lastName.trim() === "") {
+      Alert.alert("Last Name cannot be blank");
+      return;
+    } 
+    if(username.trim() === "") {
+      Alert.alert("Username cannot be blank");
+      return;
+    } 
+    if(email.trim() === "") {
+      Alert.alert("Email cannot be blank");
+      return;
+    } 
+    if(password.trim() === "") {
+      Alert.alert("Password cannot be blank");
+      return;
+    } 
+    if(confirmPassword.trim() === "") {
+      Alert.alert("Confirm Password cannot be blank");
+      return;
+    } 
+    if(!tncAccepted) {
+      Alert.alert("Please accept the Terms and Conditions");
+      return;
+    } 
+    if(confirmPassword !== password){
+      Alert.alert("Passwords do not match");
+      return;
+    }
+    register({data: {first_name: firstName, last_name: lastName, username, email, password}, navigation});
+  };
 
   const renderHeader = () => {
     return (
@@ -92,8 +130,8 @@ export default function SignUpScreen({ navigation }) {
 
         <CustomTextInput
           placeholder="Email"
-          value={firstName}
-          onChangeText={(text) => setFirstName(text)}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
           containerStyle={{ width: "100%" }}
           password={false}
           imgSrc={emailIcon}
@@ -101,8 +139,8 @@ export default function SignUpScreen({ navigation }) {
 
         <CustomTextInput
           placeholder="Password"
-          value={firstName}
-          onChangeText={(text) => setFirstName(text)}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
           containerStyle={{ width: "100%" }}
           password={true}
           imgSrc={passwordIcon}
@@ -110,8 +148,8 @@ export default function SignUpScreen({ navigation }) {
 
         <CustomTextInput
           placeholder="Confirm Password"
-          value={firstName}
-          onChangeText={(text) => setFirstName(text)}
+          value={confirmPassword}
+          onChangeText={(text) => setConfirmPassword(text)}
           containerStyle={{ width: "100%" }}
           password={true}
           imgSrc={passwordIcon}

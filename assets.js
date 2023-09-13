@@ -16,3 +16,5 @@ export const smallLogo = require("./assets/AIJadu/signUp/AILogo.png");
 export const topBubble = require("./assets/AIJadu/Login/sideImage.png");
 export const blueBubble = require("./assets/AIJadu/Login/blueCircle.png");
 export const bottomBubble = require("./assets/AIJadu/Login/bottomHalfCircle.png");
+
+export const errorIcon = require("./assets/error-icon.png");

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 export default function SwiperComponent() {
   return (
-    <Swiper style={styles.wrapper} showsButtons={false}>
+    <Swiper style={styles.wrapper} showsButtons={false} showsPagination={false}>
       <IcanSell />
       <Promotion />
       <YourJadu/>
