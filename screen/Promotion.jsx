@@ -73,8 +73,8 @@ const Promotion = () => {
           <Text style={styles.text}>
             EMPLOYABILITY,PROMOTION{`\n`}      & CAREER GROWTH
           </Text>
-          <View style={{marginHorizontal:20, justifyContent:'center'}}>
-          <Image style={{width: "100%", height:200, alignSelf:'center'}} source={require("../assets/AIJadu/Login/infoContainer.png")} />
+          <View style={{ justifyContent:'center', marginTop:20}}>
+          <Image style={{width: "92%" , height: 190,  alignSelf:'center'}} source={require("../assets/AIJadu/Login/infoContainer.png")} />
           </View>
           <Text style={styles.text1}>
             JOBS THAT REQUIRE{`\n`}    SPECIFIC SKILLS
