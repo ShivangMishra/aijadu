@@ -45,7 +45,15 @@ export const ApiProvider = ({ children }) => {
         console.log(
           "\n\n\nsucess saving token in async storage by login\n\n\n"
         );
-        navigation.navigate("SignUpPage");
+
+        const isVerified = await checkVerified();
+        console.log("isVerified", isVerified);
+        if (!isVerified) {
+          // Alert.alert("Please verify your email");
+          navigation.navigate("MainPage");
+        } else {
+          navigation.navigate("SwiperComponent");
+        }
         // navigation.navigate("DashboardCompliance");
       } catch (e) {
         console.log("saving error token in login\n\n\n " + e);
@@ -62,7 +70,41 @@ export const ApiProvider = ({ children }) => {
     }
   };
 
-  const forgotPassword = async ({ data }) => {
+  const checkVerified = async () => {
+    setIsLoading(true);
+
+    const headers = new Headers();
+    const token = await AsyncStorage.getItem("accessToken");
+    console.log("token", token);
+    headers.append("Authorization", "Bearer " + token);
+
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      headers: headers,
+    };
+    console.log("requestOptions", JSON.stringify(requestOptions));
+    const response = await fetch(
+      `https://aicansellapp.com/accounts/api/me/`,
+      requestOptions
+    );
+    if (response.ok) {
+      const responseJson = await response.json();
+      console.log(responseJson);
+      setIsLoading(false);
+      return responseJson.is_email_confirmed;
+    } else {
+      const responseJson = await response.json();
+      console.log(
+        "check verified response not OK",
+        JSON.stringify(responseJson)
+      );
+      Alert.alert("An error occurred", responseJson.detail);
+      setIsLoading(false);
+    }
+  };
+
+  const forgotPassword = async ({ data, setModal, setError }) => {
     setIsLoading(true);
     console.log(data);
 
@@ -87,8 +129,10 @@ export const ApiProvider = ({ children }) => {
     if (response.ok) {
       const responseJson = await response.json();
       console.log(responseJson);
-      Alert.alert("Please check your email for reset password");
+      // Alert.alert("Please check your email for reset password");
       // navigation.navigate("DashboardCompliance");
+      setError("Email Is Sent");
+      console.log("Email is sent");
       setIsLoading(false);
     } else {
       const responseJson = await response.json();
@@ -96,7 +140,8 @@ export const ApiProvider = ({ children }) => {
         "forgot password response not OK",
         JSON.stringify(responseJson)
       );
-      Alert.alert("An error occurred", responseJson.detail);
+      // Alert.alert("An error occurred", responseJson.detail);
+      setError(response.detail);
       setModal(true);
       setIsLoading(false);
     }
@@ -111,7 +156,8 @@ export const ApiProvider = ({ children }) => {
 
     const body = {
       password: data.password === "" ? "1235Aicansell$" : data.password,
-      confirmPassword: data.confirmPassword === "" ? "1235Aicansell$" : data.confirmPassword,
+      confirmPassword:
+        data.confirmPassword === "" ? "1235Aicansell$" : data.confirmPassword,
     };
 
     const requestOptions = {
@@ -143,7 +189,7 @@ export const ApiProvider = ({ children }) => {
     //   setModal(true);
     //   setIsLoading(false);
     // }
-  }
+  };
 
   const register = async ({ data, setError, navigation, setModal }) => {
     setIsLoading(true);
@@ -179,27 +225,213 @@ export const ApiProvider = ({ children }) => {
       // navigation.navigate("DashboardCompliance");
       setIsLoading(false);
     }
-  }
+  };
 
-  const verifyEmail = async ({ data, setError, navigation, setModal }) => {
+  const verifyEmail = async () => {
     setIsLoading(true);
-    console.log(data);
 
+    const headers = new Headers();
+    const token = await AsyncStorage.getItem("accessToken");
+    console.log("token", token);
+    headers.append("Authorization", "Bearer " + token);
     const requestOptions = {
       method: "POST",
       redirect: "follow",
+      headers: headers,
     };
     console.log("requestOptions", JSON.stringify(requestOptions));
     const response = await fetch(
       `https://aicansellapp.com/api/send-confirmation-email/`,
       requestOptions
     );
+    return response.detail ? false : true;
+  };
+
+  const fetchQuizList = async ({setQuizListData}) => {
+    const testRes = [
+      {
+        id: 4,
+        item_name: "where does the sun rose",
+        option1: "east",
+        option2: "west",
+        option3: "south",
+        QuizAnswer_CHOICES: [
+          ["Opt1", "Option 1"],
+          ["Opt2", "Option 2"],
+          ["Opt3", "Option 3"],
+        ],
+      },
+      {
+        id: 3,
+        item_name: "how old is univeerse",
+        option1: "east",
+        option2: "west",
+        option3: "south",
+        QuizAnswer_CHOICES: [
+          ["Opt1", "Option 1"],
+          ["Opt2", "Option 2"],
+          ["Opt3", "Option 3"],
+        ],
+      },
+      {
+        id: 2,
+        item_name: "where did chandrayan 3 land",
+        option1: "east",
+        option2: "south",
+        option3: "west",
+        QuizAnswer_CHOICES: [
+          ["Opt1", "Option 1"],
+          ["Opt2", "Option 2"],
+          ["Opt3", "Option 3"],
+        ],
+      },
+      {
+        id: 1,
+        item_name: "where did the spaceship land",
+        option1: "east",
+        option2: "west",
+        option3: "south",
+        QuizAnswer_CHOICES: [
+          ["Opt1", "Option 1"],
+          ["Opt2", "Option 2"],
+          ["Opt3", "Option 3"],
+        ],
+      },
+    ];
+    setIsLoading(true);
     
+    const headers = new Headers();
+    const token = await AsyncStorage.getItem("accessToken");
+    console.log("token", token);
+    headers.append("Authorization", "Bearer " + token);
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      headers: headers,
+    };
+    console.log("requestOptions", JSON.stringify(requestOptions));
+    const response = await fetch(
+      `https://aicansellapp.com/quiz/quiz_list/`,
+      requestOptions
+    );
+    // console.log("quiz list response", response);
+    if (response.ok) {
+      const responseJson = await response.json();
+      console.log(JSON.stringify(responseJson));
+      setIsLoading(false);
+      setQuizListData(responseJson);
+    } else {
+      console.log("quiz list response not OK", response);
+    }
+  };
+
+  const fetchQuizResult = async ({questionId, setQuizResult}) => {
+    setIsLoading(true);
+    
+    const headers = new Headers();
+    const token = await AsyncStorage.getItem("accessToken");
+    console.log("token", token);
+    headers.append("Authorization", "Bearer " + token);
+    headers.append("Cookie", "csrftoken=dEcHVmmrtrjQM7qPnrS3hpHPJmFx6toS");
+    
+    const requestOptions = {
+      method: "PUT",
+      redirect: "follow",
+      body: JSON.stringify({id: questionId}),
+      headers: headers,
+    };
+    // console.log("url", url);  
+    console.log("requestOptions", JSON.stringify(requestOptions));
+    const response = await fetch(
+      "https://aicansellapp.com/quiz/api/quiz_results/" + questionId,
+      requestOptions
+    );
+    // console.log("quiz list response", response);
+    if (response.ok) {
+      const responseJson = await response.json();
+      console.log(JSON.stringify(responseJson));
+      setQuizResult(responseJson);
+      setIsLoading(false);
+    } else {
+      const responseJson = await response.json();
+      console.log("quiz result not OK", responseJson);
+    }
+  }
+
+  const fetchSituations = async ({setSituations}) => {
+    setIsLoading(true);
+    
+    const headers = new Headers();
+    const token = await AsyncStorage.getItem("accessToken");
+    console.log("token", token);
+    headers.append("Authorization", "Bearer " + token);
+    headers.append("Cookie", "csrftoken=dEcHVmmrtrjQM7qPnrS3hpHPJmFx6toS");
+    
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      headers: headers,
+    };
+    // console.log("url", url);  
+    console.log("requestOptions", JSON.stringify(requestOptions));
+    const response = await fetch(
+      "https://aicansellapp.com/sean/itemli",
+      requestOptions
+    );
+    // console.log("quiz list response", response);
+    if (response.ok) {
+      const responseJson = await response.json();
+      console.log(JSON.stringify(responseJson));
+      setSituations(responseJson);
+      setIsLoading(false);
+    } else {
+      const responseJson = await response.json();
+      console.log("situations not OK", responseJson);
+    }
+  }
+  const submitSituationResponse = async ({situationResponse, situationId}) => { 
+    setIsLoading(true);
+    
+    const headers = new Headers();
+    const token = await AsyncStorage.getItem("accessToken");
+    console.log("token", token);
+    headers.append("Authorization", "Bearer " + token);
+    headers.append("Cookie", "csrftoken=dEcHVmmrtrjQM7qPnrS3hpHPJmFx6toS");
+    
+    const requestOptions = {
+      method: "PUT",
+      redirect: "follow",
+      body: JSON.stringify({item_answer: situationResponse}),
+      headers: headers,
+    };
+    // console.log("url", url);  
+    console.log("requestOptions", JSON.stringify(requestOptions));
+    const response = await fetch(
+      "https://aicansellapp.com/sean/api/item_results/" + situationId,
+      requestOptions
+    );
+    if (response.ok) {
+      const responseJson = await response.json();
+      console.log(JSON.stringify(responseJson));
+      setIsLoading(false);
+    } else {
+      const responseJson = await response.json();
+      console.log("situations response put not OK", responseJson);
+    }
   }
   return (
     <ApiContext.Provider
       value={{
         login,
+        forgotPassword,
+        resetPassword,
+        register,
+        verifyEmail,
+        isLoading,
+        fetchQuizList,
+        fetchQuizResult,
+        fetchSituations,
+        submitSituationResponse
       }}
     >
       {children}

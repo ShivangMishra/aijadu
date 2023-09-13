@@ -1,8 +1,23 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from "react-native";
+import React, { useContext, useEffect } from "react";
 import { Image } from "react-native";
+import { ApiContext } from "../apis/ApiContext";
 
-const MainPage = () => {
+const MainPage = (props) => {
+  const { verifyEmail, checkVerified } = useContext(ApiContext);
+
+  const verify = async () => {
+    const emailSent = await verifyEmail();
+    if(emailSent)
+      Alert.alert("Email Resent", "Please check your email for verification link");
+    else
+      Alert.alert("Error", "Something went wrong");
+  };
+
+
+  useEffect(() => {
+    verifyEmail();
+  }, []);
   return (
     <ScrollView>
     <View style={styles.mainContainer}>
@@ -12,11 +27,12 @@ const MainPage = () => {
       />
       <View style={styles.overlayContainer}>
         <View style={styles.headerContainer}>
+          <TouchableOpacity onPress={()=> props.navigation.goBack()}>
           <Image
             style={[styles.arrowImage]}
             source={require("../assets/AIJadu/signUp/leftArrow.png")}
           />
-
+          </TouchableOpacity>
           <View style={styles.headerContainerImageBlock}>
             <Image
               style={styles.logoImage}
@@ -41,14 +57,14 @@ const MainPage = () => {
       <Image 
       source={require("../assets/AIJadu/signUp/mainLogo.png")}
        />
-       <TouchableOpacity style={styles.registerButton} >
+       <View style={styles.registerButton} >
         <Text style={styles.registerButtonText} >GO TO REGISTERED EMAIL & VERIFY NOW</Text>
-       </TouchableOpacity>
+       </View>
 
        <Text style={styles.emailButton} > Did not receive verification email? </Text>
 
-       <TouchableOpacity style={styles.resendButton} >
-        <Text style={styles.resendButtonText} >RESEND NOW</Text>
+       <TouchableOpacity style={styles.resendButton} onPress={verify} >
+        <Text style={styles.resendButtonText} onPress={this.verify}>RESEND NOW</Text>
        </TouchableOpacity>
 
        <Image
@@ -64,9 +80,11 @@ const MainPage = () => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height:"100%",
+   
     width:"100%",
     backgroundColor: "#E4E4E4",
+   marginTop:0,
+  
   },
   overlayContainer: {
     position: "absolute",
@@ -79,14 +97,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 20,
+    marginTop: 25,
+   paddingTop:10
 
   },
   arrowImage: {
     marginRight: 10,
   },
   headerContainerImageBlock: {
-    width: 317,
+    width: "80%",
     height: 42,
     borderRadius: 14,
     backgroundColor: "#ffff",
@@ -132,7 +151,7 @@ middleTextHeadingsText1:{
     alignSelf:"center"
 },
 middleTextHeadingsText2:{
-    fontWeight:"600",
+    fontWeight:"bold",
     fontSize:38,
     lineHeight:46,
     color:"#371BC6"
@@ -145,7 +164,7 @@ middleTextHeadingsText3:{
 },
 registerButton:{
     backgroundColor:"#371BC6",
-    width:346,
+    width:"80%",
     height:51,
     alignSelf:"center",
     borderRadius:27,
@@ -164,14 +183,14 @@ emailButton:{
     fontSize:13,
     lineHeight:16,
     color:"#000",
-    width:213,
+    width:'53%',
     height:16,
     alignSelf:"center",
     marginTop:30,
 },
 resendButton:{
     backgroundColor:"#FEA01A",
-    width:208,
+    width:'50%',
     height:51,
     alignSelf:"center",
     borderRadius:27,
