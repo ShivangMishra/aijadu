@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-nati
 import React from "react";
 import { Image } from "react-native";
 
-const MainPage = () => {
+const MainPage = ({props}) => {
   return (
     <ScrollView>
     <View style={styles.mainContainer}>
@@ -12,11 +12,12 @@ const MainPage = () => {
       />
       <View style={styles.overlayContainer}>
         <View style={styles.headerContainer}>
+          <TouchableOpacity onPress={()=> props.navigation.goBack()}>
           <Image
             style={[styles.arrowImage]}
             source={require("../assets/AIJadu/signUp/leftArrow.png")}
           />
-
+          </TouchableOpacity>
           <View style={styles.headerContainerImageBlock}>
             <Image
               style={styles.logoImage}
@@ -67,8 +68,8 @@ const styles = StyleSheet.create({
    
     width:"100%",
     backgroundColor: "#E4E4E4",
-    paddingTop:40,
-    marginTop:20
+   marginTop:50,
+  
   },
   overlayContainer: {
     position: "absolute",
@@ -81,14 +82,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 20,
+   paddingTop:10
 
   },
   arrowImage: {
     marginRight: 10,
   },
   headerContainerImageBlock: {
-    width: 317,
+    width: "80%",
     height: 42,
     borderRadius: 14,
     backgroundColor: "#ffff",

@@ -28,51 +28,6 @@ const IcanSell = () => {
           source={require("../assets/AIJadu/Login/sideImage.png")}
         />
 
-        {/* <View style={styles.headerContainer}>
-          <Image
-            style={{ alignSelf: "center" }}
-            source={require("../assets/AIJadu/signUp/leftArrow.png")}
-          />
-          <Image source={require("../assets/AIJadu/signUp/AILogo.png")} />
-
-          <View style={styles.bottomDownPicker}>
-            <DropDownPicker
-              items={items}
-              open={isOpen}
-              setOpen={() => setIsOpen(!isOpen)}
-              value={currentValue}
-              setValue={(val) => setCurrentValue(val)}
-              maxHeight={200}
-              autoScroll
-              placeholder="             I want to improve in"
-              placeholderStyle={{
-                fontWeight: "700",
-                fontSize: 12,
-                lineHeight: 16,
-              }}
-              showTickIcon={true}
-              showArrowIcon={true}
-              dropDownDirection="Bottom"
-              disableBorderRadius={false}
-              theme="LIGHT"
-              style={styles.bottomDownPicker}
-              dropDownContainerStyle={{
-                width: 200,
-                // marginLeft: 20,
-                borderRadius: 18,
-              }}
-            />
-          </View>
-          <Image
-            style={{
-              alignSelf: "center",
-              justifyContent: "center",
-              marginTop: 7,
-            }}
-            source={require("../assets/AIJadu/Login/search1.png")}
-          />
-        </View> */}
-
         <View style={styles.mainBox}>
           <Image
             style={{ position: "absolute", alignSelf: "baseline" }}
@@ -84,7 +39,7 @@ const IcanSell = () => {
 
               <View style={styles.container1UpperText}>
                 <Text
-                  style={{ fontWeight: "700", fontSize: 20, marginTop:15 }}
+                  style={{ fontWeight: "700", fontSize: 20, marginTop:15, justifyContent:'flex-start', marginLeft:-20 }}
                 >
                   WHAT IS AICANSELL
                 </Text>
@@ -163,6 +118,8 @@ const IcanSell = () => {
                 fontSize: 14,
                 alignSelf: "center",
                 marginTop: 10,
+                lineHeight:18,
+                paddingBottom:2
               }}
             >
               TAKE CHALLENGES & RESPOND TO SITUATIONS
@@ -200,7 +157,8 @@ const IcanSell = () => {
                 borderRadius: 27,
                 justifyContent: "space-around",
                 alignItems: "center",
-                marginBottom:10
+                marginBottom:10,
+                elevation:10
               }}
             >
               <Text style={{ fontWeight: "700", fontSize: 14, lineHeight: 18 }}>
@@ -259,12 +217,13 @@ const IcanSell = () => {
                   justifyContent: "space-around",
                   alignItems: "center",
                   alignSelf: "center",
-                  marginBottom:10
-                 
+                  marginBottom:10,
+                  paddingHorizontal:10,
+                  elevation:10 
                 }}
               >
                 <Text
-                  style={{ fontWeight: "700", fontSize: 14, lineHeight: 18 }}
+                  style={{ fontWeight: "700", fontSize: 14, lineHeight: 18,paddingLeft:5, }}
                 >
                   LEARN FROM{`\n`}
                   OTHERS JADU{" "}
@@ -378,6 +337,8 @@ const styles = StyleSheet.create({
  
   alignSelf: "center",
   justifyContent: "center",
+  borderTopLeftRadius:30,
+  borderTopRightRadius:30
  
  
   },
