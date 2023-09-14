@@ -8,8 +8,9 @@ import { FontAwesome5, Entypo } from "@expo/vector-icons";
 import { gray, purple, white } from "../colors";
 import { ApiContext } from "../apis/ApiContext";
 import CustomButton from "../components/CustomButton";
+import { emailJadu } from "../assets";
 
-const YourJadu = () => {
+const YourJadu = ({navigation}) => {
   const [isOpen, setIsOpen] = useState(true);
   const [currentValue, setCurrentValue] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
@@ -166,6 +167,346 @@ const YourJadu = () => {
     setSelectedValue(value);
   };
 
+  const renderSituationSection = () => {
+    return (  <View
+      style={{
+        // ...styles.youJaduContainer,
+        backgroundColor: "white",
+        marginHorizontal: 20,
+        borderWidth: 1,
+        borderRadius: 13,
+        width: "100%",
+        elevation: 5,
+        marginBottom: "5%",
+      }}
+    >
+      <View
+        style={{
+          ...styles.youJaduHeaderContainer,
+          height: 40,
+          flexDirection: "row",
+          borderBottomWidth: 1,
+
+        }}
+      >
+        <View
+          style={{
+            ...styles.youJaduHeaderContainer1,
+            backgroundColor: "#FEA01A",
+            borderTopLeftRadius: 13,
+            width: "33%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 12 }}>
+            {situations[0].category}
+          </Text>
+        </View>
+        <View
+          style={{
+            ...styles.youJaduHeaderContainer2,
+            backgroundColor: "#360DFF",
+            width: "34%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{ fontWeight: "bold", fontSize: 12, color: "white" }}
+          >
+            {situations[1].category}
+          </Text>
+        </View>
+        <View
+          style={{
+            ...styles.youJaduHeaderContainer3,
+            backgroundColor: "#FEA01A",
+            borderTopRightRadius: 13,
+            width: "33%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: 12,
+            }}
+          >
+            {situations[2] ? situations[2].category : "Default"}
+          </Text>
+        </View>
+      </View>
+      <View
+        style={{
+          ...styles.youJaduBodyHeaderContainer,
+          justifyContent: "center",
+          alignItems: "center",
+          paddingVertical: 7,
+        }}
+      >
+        <Text style={{ fontWeight: "700", fontSize: 10, color: "#360DFF" }}>
+          How would you respond to this situation. (Max 30 words)
+        </Text>
+      </View>
+      <View
+        style={{
+          ...styles.youJaduBodyContainer,
+          justifyContent: "center",
+          alignItems: "flex-start",
+          paddingVertical: 7,
+          flexDirection: "row",
+        }}
+      >
+        <Image
+          style={{ height: "90%", borderRadius: 13 }}
+          source={require("../assets/AIJadu/yourJadu/Hr.png")}
+          // source={{uri: situations[selectedSituationIndex].thumbnail}}
+        />
+        <View
+          style={{
+            // ...styles.youJaduBodyContainer1,
+            width: "53%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              ...styles.inputTextContainer,
+              height: 70,
+              paddingHorizontal: 9,
+              paddingVertical: 5,
+              // justifyContent: "flex-start",
+              // alignItems: "flex-start",
+            }}>
+            {/* placeholder="I need this by yesterday! I don't care if
+you have to work till late night." */}
+            {situations[selectedSituationIndex].item_name + "\n" + 
+            situations[selectedSituationIndex].item_description + 
+            "\n" + situations[selectedSituationIndex].role}
+          </Text>
+          <TextInput
+            style={{
+              ...styles.inputTextContainer,
+              height: 20,
+              paddingHorizontal: 9,
+            }}
+            placeholder="Type Your Response Here "
+            onChangeText={(text) => {
+              const newSituationResponses = [...situationResponses];
+              newSituationResponses[selectedSituationIndex] = text;
+              setSituationResponses(newSituationResponses);
+            }}
+          />
+          <TouchableOpacity
+            style={{
+              ...styles.submitFormContainerOrangeText,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              alignSelf: "center",
+              borderRadius: 3,
+              borderColor: "#371BC6",
+            }}
+            onPress={() => {
+              console.log("Submit");
+              submitSituationResponse({
+                response: situationResponses[selectedSituationIndex],
+                 situationId: situations[selectedSituationIndex].id,
+                 navigation,
+                });
+              // fetchQuizResult();
+            }}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 10 }}>Submit</Text>
+          </TouchableOpacity>
+          <View style={{ flexDirection: "row", marginTop: 9 }}>
+            <Image
+              style={{ marginHorizontal: 10 }}
+              source={require("../assets/AIJadu/yourJadu/images09.png")}
+            />
+            <Image
+              source={require("../assets/AIJadu/yourJadu/Group.png")}
+            />
+          </View>
+        </View>
+      </View>
+    </View>)
+  }
+
+  const renderEmailSection = () => {
+    return (  <View
+      style={{
+        // ...styles.youJaduContainer,
+        backgroundColor: "white",
+        marginHorizontal: 20,
+        borderWidth: 1,
+        borderRadius: 13,
+        width: "100%",
+        elevation: 5,
+        marginBottom: "5%",
+      }}
+    >
+      <View
+        style={{
+          ...styles.youJaduHeaderContainer,
+          height: 40,
+          flexDirection: "row",
+          borderBottomWidth: 1,
+
+        }}
+      >
+        <View
+          style={{
+            ...styles.youJaduHeaderContainer1,
+            backgroundColor: "#FEA01A",
+            borderTopLeftRadius: 13,
+            width: "33%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 12 }}>
+            {situations[0].category}
+          </Text>
+        </View>
+        <View
+          style={{
+            ...styles.youJaduHeaderContainer2,
+            backgroundColor: "#360DFF",
+            width: "34%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{ fontWeight: "bold", fontSize: 12, color: "white" }}
+          >
+            {situations[1].category}
+          </Text>
+        </View>
+        <View
+          style={{
+            ...styles.youJaduHeaderContainer3,
+            backgroundColor: "#FEA01A",
+            borderTopRightRadius: 13,
+            width: "33%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: 12,
+            }}
+          >
+            {situations[2] ? situations[2].category : "Default"}
+          </Text>
+        </View>
+      </View>
+      <View
+        style={{
+          ...styles.youJaduBodyHeaderContainer,
+          justifyContent: "center",
+          alignItems: "center",
+          paddingVertical: 7,
+        }}
+      >
+        <Text style={{ fontWeight: "700", fontSize: 10, color: "#360DFF" }}>
+          How would you respond to this Email. (Max 30 words)
+        </Text>
+      </View>
+      <View
+        style={{
+          ...styles.youJaduBodyContainer,
+          justifyContent: "center",
+          alignItems: "flex-start",
+          paddingVertical: 7,
+          flexDirection: "row",
+        }}
+      >
+        <Image
+          style={{ borderRadius: 13, top: 15, left: -10}}
+          source={emailJadu}
+          // source={{uri: situations[selectedSituationIndex].thumbnail}}
+        />
+        <View
+          style={{
+            // ...styles.youJaduBodyContainer1,
+            width: "53%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              ...styles.inputTextContainer,
+              height: 70,
+              paddingHorizontal: 9,
+              paddingVertical: 5,
+              // justifyContent: "flex-start",
+              // alignItems: "flex-start",
+            }}>
+            {/* placeholder="I need this by yesterday! I don't care if
+you have to work till late night." */}
+            {situations[selectedSituationIndex].item_name + "\n" + 
+            situations[selectedSituationIndex].item_description + 
+            "\n" + situations[selectedSituationIndex].role}
+          </Text>
+          <TextInput
+            style={{
+              ...styles.inputTextContainer,
+              height: 20,
+              paddingHorizontal: 9,
+            }}
+            placeholder="Type Your Response Here "
+            onChangeText={(text) => {
+              const newSituationResponses = [...situationResponses];
+              newSituationResponses[selectedSituationIndex] = text;
+              setSituationResponses(newSituationResponses);
+            }}
+          />
+          <TouchableOpacity
+            style={{
+              ...styles.submitFormContainerOrangeText,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              alignSelf: "center",
+              borderRadius: 3,
+              borderColor: "#371BC6",
+            }}
+            onPress={() => {
+              console.log("Submit");
+              submitSituationResponse({
+                response: situationResponses[selectedSituationIndex],
+                 situationId: situations[selectedSituationIndex].id,
+                 navigation,
+                });
+              // fetchQuizResult();
+            }}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 10 }}>Submit</Text>
+          </TouchableOpacity>
+          <View style={{ flexDirection: "row", marginTop: 9 }}>
+            <Image
+              style={{ marginHorizontal: 10 }}
+              source={require("../assets/AIJadu/yourJadu/images09.png")}
+            />
+            <Image
+              source={require("../assets/AIJadu/yourJadu/Group.png")}
+            />
+          </View>
+        </View>
+      </View>
+    </View>)
+  }
+
   return (
     <ScrollView style={{ backgroundColor: "#E4E4E4" }}>
       <View style={styles.mainContainer}>
@@ -206,171 +547,9 @@ const YourJadu = () => {
           </View>
         </View>
 
-        <View
-          style={{
-            // ...styles.youJaduContainer,
-            backgroundColor: "white",
-            marginHorizontal: 20,
-            borderWidth: 1,
-            borderRadius: 13,
-            width: "100%",
-          }}
-        >
-          <View
-            style={{
-              ...styles.youJaduHeaderContainer,
-              height: 40,
-              flexDirection: "row",
-              borderBottomWidth: 1,
-
-            }}
-          >
-            <View
-              style={{
-                ...styles.youJaduHeaderContainer1,
-                backgroundColor: "#FEA01A",
-                borderTopLeftRadius: 13,
-                width: "33%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ fontWeight: "bold", fontSize: 12 }}>
-                {situations[0].category}
-              </Text>
-            </View>
-            <View
-              style={{
-                ...styles.youJaduHeaderContainer2,
-                backgroundColor: "#360DFF",
-                width: "34%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text
-                style={{ fontWeight: "bold", fontSize: 12, color: "white" }}
-              >
-                {situations[1].category}
-              </Text>
-            </View>
-            <View
-              style={{
-                ...styles.youJaduHeaderContainer3,
-                backgroundColor: "#FEA01A",
-                borderTopRightRadius: 13,
-                width: "33%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  fontSize: 12,
-                }}
-              >
-                {situations[2] ? situations[2].category : "Default"}
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              ...styles.youJaduBodyHeaderContainer,
-              justifyContent: "center",
-              alignItems: "center",
-              paddingVertical: 7,
-            }}
-          >
-            <Text style={{ fontWeight: "700", fontSize: 10, color: "#360DFF" }}>
-              How would you respond to this situation. (Max 30 words)
-            </Text>
-          </View>
-          <View
-            style={{
-              ...styles.youJaduBodyContainer,
-              justifyContent: "center",
-              alignItems: "flex-start",
-              paddingVertical: 7,
-              flexDirection: "row",
-            }}
-          >
-            <Image
-              style={{ height: "90%", borderRadius: 13 }}
-              source={require("../assets/AIJadu/yourJadu/Hr.png")}
-              // source={{uri: situations[selectedSituationIndex].thumbnail}}
-            />
-            <View
-              style={{
-                // ...styles.youJaduBodyContainer1,
-                width: "53%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text
-                style={{
-                  ...styles.inputTextContainer,
-                  height: 70,
-                  paddingHorizontal: 9,
-                  paddingVertical: 5,
-                  // justifyContent: "flex-start",
-                  // alignItems: "flex-start",
-                }}>
-                {/* placeholder="I need this by yesterday! I don't care if
-you have to work till late night." */}
-                {situations[selectedSituationIndex].item_name + "\n" + 
-                situations[selectedSituationIndex].item_description + 
-                "\n" + situations[selectedSituationIndex].role}
-              </Text>
-              <TextInput
-                style={{
-                  ...styles.inputTextContainer,
-                  height: 20,
-                  paddingHorizontal: 9,
-                }}
-                placeholder="Type Your Response Here "
-                onChangeText={(text) => {
-                  const newSituationResponses = [...situationResponses];
-                  newSituationResponses[selectedSituationIndex] = text;
-                  setSituationResponses(newSituationResponses);
-                }}
-              />
-              <TouchableOpacity
-                style={{
-                  ...styles.submitFormContainerOrangeText,
-                  marginTop: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  alignSelf: "center",
-                  borderRadius: 3,
-                  borderColor: "#371BC6",
-                }}
-                onPress={() => {
-                  console.log("Submit");
-                  submitSituationResponse({
-                    response: situationResponses[selectedSituationIndex],
-                     situationId: situations[selectedSituationIndex].id
-                    });
-                  // fetchQuizResult();
-                }}
-              >
-                <Text style={{ fontWeight: "bold", fontSize: 10 }}>Submit</Text>
-              </TouchableOpacity>
-              <View style={{ flexDirection: "row", marginTop: 9 }}>
-                <Image
-                  style={{ marginHorizontal: 10 }}
-                  source={require("../assets/AIJadu/yourJadu/images09.png")}
-                />
-                <Image
-                  source={require("../assets/AIJadu/yourJadu/Group.png")}
-                />
-              </View>
-            </View>
-          </View>
-        </View>
-
+        {renderSituationSection()}
+        {renderEmailSection()}
+        
         <Text
           style={{
             fontWeight: "bold",
@@ -538,7 +717,7 @@ you have to work till late night." */}
             <FontAwesome5 name="search" size={15} color="#FEA01A" />
             </TouchableOpacity>
           </View>
-          <Text
+          {/* <Text
             style={{
               fontWeight: "bold",
               fontSize: 13,
@@ -547,14 +726,14 @@ you have to work till late night." */}
             }}
           >
             Suggested
-          </Text>
+          </Text> */}
           {/* <FlatList
             style={{}}
             data={todayQuestion}
             keyExtractor={(item, index) => index.toString()}
             renderItem={}
           /> */}
-          <View
+          {/* <View
             style={{
               flexDirection: "row",
               flexWrap: "wrap",
@@ -585,7 +764,7 @@ you have to work till late night." */}
                 </View>
               );
             })}
-          </View>
+          </View> */}
         </View>
         <View
           style={{

@@ -389,7 +389,7 @@ export const ApiProvider = ({ children }) => {
       console.log("situations not OK", responseJson);
     }
   }
-  const submitSituationResponse = async ({situationResponse, situationId}) => { 
+  const submitSituationResponse = async ({situationResponse, situationId, navigation}) => { 
     setIsLoading(true);
     
     const headers = new Headers();
@@ -413,6 +413,7 @@ export const ApiProvider = ({ children }) => {
     if (response.ok) {
       const responseJson = await response.json();
       console.log(JSON.stringify(responseJson));
+      navigation.navigate("Analysis", {analysisData: responseJson});
       setIsLoading(false);
     } else {
       Alert.alert("An error occurred", "Something went wrong");

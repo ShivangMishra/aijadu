@@ -14,6 +14,9 @@ import {
   seanColor1,
   seanColor2,
   seanColor3,
+  seanColor4,
+  seanColor5,
+  seanColor6,
   white,
 } from "../colors";
 import {
@@ -26,13 +29,106 @@ import {
   thumb,
   topBubble,
 } from "../assets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CustomButton from "../components/CustomButton";
 
-export default function Analysis({ navigation }) {
+export default function Analysis({ navigation, route }) {
+  const { analysisData } = route.params;
+  const DATA = [
+    {
+      title: "YOU ARE COMING ACROSS AS",
+      words: ["Enthusiastic", "Memorable"],
+      color: seanColor1,
+      id: 1,
+    },
+    {
+      title: "POWER WORDS YOU USED",
+      words: ["Handling tough Situations", "Linkage to Role"],
+      color: seanColor2,
+      id: 2,
+    },
+    {
+      title: "WEAK WORDS, YOU SHOULD TRY REPLACING",
+      words: ["Enthusiastic", "Memorable"],
+      id: 3,
+      color: seanColor3,
+    },
+  ];
 
-const [data1Expanded, setData1Expanded] = useState(false);
-const [data2Expanded, setData2Expanded] = useState(false);
+  const DATA2 = [
+    {
+      title: "YOU ARE COMING ACROSS AS",
+      words: ["Enthusiastic", "Memorable"],
+      color: seanColor4,
+      id: 4,
+    },
+    {
+      title: "POWER WORDS YOU USED",
+      words: ["Handling tough Situations", "Linkage to Role"],
+      color: seanColor5,
+      id: 5,
+    },
+    {
+      title: "WEAK WORDS, YOU SHOULD TRY REPLACING",
+      words: ["Enthusiastic", "Memorable"],
+      id: 6,
+      color: seanColor6,
+    },
+  ];
 
+  const [data1Expanded, setData1Expanded] = useState(false);
+  const [data2Expanded, setData2Expanded] = useState(false);
+
+  const [data1, setData1] = useState(DATA);
+  const [data2, setData2] = useState(DATA2);
+
+  // useEffect(() => {
+  //   data1[1].words = [analysisData.data.competency_power_word];
+  //   data1[2].words = [analysisData.data.competency_weak_word];
+  //   data1[0].words = [analysisData.data.coming_across_as];
+
+  //   data2[0].words = [analysisData.data.positive_traits];
+  //   data2[1].words = [analysisData.data.negative_traits];
+  //   data2[2].words = [analysisData.data.coming_across_as];
+
+  //   setData1(data1);
+  //   setData2(data2);
+  // }, []);
+
+  useEffect(() => {
+    // Check if analysisData is available
+    if (analysisData) {
+      setData1((prevData) => [
+        {
+          ...prevData[0],
+          words: [analysisData.data.coming_across_as],
+        },
+        {
+          ...prevData[1],
+          words: [analysisData.data.competency_power_word],
+        },
+        {
+          ...prevData[2],
+          words: [analysisData.data.competency_weak_word],
+        },
+      ]);
+
+      setData2((prevData) => [
+        {
+          ...prevData[0],
+          words: [analysisData.data.positive_traits],
+        },
+        {
+          ...prevData[1],
+          words: [analysisData.data.negative_traits],
+        },
+        {
+          ...prevData[2],
+          words: [analysisData.data.coming_across_as],
+        },
+      ]);
+    }
+  }, [analysisData]);
 
   const renderHeader = () => {
     return (
@@ -117,48 +213,6 @@ const [data2Expanded, setData2Expanded] = useState(false);
     );
   };
 
-  const DATA = [
-    {
-      title: "YOU ARE COMING ACROSS AS",
-      words: ["Enthusiastic", "Memorable"],
-      color: seanColor1,
-      id: 1,
-    },
-    {
-      title: "POWER WORDS YOU USED",
-      words: ["Handling tough Situations", "Linkage to Role"],
-      color: seanColor2,
-      id: 2,
-    },
-    {
-      title: "WEAK WORDS, YOU SHOULD TRY REPLACING",
-      words: ["Enthusiastic", "Memorable"],
-      id: 3,
-      color: seanColor3,
-    },
-  ];
-
-  const DATA2 = [
-    {
-      title: "YOU ARE COMING ACROSS AS",
-      words: ["Enthusiastic", "Memorable"],
-      color: seanColor1,
-      id: 4,
-    },
-    {
-      title: "POWER WORDS YOU USED",
-      words: ["Handling tough Situations", "Linkage to Role"],
-      color: seanColor2,
-      id: 5,
-    },
-    {
-      title: "WEAK WORDS, YOU SHOULD TRY REPLACING",
-      words: ["Enthusiastic", "Memorable"],
-      id: 6,
-      color: seanColor3,
-    },
-  ];
-
   const renderSeanAnalysis = (title, data, isExpanded, setExpanded) => {
     return (
       <View style={styles.seanContainer}>
@@ -168,25 +222,23 @@ const [data2Expanded, setData2Expanded] = useState(false);
             ? data.map((item) => renderItem({ item }))
             : renderItem({ item: data[0] })}
         </View>
-       <TouchableOpacity style={isExpanded ? styles.minusImg : styles.plusImg} onPress={()=>{
-        setExpanded((prevState) => !prevState)
-       }}>
-         {isExpanded ? (
-          <Image source={minus} />
-        ) : (
-          <Image source={plus}/>
-        )}
-       </TouchableOpacity>
+        <TouchableOpacity
+          style={isExpanded ? styles.minusImg : styles.plusImg}
+          onPress={() => {
+            setExpanded((prevState) => !prevState);
+          }}
+        >
+          {isExpanded ? <Image source={minus} /> : <Image source={plus} />}
+        </TouchableOpacity>
       </View>
     );
   };
-
   return (
     <View style={styles.container}>
       {renderHeader()}
       <ScrollView
-        style={{ width: "100%", paddingHorizontal: "2.8%", marginTop: 80}}
-        contentContainerStyle={{alignItems: "center"}}
+        style={{ width: "100%", paddingHorizontal: "2.8%", marginTop: 80 }}
+        contentContainerStyle={{ alignItems: "center" }}
       >
         {renderTitle()}
         {renderThankYou()}
@@ -201,8 +253,30 @@ const [data2Expanded, setData2Expanded] = useState(false);
           SENTICLOUD ANALYSIS FOR YOUR RESPONSE
         </Text>
 
-        {renderSeanAnalysis("SEAN Analysis", DATA, data1Expanded, setData1Expanded)}
-        {renderSeanAnalysis("SEAN Recommends", DATA2, data2Expanded, setData2Expanded)}
+        {renderSeanAnalysis(
+          "SEAN Analysis",
+          data1,
+          data1Expanded,
+          setData1Expanded
+        )}
+        {renderSeanAnalysis(
+          "SEAN Recommends",
+          data2,
+          data2Expanded,
+          setData2Expanded
+        )}
+
+        <CustomButton
+          buttonStyle={{
+            backgroundColor: white,
+            borderColor: purple,
+            borderWidth: 1,
+            margin: "5%",
+            elevation: 0
+          }}
+          text="TRY ANOTHER JADU"
+          onPress={() => navigation.navigate("YourJadu")}
+        />
       </ScrollView>
       <Image source={topBubble} style={styles.topBubble} />
       <Image source={blueBubble} style={styles.blueBubble} />
