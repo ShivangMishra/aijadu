@@ -417,8 +417,8 @@ export const ApiProvider = ({ children }) => {
       setIsLoading(false);
     } else {
       Alert.alert("An error occurred", "Something went wrong");
-      // const responseJson = await response.json();
-      // console.log("situations response put not OK", responseJson);
+      const responseJson = await response.text();
+      console.log("situations response put not OK", responseJson);
     }
   }
 

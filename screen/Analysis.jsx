@@ -31,6 +31,7 @@ import {
 } from "../assets";
 import { useEffect, useState } from "react";
 import CustomButton from "../components/CustomButton";
+import { BarChart } from "react-native-gifted-charts";
 
 export default function Analysis({ navigation, route }) {
   const { analysisData } = route.params;
@@ -76,24 +77,19 @@ export default function Analysis({ navigation, route }) {
     },
   ];
 
+  const CHART_DATA = [
+    { value: 50, label: "Happy" },
+    { value: 80, label: "Sad" },
+    { value: 90, label: "Angry" },
+    { value: 70, label: "Fear" },
+  ];
   const [data1Expanded, setData1Expanded] = useState(false);
   const [data2Expanded, setData2Expanded] = useState(false);
 
   const [data1, setData1] = useState(DATA);
   const [data2, setData2] = useState(DATA2);
 
-  // useEffect(() => {
-  //   data1[1].words = [analysisData.data.competency_power_word];
-  //   data1[2].words = [analysisData.data.competency_weak_word];
-  //   data1[0].words = [analysisData.data.coming_across_as];
-
-  //   data2[0].words = [analysisData.data.positive_traits];
-  //   data2[1].words = [analysisData.data.negative_traits];
-  //   data2[2].words = [analysisData.data.coming_across_as];
-
-  //   setData1(data1);
-  //   setData2(data2);
-  // }, []);
+  const [chartData, setChartData] = useState();
 
   useEffect(() => {
     // Check if analysisData is available
@@ -127,6 +123,7 @@ export default function Analysis({ navigation, route }) {
           words: [analysisData.data.coming_across_as],
         },
       ]);
+      setChartData(stringToArray(analysisData.emotions));
     }
   }, [analysisData]);
 
@@ -213,6 +210,53 @@ export default function Analysis({ navigation, route }) {
     );
   };
 
+  const stringToArray = (str) => {
+    // str = "'z': 1, 'y':2, 'x':3";
+    if (str.trim() === "") {
+      return CHART_DATA;
+    }
+    const arr = str.split(",");
+    console.log("str", str);
+    console.log("arr", arr);
+    const chartD = arr.map((item) => {
+      const entry = item.split(":");
+      return {
+        label: entry[0],
+        value: parseInt(entry[1].trim()),
+      };
+    });
+    console.log(chartD);
+    // if(chartD.length === 0) {
+    //   alert("No data available for bar chart. Using default data for demo");
+    return chartD;
+    // }
+    // return chartD;
+  };
+
+  const renderChart = () => {
+    console.log("chartData", chartData);
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: white,
+          borderRadius: 13,
+          borderColor: purple,
+          borderWidth: 1,
+          width: "100%",
+          marginTop: "5%",
+          height: 300,
+          paddingLeft: "13.5    %",
+          justifyContent: "center",
+        }}
+      >
+        <BarChart data={chartData} 
+        frontColor={orange}
+        />
+      </View>
+    );
+  };
+
   const renderSeanAnalysis = (title, data, isExpanded, setExpanded) => {
     return (
       <View style={styles.seanContainer}>
@@ -265,14 +309,14 @@ export default function Analysis({ navigation, route }) {
           data2Expanded,
           setData2Expanded
         )}
-
+        {renderChart()}
         <CustomButton
           buttonStyle={{
             backgroundColor: white,
             borderColor: purple,
             borderWidth: 1,
             margin: "5%",
-            elevation: 0
+            elevation: 0,
           }}
           text="TRY ANOTHER JADU"
           onPress={() => navigation.navigate("YourJadu")}

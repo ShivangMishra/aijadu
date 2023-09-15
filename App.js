@@ -30,6 +30,7 @@ import Login2 from "./screen/Login2";
 import WhatIs from "./screen/WhatIs";
 import ResetPassword from "./screen/ResetPassword";
 import Analysis from "./screen/Analysis";
+import AnalysisChart from "./screen/AnalysisChart";
 
 const Stack = createNativeStackNavigator();
 
@@ -51,18 +52,18 @@ export default function App() {
       <ApiProvider>
         <NavigationContainer>
           <Stack.Navigator>
-             
-              <Stack.Screen
+            <Stack.Screen
               name="Home"
               component={Navigation}
               options={{ headerShown: false }}
             />
-             <Stack.Screen
+            <Stack.Screen
               name="Login2"
               component={Login2}
               options={{ headerShown: false }}
             />
-             <Stack.Screen
+
+            <Stack.Screen
               name="ResetPassword"
               component={ResetPassword}
               options={{ headerShown: false }}
@@ -141,7 +142,7 @@ export default function App() {
               component={SwiperComponent}
               options={{ headerShown: false }}
             ></Stack.Screen>
-             <Stack.Screen
+            <Stack.Screen
               name="EmailVerification"
               component={EmailVerification}
               options={{ headerShown: false }}
@@ -151,9 +152,14 @@ export default function App() {
               component={WhatIs}
               options={{ headerShown: false }}
             ></Stack.Screen>
-             <Stack.Screen
+            <Stack.Screen
               name="Analysis"
               component={Analysis}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="AnalysisChart"
+              component={AnalysisChart}
               options={{ headerShown: false }}
             ></Stack.Screen>
           </Stack.Navigator>

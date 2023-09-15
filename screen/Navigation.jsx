@@ -22,6 +22,7 @@ import Login2 from './Login2'
 import WhatIs from './WhatIs'
 import ResetPassword from './ResetPassword'
 import Analysis from './Analysis'
+import AnalysisChart from './AnalysisChart'
 
 
 const Navigation = (props) => {
@@ -50,6 +51,7 @@ const Navigation = (props) => {
      <Button title='What is Screen' onPress={()=>{props.navigation.navigate(WhatIs)}}  />
      <Button title='Reset Password' onPress={()=>{props.navigation.navigate(ResetPassword)}}  />
      <Button title='Analysis' onPress={()=>{props.navigation.navigate(Analysis)}}  />
+     <Button title='Chart' onPress={()=>{props.navigation.navigate(AnalysisChart)}}  />
     </View>
   )
 }

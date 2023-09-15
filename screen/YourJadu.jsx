@@ -313,6 +313,10 @@ you have to work till late night." */}
             }}
             onPress={() => {
               console.log("Submit");
+              if(situationResponses[selectedSituationIndex].trim() === "") {
+                alert("Response cannot be blank.");
+                return;
+              }
               submitSituationResponse({
                 response: situationResponses[selectedSituationIndex],
                  situationId: situations[selectedSituationIndex].id,
