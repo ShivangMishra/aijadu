@@ -52,16 +52,17 @@ export default function App() {
       <ApiProvider>
         <NavigationContainer>
           <Stack.Navigator>
+          <Stack.Screen
+              name="Login2"
+              component={Login2}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="Home"
               component={Navigation}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
-              name="Login2"
-              component={Login2}
-              options={{ headerShown: false }}
-            />
+           
 
             <Stack.Screen
               name="ResetPassword"

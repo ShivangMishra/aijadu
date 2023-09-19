@@ -358,7 +358,7 @@ export const ApiProvider = ({ children }) => {
     }
   }
 
-  const fetchSituations = async ({setSituations}) => {
+  const fetchSituations = async ({setSituations, setEmailSituations}) => {
     setIsLoading(true);
     
     const headers = new Headers();
@@ -382,7 +382,17 @@ export const ApiProvider = ({ children }) => {
     if (response.ok) {
       const responseJson = await response.json();
       console.log(JSON.stringify(responseJson));
-      setSituations(responseJson);
+      const emailSituations = [];
+      const situations = [];
+      responseJson.forEach((item) => {
+        if(item.item_type === "email"){
+          emailSituations.push(item);
+        } else {
+          situations.push(item);
+        }
+      });
+      setSituations(situations);
+      setEmailSituations(emailSituations);
       setIsLoading(false);
     } else {
       const responseJson = await response.json();

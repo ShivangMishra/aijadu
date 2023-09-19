@@ -49,11 +49,15 @@ const YourJadu = ({navigation}) => {
     ],
   });
 
+  const [emailSituationResponses, setEmailSituationResponses] = useState([]);
+
   const [selectedSituationIndex, setSelectedSituationIndex] = useState(0);
+  const [selecteEmailSituationIndex, setSelectedEmailSituationIndex] = useState(0);
 
   const [situations, setSituations] = useState([
     {category: "Category 1"},{category: "Category 2"},{category: "Category 3"}
   ]);
+  const [emailSituations, setEmailSituations] = useState([]);
 
   const [situationResponses, setSituationResponses] = useState([
     "", "", ""
@@ -64,7 +68,7 @@ const YourJadu = ({navigation}) => {
   }, []);
 
   useEffect(() => {
-    fetchSituations({ setSituations });
+    fetchSituations({ setSituations, setEmailSituations });
   }, []);
 
   useEffect(() => {
@@ -124,7 +128,8 @@ const YourJadu = ({navigation}) => {
     if (!situations[0]) {
       return;
     }
-    setSelectedSituationIndex(1);
+
+    setSelectedSituationIndex(0);
     // const
     // setTodayQuestion();
   }, [situations]);
@@ -458,9 +463,9 @@ you have to work till late night." */}
             }}>
             {/* placeholder="I need this by yesterday! I don't care if
 you have to work till late night." */}
-            {situations[selectedSituationIndex].item_name + "\n" + 
-            situations[selectedSituationIndex].item_description + 
-            "\n" + situations[selectedSituationIndex].role}
+            {emailSituations[selecteEmailSituationIndex] ? (emailSituations[selecteEmailSituationIndex].item_name + "\n" + 
+            emailSituations[selecteEmailSituationIndex].item_description + 
+            "\n" + situations[selecteEmailSituationIndex].role): "No Email Situation"}
           </Text>
           <TextInput
             style={{
@@ -470,9 +475,9 @@ you have to work till late night." */}
             }}
             placeholder="Type Your Response Here "
             onChangeText={(text) => {
-              const newSituationResponses = [...situationResponses];
-              newSituationResponses[selectedSituationIndex] = text;
-              setSituationResponses(newSituationResponses);
+              const newEmailSituationResponses = [...emailSituationResponses];
+              newEmailSituationResponses[selecteEmailSituationIndex] = text;
+              setEmailSituationResponses(newEmailSituationResponses);
             }}
           />
           <TouchableOpacity

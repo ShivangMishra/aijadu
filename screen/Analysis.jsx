@@ -297,6 +297,7 @@ export default function Analysis({ navigation, route }) {
           SENTICLOUD ANALYSIS FOR YOUR RESPONSE
         </Text>
 
+        {renderChart()}
         {renderSeanAnalysis(
           "SEAN Analysis",
           data1,
@@ -309,7 +310,6 @@ export default function Analysis({ navigation, route }) {
           data2Expanded,
           setData2Expanded
         )}
-        {renderChart()}
         <CustomButton
           buttonStyle={{
             backgroundColor: white,
