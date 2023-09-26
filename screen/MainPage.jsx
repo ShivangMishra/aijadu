@@ -202,7 +202,8 @@ resendButtonText:{
     fontWeight:"700",
     fontSize:14,
     lineHeight:19,
-    alignSelf:"center"
+    alignSelf:"center",
+    elevation: 5,
 },
 bottomHalfCircle:{
     alignSelf:"baseline",

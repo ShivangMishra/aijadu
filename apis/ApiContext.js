@@ -17,8 +17,8 @@ export const ApiProvider = ({ children }) => {
     headers.append("Content-Type", "application/json");
 
     const body = {
-      email: data.email === "" ? "eikompgmap@gmail.com" : data.email,
-      password: data.password === "" ? "1235Aicansell$" : data.password,
+      email: data.email === "" ? "aicansell7@gmail.com" : data.email,
+      password: data.password === "" ? "1234Aicansell$" : data.password,
     };
 
     const requestOptions = {
@@ -64,7 +64,8 @@ export const ApiProvider = ({ children }) => {
     } else {
       const responseJson = await response.json();
       console.log("Login respone not OK", JSON.stringify(responseJson));
-      Alert.alert("Login Failed", responseJson.detail);
+      // Alert.alert("Login Failed", responseJson.detail);
+      setError(responseJson.detail);
       setModal(true);
       setIsLoading(false);
     }
@@ -247,7 +248,7 @@ export const ApiProvider = ({ children }) => {
     return response.detail ? false : true;
   };
 
-  const fetchQuizList = async ({setQuizListData}) => {
+  const fetchQuizList = async ({ setQuizListData }) => {
     const testRes = [
       {
         id: 4,
@@ -299,7 +300,7 @@ export const ApiProvider = ({ children }) => {
       },
     ];
     setIsLoading(true);
-    
+
     const headers = new Headers();
     const token = await AsyncStorage.getItem("accessToken");
     console.log("token", token);
@@ -325,22 +326,22 @@ export const ApiProvider = ({ children }) => {
     }
   };
 
-  const fetchQuizResult = async ({questionId, setQuizResult}) => {
+  const fetchQuizResult = async ({ questionId, setQuizResult }) => {
     setIsLoading(true);
-    
+
     const headers = new Headers();
     const token = await AsyncStorage.getItem("accessToken");
     console.log("token", token);
     headers.append("Authorization", "Bearer " + token);
     headers.append("Cookie", "csrftoken=dEcHVmmrtrjQM7qPnrS3hpHPJmFx6toS");
-    
+
     const requestOptions = {
       method: "PUT",
       redirect: "follow",
-      body: JSON.stringify({id: questionId}),
+      body: JSON.stringify({ id: questionId }),
       headers: headers,
     };
-    // console.log("url", url);  
+    // console.log("url", url);
     console.log("requestOptions", JSON.stringify(requestOptions));
     const response = await fetch(
       "https://aicansellapp.com/quiz/api/quiz_results/" + questionId,
@@ -356,23 +357,23 @@ export const ApiProvider = ({ children }) => {
       const responseJson = await response.json();
       console.log("quiz result not OK", responseJson);
     }
-  }
+  };
 
-  const fetchSituations = async ({setSituations, setEmailSituations}) => {
+  const fetchSituations = async ({ setSituations, setEmailSituations }) => {
     setIsLoading(true);
-    
+
     const headers = new Headers();
     const token = await AsyncStorage.getItem("accessToken");
     console.log("token", token);
     headers.append("Authorization", "Bearer " + token);
     headers.append("Cookie", "csrftoken=dEcHVmmrtrjQM7qPnrS3hpHPJmFx6toS");
-    
+
     const requestOptions = {
       method: "GET",
       redirect: "follow",
       headers: headers,
     };
-    // console.log("url", url);  
+    // console.log("url", url);
     console.log("requestOptions", JSON.stringify(requestOptions));
     const response = await fetch(
       "https://aicansellapp.com/sean/itemli",
@@ -385,7 +386,7 @@ export const ApiProvider = ({ children }) => {
       const emailSituations = [];
       const situations = [];
       responseJson.forEach((item) => {
-        if(item.item_type === "email"){
+        if (item.item_type === "email") {
           emailSituations.push(item);
         } else {
           situations.push(item);
@@ -398,56 +399,108 @@ export const ApiProvider = ({ children }) => {
       const responseJson = await response.json();
       console.log("situations not OK", responseJson);
     }
-  }
-  const submitSituationResponse = async ({situationResponse, situationId, navigation}) => { 
+  };
+  const submitSituationResponse = async ({
+    situationResponse,
+    situationId,
+    navigation,
+  }) => {
     setIsLoading(true);
-    
+
     const headers = new Headers();
     const token = await AsyncStorage.getItem("accessToken");
     console.log("token", token);
     headers.append("Authorization", "Bearer " + token);
     headers.append("Cookie", "csrftoken=dEcHVmmrtrjQM7qPnrS3hpHPJmFx6toS");
-    
+
     const requestOptions = {
       method: "PUT",
       redirect: "follow",
-      body: JSON.stringify({item_answer: situationResponse}),
+      body: JSON.stringify({ item_answer: situationResponse }),
       headers: headers,
     };
-    // console.log("url", url);  
+    // console.log("url", url);
     console.log("requestOptions", JSON.stringify(requestOptions));
     const response = await fetch(
       "https://aicansellapp.com/sean/api/item_results/" + situationId,
       requestOptions
     );
+    let analysisData = {};
+
     if (response.ok) {
       const responseJson = await response.json();
+      analysisData = responseJson;
       console.log(JSON.stringify(responseJson));
-      navigation.navigate("Analysis", {analysisData: responseJson});
-      setIsLoading(false);
+
+
+      analysisData = {
+        analysis: analysisData.data,
+        emotions: analysisData.coming_across_as,
+        recommends: analysisData.data,
+      };
+      console.log(JSON.stringify(responseJson));
+      navigation.navigate("Analysis", { analysisData: analysisData });
+      // navigation.navigate("Analysis", {analysisData: responseJson});
+      // setIsLoading(false);
     } else {
       Alert.alert("An error occurred", "Something went wrong");
       const responseJson = await response.text();
       console.log("situations response put not OK", responseJson);
+      return;
     }
-  }
 
-  const chatbotApi = async ({ userInput, setResponse, navigation, setModal }) => {
-    setIsLoading(true);
+    // recommends
+    // const requestOptions2 = {
+    //   method: "GET",
+    //   redirect: "follow",
+    //   headers: headers,
+    //   body: JSON.stringify({ item_answer: situationResponse }),
+    // };
+    // const response2 = await fetch(
+    //   "https://aicansellapp.com/sean/api/item_rec/" + situationId,
+    //   requestOptions2
+    // );
+    // if (response2.ok) {
+    //   const responseJson = await response2.json();
+    //   analysisData = {
+    //     analysis: analysisData.data,
+    //     emotions: analysisData.coming_across_as,
+    //     recommends: responseJson,
+    //   };
+    //   console.log(JSON.stringify(responseJson));
+    //   // navigation.navigate("Analysis", { analysisData: analysisData });
+    //   setIsLoading(false);
+    // } else {
+    //   Alert.alert("An error occurred", "Something went wrong");
+    //   const responseJson = await response2.text();
+    //   console.log("situations response put not OK", responseJson);
+    //   return;
+    // }
+
     
+  };
+
+  const chatbotApi = async ({
+    userInput,
+    setResponse,
+    navigation,
+    setModal,
+  }) => {
+    setIsLoading(true);
+
     const headers = new Headers();
     const token = await AsyncStorage.getItem("accessToken");
     console.log("token", token);
     headers.append("Authorization", "Bearer " + token);
     headers.append("Cookie", "csrftoken=dEcHVmmrtrjQM7qPnrS3hpHPJmFx6toS");
-    
+
     const requestOptions = {
       method: "POST",
       redirect: "follow",
-      body: JSON.stringify({user_input: userInput}),
+      body: JSON.stringify({ user_input: userInput }),
       headers: headers,
     };
-    // console.log("url", url);  
+    // console.log("url", url);
     console.log("requestOptions", JSON.stringify(requestOptions));
     const response = await fetch(
       "https://aicansellapp.com/chatbot/",
@@ -457,13 +510,16 @@ export const ApiProvider = ({ children }) => {
       const responseJson = await response.json();
       console.log(JSON.stringify(responseJson));
       setIsLoading(false);
-      Alert.alert("Received reply from Chatbot", responseJson.response.choices[0].message.content);
+      Alert.alert(
+        "Received reply from Chatbot",
+        responseJson.response.choices[0].message.content
+      );
     } else {
       Alert.alert("An error occurred", "Something went wrong");
       // const responseJson = await response.json();
       // console.log("situations response put not OK", responseJson);
     }
-  }
+  };
   return (
     <ApiContext.Provider
       value={{

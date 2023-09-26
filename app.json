@@ -22,7 +22,8 @@
         "foregroundImage": "./assets/ai-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.vivek_pathak.aijadu"
+      "package": "com.vivek_pathak.aijadu",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"

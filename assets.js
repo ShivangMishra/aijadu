@@ -27,3 +27,8 @@ export const plus = require("./assets/plus.png");
 export const minus = require("./assets/minus.png");
 
 export const emailJadu = require("./assets/email-jadu.png");
+export const phones = require("./assets/phones.png");
+
+export const itemImg = require("./assets/item-img.png");
+export const rightArrow = require("./assets/right-arrow.png");
+

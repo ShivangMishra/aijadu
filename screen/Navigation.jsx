@@ -23,6 +23,7 @@ import WhatIs from './WhatIs'
 import ResetPassword from './ResetPassword'
 import Analysis from './Analysis'
 import AnalysisChart from './AnalysisChart'
+import ImproveIn from './ImproveIn'
 
 
 const Navigation = (props) => {
@@ -52,6 +53,7 @@ const Navigation = (props) => {
      <Button title='Reset Password' onPress={()=>{props.navigation.navigate(ResetPassword)}}  />
      <Button title='Analysis' onPress={()=>{props.navigation.navigate(Analysis)}}  />
      <Button title='Chart' onPress={()=>{props.navigation.navigate(AnalysisChart)}}  />
+     <Button title='Improve In' onPress={()=>{props.navigation.navigate(ImproveIn)}}  />
     </View>
   )
 }

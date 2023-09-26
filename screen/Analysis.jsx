@@ -94,36 +94,40 @@ export default function Analysis({ navigation, route }) {
   useEffect(() => {
     // Check if analysisData is available
     if (analysisData) {
-      setData1((prevData) => [
-        {
-          ...prevData[0],
-          words: [analysisData.data.coming_across_as],
-        },
-        {
-          ...prevData[1],
-          words: [analysisData.data.competency_power_word],
-        },
-        {
-          ...prevData[2],
-          words: [analysisData.data.competency_weak_word],
-        },
-      ]);
-
+      //recommends, GET
+      const recommends = analysisData.recommends;
+      const analysis = analysisData.analysis;
+      const emotions = analysisData.emotions || "";
       setData2((prevData) => [
         {
           ...prevData[0],
-          words: [analysisData.data.positive_traits],
+          words: [recommends.coming_across_as],
         },
         {
           ...prevData[1],
-          words: [analysisData.data.negative_traits],
+          words: [recommends.positive_traits],
         },
         {
           ...prevData[2],
-          words: [analysisData.data.coming_across_as],
+          words: [recommends.negative_traits],
         },
       ]);
-      setChartData(stringToArray(analysisData.emotions));
+
+      setData1((prevData) => [
+        {
+          ...prevData[0],
+          words: [analysis.coming_across_as],
+        },
+        {
+          ...prevData[1],
+          words: [analysis.positive_traits],
+        },
+        {
+          ...prevData[2],
+          words: [analysis.negative_traits],
+        },
+      ]);
+      setChartData(stringToArray(emotions));
     }
   }, [analysisData]);
 
@@ -205,7 +209,7 @@ export default function Analysis({ navigation, route }) {
         <Text style={[styles.seanInnerText, { width: 150 }]}>
           {item.words.reduce((text, word) => text + ", " + word)}
         </Text>
-        <Image style={styles.thumbImg} source={thumb} />
+        <Image style={styles.thumbImg} source={thumb} /> 
       </View>
     );
   };
@@ -213,7 +217,7 @@ export default function Analysis({ navigation, route }) {
   const stringToArray = (str) => {
     // str = "'z': 1, 'y':2, 'x':3";
     if (str.trim() === "") {
-      return CHART_DATA;
+      return [];
     }
     const arr = str.split(",");
     console.log("str", str);
@@ -235,6 +239,9 @@ export default function Analysis({ navigation, route }) {
 
   const renderChart = () => {
     console.log("chartData", chartData);
+    if(chartData.length === 0) {
+      return null;
+    }
     return (
       <View
         style={{
