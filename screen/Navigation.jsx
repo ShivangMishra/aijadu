@@ -24,6 +24,14 @@ import ResetPassword from './ResetPassword'
 import Analysis from './Analysis'
 import AnalysisChart from './AnalysisChart'
 import ImproveIn from './ImproveIn'
+import DoJadu from './DoJadu'
+import InterviewMain from './InterviewMain'
+import InterviewRecord from './InterviewRecord'
+import InterviewAvatar from './InterviewAvatar'
+import AvatarPreview from './AvatarPreview'
+import Cartoon from './Cartoon'
+import CartoonTemplates from './CartoonTemplates'
+import AnalysisSub from './AnalysisSub'
 
 
 const Navigation = (props) => {
@@ -54,6 +62,13 @@ const Navigation = (props) => {
      <Button title='Analysis' onPress={()=>{props.navigation.navigate(Analysis)}}  />
      <Button title='Chart' onPress={()=>{props.navigation.navigate(AnalysisChart)}}  />
      <Button title='Improve In' onPress={()=>{props.navigation.navigate(ImproveIn)}}  />
+     <Button title='Interview Main' onPress={()=>{props.navigation.navigate(InterviewMain)}}  />
+     <Button title='Interview Record' onPress={()=>{props.navigation.navigate(InterviewRecord)}}  />
+     <Button title='Interview Avatar' onPress={()=>{props.navigation.navigate(InterviewAvatar)}}  />
+     <Button title='Avatar Preview' onPress={()=>{props.navigation.navigate(AvatarPreview)}}  />
+     <Button title='Cartoon' onPress={()=>{props.navigation.navigate(Cartoon)}}  />
+     <Button title='Cartoon Templates' onPress={()=>{props.navigation.navigate(CartoonTemplates)}}  />
+     <Button title='Analysis Sub' onPress={()=>{props.navigation.navigate(AnalysisSub)}}  />
     </View>
   )
 }

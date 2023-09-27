@@ -32,6 +32,14 @@ import ResetPassword from "./screen/ResetPassword";
 import Analysis from "./screen/Analysis";
 import AnalysisChart from "./screen/AnalysisChart";
 import ImproveIn from "./screen/ImproveIn";
+import DoJadu from "./screen/DoJadu";
+import InterviewMain from "./screen/InterviewMain";
+import InterviewRecord from "./screen/InterviewRecord";
+import InterviewAvatar from "./screen/InterviewAvatar";
+import AvatarPreview from "./screen/AvatarPreview";
+import Cartoon from "./screen/Cartoon";
+import CartoonTemplates from "./screen/CartoonTemplates";
+import AnalysisSub from "./screen/AnalysisSub";
 
 const Stack = createNativeStackNavigator();
 
@@ -54,22 +62,20 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
-            name="Login2"
-            component={Login2}
-            options={{ headerShown: false }}
-          />  
-              <Stack.Screen
+              name="Login2"
+              component={Login2}
+              options={{ headerShown: false }}
+            />{" "}
+            <Stack.Screen
               name="Home"
               component={Navigation}
               options={{ headerShown: false }}
             />
-          
-             <Stack.Screen
-            name="ImproveIn"
-            component={ImproveIn}
-            options={{ headerShown: false }}
-          />
-
+            <Stack.Screen
+              name="ImproveIn"
+              component={ImproveIn}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="ResetPassword"
               component={ResetPassword}
@@ -137,13 +143,11 @@ export default function App() {
               component={SignUpScreen}
               options={{ headerShown: false }}
             ></Stack.Screen>
-
             <Stack.Screen
               name="ForgotPassword"
               component={ForgotPassword}
               options={{ headerShown: false }}
             ></Stack.Screen>
-
             <Stack.Screen
               name="SwiperComponent"
               component={SwiperComponent}
@@ -167,6 +171,41 @@ export default function App() {
             <Stack.Screen
               name="AnalysisChart"
               component={AnalysisChart}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="InterviewMain"
+              component={InterviewMain}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="InterviewRecord"
+              component={InterviewRecord}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="InterviewAvatar"
+              component={InterviewAvatar}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="AvatarPreview"
+              component={AvatarPreview}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="Cartoon"
+              component={Cartoon}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="CartoonTemplates"
+              component={CartoonTemplates}
+              options={{ headerShown: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="AnalysisSub"
+              component={AnalysisSub}
               options={{ headerShown: false }}
             ></Stack.Screen>
           </Stack.Navigator>

@@ -3,20 +3,21 @@ import { Image, StyleSheet, TextInput, View } from "react-native";
 import { black, gray } from "../colors";
 
 export default function CustomTextInput(props) {
-  const { placeholder, value, onChangeText, containerStyle, password, inputStyle, imgSrc } = props;
+  const { placeholder, value, onChangeText, containerStyle, password, inputStyle, imgSrc, inputProps } = props;
   return (
     <View style={{ ...styles.container, ...containerStyle }}>
-      <Image
+     {imgSrc && <Image
         style={styles.image}
         source={imgSrc}
-      />
+      />}
 
       <TextInput
-        style={[styles.input, inputStyle]}
+        style={{...styles.input, ...inputStyle}}
         placeholder={placeholder}
         placeholderTextColor={black}
         onChangeText={onChangeText}
         value={value}
+        {...inputProps}
       />
 
       {password && (
@@ -44,10 +45,8 @@ const styles = StyleSheet.create({
     flex: 0.1,
   },
   input: {
-    // backgroundColor: "red",
     flex: 0.8,
     height: "100%",
-    // backgroundColor: "red",
     marginHorizontal: 10,
   },
 });

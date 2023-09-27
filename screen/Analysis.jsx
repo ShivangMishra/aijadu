@@ -239,7 +239,7 @@ export default function Analysis({ navigation, route }) {
 
   const renderChart = () => {
     console.log("chartData", chartData);
-    if(chartData.length === 0) {
+    if(!chartData || chartData.length === 0) {
       return null;
     }
     return (
