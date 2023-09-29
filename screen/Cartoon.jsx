@@ -221,7 +221,7 @@ export default function Cartoon({ navigation }) {
   };
   return (
     <View style={styles.container}>
-      <View style={{ zIndex: 4, width: "100%", alignItems: "center" }}>
+      <ScrollView style={{ zIndex: 4, width: "100%"}}>
         {renderHeader()}
         <View style={styles.topTextContainer}>
           <Text style={{ fontSize: 22, fontWeight: "700" }}>DO JADU</Text>
@@ -235,8 +235,9 @@ export default function Cartoon({ navigation }) {
                 {renderMidElement()} */}
         {/* {renderTopImage()} */}
         {/* {renderItems()} */}
-      </View>
+
       {renderBottomContainer()}
+      </ScrollView>
       {disclaimer && renderDisclaimer()}
       <Image source={topBubble} style={styles.topBubble} />
       <Image source={blueBubble} style={styles.blueBubble} />
@@ -345,12 +346,15 @@ const styles = StyleSheet.create({
     width: "100%",
     borderTopRightRadius: 79,
     borderTopLeftRadius: 79,
+    height: 300,
+    marginTop: 5,
     // height: 300,
     alignItems: "center",
     paddingTop: 30,
-    position: "absolute",
-    bottom: 0,
-    paddingBottom: 10,
+    // position: "absolute",
+    alignSelf: "flex-end",
+    // bottom: 0,
+    // paddingBottom: 2,
     zIndex: 1,
   },
   videoContainer: {

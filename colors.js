@@ -17,6 +17,8 @@ export const seanColor4 = "#8FD342";
 export const seanColor5 = "#5662F6";
 export const seanColor6 = "#CA2F2F";
 
+export const selectedTabColor = "#360DFF";
+
 // export const seanColor7 = "#5B8090";
 // export const seanColor8 = "#7550F5";
 // export const seanColor9 = "#AF0303";

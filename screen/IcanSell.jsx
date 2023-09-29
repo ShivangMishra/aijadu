@@ -36,6 +36,7 @@ const IcanSell = ({navigation}) => {
 
 
   return (
+    <View style={{height: "100%", width: "100%"}}>
     <ScrollView style={{backgroundColor: gray}}>
       {renderHeader()}
       <View style={styles.mainContainer}>
@@ -266,14 +267,17 @@ const IcanSell = ({navigation}) => {
 
 
             </View>
-            <Image
-              style={styles.bottomCircle}
-              source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
-            />
+           
           </View>
         </View>
       </View>
+      
     </ScrollView>
+    <Image
+    style={styles.bottomCircle}
+    source={require("../assets/AIJadu/Login/bottomHalfCircle.png")}
+  />
+  </View>
   );
 };
 
@@ -356,7 +360,8 @@ const styles = StyleSheet.create({
   justifyContent: "center",
   borderTopLeftRadius:60,
   borderTopRightRadius:60,
-  height: 300,
+  marginTop: 5,
+  height: 270,
  
   },
   container1UpperTextContainer: {
@@ -420,7 +425,9 @@ const styles = StyleSheet.create({
   bottomCircle: {
     // marginTop: -30,
     // position:"absolute",
-    alignSelf: "baseline",
+    // alignSelf: "flex-end",
+    position: "absolute",
+    bottom: 0,
   },
   cutOffBottomLeft: {
     position: "absolute",

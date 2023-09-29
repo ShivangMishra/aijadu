@@ -101,15 +101,15 @@ export default function Analysis({ navigation, route }) {
       setData2((prevData) => [
         {
           ...prevData[0],
-          words: [recommends.coming_across_as],
-        },
-        {
-          ...prevData[1],
           words: [recommends.positive_traits],
         },
         {
+          ...prevData[1],
+          words: recommends.competency_power_words,
+        },
+        {
           ...prevData[2],
-          words: [recommends.negative_traits],
+          words: recommends.competency_weak_words,
         },
       ]);
 
@@ -149,22 +149,24 @@ export default function Analysis({ navigation, route }) {
       <View style={styles.thankyouContainer}>
         <Text style={{ fontSize: 14, fontWeight: "700" }}>Thank You!</Text>
 
-        <View style={{ flexDirection: "row", width: 245, flexWrap: "wrap" }}>
+        <View style={{width: "100%", flexWrap: "wrap" }}>
           <Text
             style={{
               fontSize: 14,
               fontWeight: "700",
               textAlign: "center",
-              width: 245,
+              width: "100%",
               color: purple,
             }}
           >
             WE HAVE RECIEVED YOUR RESPONSE
           </Text>
+          <View style={{flexDirection: "row", justifyContent: "center", width: "100%", alignItems: "center"}}>
           <Text
             style={{
               fontSize: 14,
               fontWeight: "700",
+              // backgroundColor: "red",
               // textAlign: "center",
               // width: 245,
               color: orange,
@@ -177,12 +179,14 @@ export default function Analysis({ navigation, route }) {
               fontSize: 14,
               fontWeight: "700",
               textAlign: "center",
+              // backgroundColor: "green",
               // width: 245,
               color: purple,
             }}
           >
             FOR YOUR SCORE RESULT
           </Text>
+          </View>
         </View>
       </View>
     );
@@ -418,7 +422,7 @@ const styles = StyleSheet.create({
   },
   item: {
     width: "100%",
-    height: 122,
+    // height: 122,
     backgroundColor: "red",
     marginVertical: "2%",
     alignItems: "center",

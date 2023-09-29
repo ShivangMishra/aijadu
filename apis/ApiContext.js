@@ -362,21 +362,20 @@ export const ApiProvider = ({ children }) => {
   const fetchSituations = async ({ setSituations, setEmailSituations }) => {
     setIsLoading(true);
 
-    const headers = new Headers();
     const token = await AsyncStorage.getItem("accessToken");
     console.log("token", token);
-    headers.append("Authorization", "Bearer " + token);
-    headers.append("Cookie", "csrftoken=dEcHVmmrtrjQM7qPnrS3hpHPJmFx6toS");
 
     const requestOptions = {
       method: "GET",
       redirect: "follow",
-      headers: headers,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     };
     // console.log("url", url);
     console.log("requestOptions", JSON.stringify(requestOptions));
     const response = await fetch(
-      "https://aicansellapp.com/sean/itemli",
+      new URL("https://aicansellapp.com/sean/itemli"),
       requestOptions
     );
     // console.log("quiz list response", response);
@@ -386,13 +385,15 @@ export const ApiProvider = ({ children }) => {
       const emailSituations = [];
       const situations = [];
       responseJson.forEach((item) => {
-        if (item.item_type === "email") {
+        if (item.item_type.toLowerCase() === "email") {
           emailSituations.push(item);
         } else {
           situations.push(item);
         }
       });
+      console.log("EMAIL SITUATIONS", emailSituations);
       setSituations(situations);
+      setEmailSituations(situations);
       setEmailSituations(emailSituations);
       setIsLoading(false);
     } else {
@@ -439,8 +440,7 @@ export const ApiProvider = ({ children }) => {
         recommends: analysisData.data,
       };
       console.log(JSON.stringify(responseJson));
-      navigation.navigate("Analysis", { analysisData: analysisData });
-      // navigation.navigate("Analysis", {analysisData: responseJson});
+       // navigation.navigate("Analysis", {analysisData: responseJson});
       // setIsLoading(false);
     } else {
       Alert.alert("An error occurred", "Something went wrong");
@@ -450,39 +450,39 @@ export const ApiProvider = ({ children }) => {
     }
 
     // recommends
-    // const requestOptions2 = {
-    //   method: "GET",
-    //   redirect: "follow",
-    //   headers: headers,
-    //   body: JSON.stringify({ item_answer: situationResponse }),
-    // };
-    // const response2 = await fetch(
-    //   "https://aicansellapp.com/sean/api/item_rec/" + situationId,
-    //   requestOptions2
-    // );
-    // if (response2.ok) {
-    //   const responseJson = await response2.json();
-    //   analysisData = {
-    //     analysis: analysisData.data,
-    //     emotions: analysisData.coming_across_as,
-    //     recommends: responseJson,
-    //   };
-    //   console.log(JSON.stringify(responseJson));
-    //   // navigation.navigate("Analysis", { analysisData: analysisData });
-    //   setIsLoading(false);
-    // } else {
-    //   Alert.alert("An error occurred", "Something went wrong");
-    //   const responseJson = await response2.text();
-    //   console.log("situations response put not OK", responseJson);
-    //   return;
-    // }
+    const requestOptions2 = {
+      method: "GET",
+      redirect: "follow",
+      headers: headers,
+      // body: JSON.stringify({ item_answer: situationResponse }),
+    };
+    const response2 = await fetch(
+      "https://aicansellapp.com/sean/api/item_rec/" + situationId,
+      requestOptions2
+    );
+    if (response2.ok) {
+      const responseJson = await response2.json();
+      analysisData = {
+        ...analysisData,
+        recommends: responseJson,
+      };
+      console.log(JSON.stringify(responseJson));
+      // navigation.navigate("Analysis", { analysisData: analysisData });
+      setIsLoading(false);
+      navigation.navigate("Analysis", { analysisData: analysisData });
+    } else {
+      Alert.alert("An error occurred", "Something went wrong");
+      const responseJson = await response2.text();
+      console.log("analysis response put not OK", responseJson);
+      return;
+    }
 
     
   };
 
   const chatbotApi = async ({
     userInput,
-    setResponse,
+    setQueryResult,
     navigation,
     setModal,
   }) => {
@@ -510,10 +510,11 @@ export const ApiProvider = ({ children }) => {
       const responseJson = await response.json();
       console.log(JSON.stringify(responseJson));
       setIsLoading(false);
-      Alert.alert(
-        "Received reply from Chatbot",
-        responseJson.response.choices[0].message.content
-      );
+      // Alert.alert(
+      //   "Received reply from Chatbot",
+      //   responseJson.response.choices[0].message.content
+      // );
+      setQueryResult(responseJson.response.choices[0].message.content);
     } else {
       Alert.alert("An error occurred", "Something went wrong");
       // const responseJson = await response.json();

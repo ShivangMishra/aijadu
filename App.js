@@ -59,13 +59,14 @@ export default function App() {
       {/* <AiJadu/> */}
       {/* <CustomHeader /> */}
       <ApiProvider>
+      <StatusBar style="auto" />
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
               name="Login2"
               component={Login2}
               options={{ headerShown: false }}
-            />{" "}
+            />
             <Stack.Screen
               name="Home"
               component={Navigation}

@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
+import { gray } from "../colors";
+import { bottomBubble } from "../assets";
 
 
 const Promotion = () => {
@@ -24,16 +26,17 @@ const Promotion = () => {
   ];
 
   return (
-    <ScrollView>
+  <View style={{height: "100%", backgroundColor: gray}}>
+      <ScrollView >
       <View style={styles.mainContainer}>
         <Image
           style={styles.sideImage}
           source={require("../assets/AIJadu/Login/sideImage.png")}
         />
       
-        <View style={{flexDirection: "row", alignItems:'center', marginTop:20,width:'60%', height:34}} >
-          <Image style={{marginHorizontal:10}} source={require("../assets/AIJadu/signUp/leftArrow.png")} />
-          <Image style={{marginRight:10}} source={require("../assets/AIJadu/signUp/AILogo.png")} />
+        <View style={{flexDirection: "row", alignItems:'center', marginTop:20,width:'60%',}} >
+          <Image style={{marginHorizontal:10, }} source={require("../assets/AIJadu/signUp/leftArrow.png")} />
+          <Image style={{marginRight:10,}} source={require("../assets/AIJadu/signUp/AILogo.png")} />
           <View>
            <DropDownPicker
               items={items}
@@ -74,7 +77,7 @@ const Promotion = () => {
             EMPLOYABILITY,PROMOTION{`\n`}      & CAREER GROWTH
           </Text>
           <View style={{ justifyContent:'center', marginTop:20}}>
-          <Image style={{width: "92%" , height: 190,  alignSelf:'center'}} source={require("../assets/AIJadu/Login/infoContainer.png")} />
+          <Image style={{alignSelf:'center'}} source={require("../assets/AIJadu/Login/infoContainer.png")} />
           </View>
           <Text style={styles.text1}>
             JOBS THAT REQUIRE{`\n`}    SPECIFIC SKILLS
@@ -132,19 +135,19 @@ const Promotion = () => {
             </View>
            
           </View>
-          <Image
-          style={{marginTop:-30, }} 
-          source={require('../assets/AIJadu/Login/bottomHalfCircle.png')} />
+         
         </View>
       </View>
     </ScrollView>
+    <Image source={bottomBubble} style={{position: "absolute", bottom: 0, zIndex: 0}}/>
+  </View>
   );
 };
 
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: "#E4E4E4",
+    backgroundColor: gray,
     paddingTop: 25,
     width:"100%",
     height:'100%'
@@ -207,7 +210,6 @@ const styles = StyleSheet.create({
   },
 
   iconContainer: {
-    
     height: 147,
     backgroundColor: "#fff",
     width: "90%",
@@ -218,7 +220,8 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: "space-evenly",
     marginTop: 23,
-    zIndex:1  },
+    zIndex:5,
+    },
   iconContainerImage: {
     marginVertical: 7.5,
     borderWidth:1,

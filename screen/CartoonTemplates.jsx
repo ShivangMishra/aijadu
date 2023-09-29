@@ -118,6 +118,43 @@ export default function CartoonTemplates({ navigation }) {
     );
   };
 
+  const renderTopText = () => {
+    return ( <View style={styles.topTextContainer}>
+      <Text style={{ fontSize: 22, fontWeight: "700" }}>DO JADU</Text>
+      <Text style={{ fontSize: 15, fontWeight: "600" }}>
+        {"INTERVIEW> ENTHUSIASM> LEVEL-1"}
+      </Text>
+    </View>)
+  }
+  const renderButtons = () => {
+    return (<View style={{ marginTop: 10, flexDirection: "row", width: "90%", alignSelf: "center", justifyContent: "space-between" }}>
+    <CustomButton
+      buttonStyle={{
+        backgroundColor: "transparent",
+        elevation: 0,
+        borderColor: purple,
+        borderWidth: 1,
+        width: 175,
+        height: 42,
+      }}
+      textStyle={{ color: purple, fontSize: 12, fontWeight: "700" }}
+      text="PREVIEW"
+    />
+    <CustomButton
+      buttonStyle={{
+        backgroundColor: "transparent",
+        elevation: 0,
+        borderColor: purple,
+        borderWidth: 1,
+        width: 175,
+        height: 42,
+      }}
+      textStyle={{ color: purple, fontSize: 12, fontWeight: "700" }}
+      
+      text="UPLOAD THIS RESPONSE"
+    />
+  </View>)
+  }
   const renderBottomContainer = () => {
     return (
       <View style={styles.bottomContainer}>
@@ -186,8 +223,9 @@ export default function CartoonTemplates({ navigation }) {
           style={{
             fontSize: 13,
             color: white,
-            marginTop: 40,
-            marginBottom: 10,
+            position: "absolute",
+            bottom: 10,
+            zIndex: 15,
           }}
         >
           Terms & Conditions | Privacy Policy
@@ -195,77 +233,47 @@ export default function CartoonTemplates({ navigation }) {
       </View>
     );
   };
+
+  const renderMidText = () => {
+    return (
+      <View
+        style={{
+          // elevation: 5,
+          backgroundColor: white,
+          borderRadius: 25,
+          width: "92%",
+          marginHorizontal: 15,
+          height: 105,
+          // justifyContent: "center",
+          alignItems: "center",
+          padding: 10,
+          paddingTop: 20,
+          marginTop: 10,
+        }}
+      >
+        <Text
+          style={{ textAlign: "center", fontSize: 12, fontWeight: "600" }}
+        >
+          is simply dummy text of the printing and typesetting industry. Lorem
+          Ipsum has been the industry's standard dummy text ever since the
+          1500s, when an unknown printer took a galley of type and scrambled
+          it to make a type specimen book.
+        </Text>
+      </View>)
+  }
   return (
     <View style={styles.container}>
-      <View style={{ zIndex: 4, width: "100%", alignItems: "center" }}>
+      <ScrollView style={{width: "100%"}} >
         {renderHeader()}
-        <View style={styles.topTextContainer}>
-          <Text style={{ fontSize: 22, fontWeight: "700" }}>DO JADU</Text>
-          <Text style={{ fontSize: 15, fontWeight: "600" }}>
-            {"INTERVIEW> ENTHUSIASM> LEVEL-1"}
-          </Text>
-        </View>
+       {renderTopText()}
         {renderRecordAudio()}
 
-        <View
-          style={{
-            // elevation: 5,
-            backgroundColor: white,
-            borderRadius: 25,
-            width: "92%",
-            marginHorizontal: 15,
-            height: 105,
-            // justifyContent: "center",
-            alignItems: "center",
-            padding: 10,
-            paddingTop: 20,
-            marginTop: 10,
-          }}
-        >
-          <Text
-            style={{ textAlign: "center", fontSize: 12, fontWeight: "600" }}
-          >
-            is simply dummy text of the printing and typesetting industry. Lorem
-            Ipsum has been the industry's standard dummy text ever since the
-            1500s, when an unknown printer took a galley of type and scrambled
-            it to make a type specimen book.
-          </Text>
-        </View>
+        {renderMidText()}
 
-        <View style={{ marginTop: 10, flexDirection: "row", width: "90%", alignSelf: "center", justifyContent: "space-between" }}>
-          <CustomButton
-            buttonStyle={{
-              backgroundColor: "transparent",
-              elevation: 0,
-              borderColor: purple,
-              borderWidth: 1,
-              width: 175,
-              height: 42,
-            }}
-            textStyle={{ color: purple, fontSize: 12, fontWeight: "700" }}
-            text="PREVIEW"
-          />
-          <CustomButton
-            buttonStyle={{
-              backgroundColor: "transparent",
-              elevation: 0,
-              borderColor: purple,
-              borderWidth: 1,
-              width: 175,
-              height: 42,
-            }}
-            textStyle={{ color: purple, fontSize: 12, fontWeight: "700" }}
-            
-            text="UPLOAD THIS RESPONSE"
-          />
-        </View>
-        {/* {renderVideo()}
-                  {renderElement2()}
-                  {renderMidElement()} */}
-        {/* {renderTopImage()} */}
-        {/* {renderItems()} */}
-      </View>
-      {renderBottomContainer()}
+        {renderButtons()}
+        {renderBottomContainer()}
+      </ScrollView>
+      
       {disclaimer && renderDisclaimer()}
       <Image source={topBubble} style={styles.topBubble} />
       <Image source={blueBubble} style={styles.blueBubble} />
@@ -374,12 +382,15 @@ const styles = StyleSheet.create({
     width: "100%",
     borderTopRightRadius: 79,
     borderTopLeftRadius: 79,
+    height: 300,
+    marginTop: 5,
     // height: 300,
     alignItems: "center",
     paddingTop: 30,
-    position: "absolute",
-    bottom: 0,
-    paddingBottom: 5,
+    // position: "absolute",
+    alignSelf: "flex-end",
+    // bottom: 0,
+    // paddingBottom: 2,
     zIndex: 1,
   },
   videoContainer: {

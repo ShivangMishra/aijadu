@@ -23,6 +23,7 @@ export default function SwiperComponent({navigation}) {
     <Swiper loop={false} style={styles.wrapper} showsButtons={false} showsPagination={false}>
       <IcanSell navigation={navigation}/>
       <Promotion navigation={navigation}/>
+      <YourJadu navigation={navigation}/>
       <ImproveIn navigation={navigation}/>
       
       <InterviewMain navigation={navigation}/>
@@ -33,7 +34,7 @@ export default function SwiperComponent({navigation}) {
       <CartoonTemplates navigation={navigation}/>
       <AnalysisSub navigation={navigation}/>
       
-      <YourJadu navigation={navigation}/>
+      
 
       
     </Swiper>
