@@ -31,13 +31,16 @@ import { useNavigation } from "@react-navigation/native";
 export default function Login2() {
     const navigation = useNavigation();
 
-    const { login } = useContext(ApiContext);
+    const { login, getToken } = useContext(ApiContext);
   
     // const [loginData, setLoginData] = useState({
     //   email: "",
     //   password: "",
     // });
-
+    
+  useEffect(() => {
+    getToken({ navigation });
+  }, []);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 

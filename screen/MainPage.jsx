@@ -2,14 +2,22 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from "rea
 import React, { useContext, useEffect } from "react";
 import { Image } from "react-native";
 import { ApiContext } from "../apis/ApiContext";
+import { setIn } from "formik";
 
 const MainPage = (props) => {
   const { verifyEmail, checkVerified } = useContext(ApiContext);
 
   const verify = async () => {
     const emailSent = await verifyEmail();
-    if(emailSent)
+    if(emailSent){
       Alert.alert("Email Resent", "Please check your email for verification link");
+      setInterval(()=>{
+        const verified = checkVerified();
+        if(verified){
+          props.navigation.navigate("SwiperComponent");
+        }
+      }, 1000);
+    }
     else
       Alert.alert("Error", "Something went wrong");
   };

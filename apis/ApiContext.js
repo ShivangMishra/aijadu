@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { BASE_URL } from "./config";
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -8,6 +8,26 @@ export const ApiContext = createContext();
 export const ApiProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [apiUserData, setApiUserData] = useState({});
+
+  const getToken = async ({navigation}) => {
+    const token = await AsyncStorage.getItem("accessToken");
+    if (!token) {
+      console.log("no token");
+      navigation.navigate("Login2");
+      return null;
+    } else {
+      console.log("token", token);
+      const isVerified = await checkVerified();
+        console.log("isVerified", isVerified);
+        if (!isVerified) {
+          // Alert.alert("Please verify your email");
+          navigation.navigate("MainPage");
+        } else {
+          navigation.navigate("SwiperComponent");
+        }
+      return token;
+    }
+  };
 
   const login = async ({ data, setError, navigation, setModal }) => {
     setIsLoading(true);
@@ -100,7 +120,9 @@ export const ApiProvider = ({ children }) => {
         "check verified response not OK",
         JSON.stringify(responseJson)
       );
-      Alert.alert("An error occurred", responseJson.detail);
+      // Alert.alert("An error occurred", responseJson.detail);
+      Alert.alert("Session Expired", "Please login again");
+      navigation.navigate("Login2");
       setIsLoading(false);
     }
   };
@@ -236,16 +258,21 @@ export const ApiProvider = ({ children }) => {
     console.log("token", token);
     headers.append("Authorization", "Bearer " + token);
     const requestOptions = {
-      method: "POST",
-      redirect: "follow",
+      method: "POST",  
       headers: headers,
     };
     console.log("requestOptions", JSON.stringify(requestOptions));
     const response = await fetch(
-      `https://aicansellapp.com/api/send-confirmation-email/`,
+      "https://aicansellapp.com/accounts/api/send-confirmation-email/",
       requestOptions
     );
-    return response.detail ? false : true;
+    if (response.detail && response.detail.includes("token not valid")) {
+      Alert.alert("Session Expired", "Please login again");
+      navigation.navigate("Login2");
+      setIsLoading(false);
+      return;
+    }
+    return response.status === 201;
   };
 
   const fetchQuizList = async ({ setQuizListData }) => {
@@ -333,7 +360,6 @@ export const ApiProvider = ({ children }) => {
     const token = await AsyncStorage.getItem("accessToken");
     console.log("token", token);
     headers.append("Authorization", "Bearer " + token);
-    headers.append("Cookie", "csrftoken=dEcHVmmrtrjQM7qPnrS3hpHPJmFx6toS");
 
     const requestOptions = {
       method: "PUT",
@@ -398,6 +424,12 @@ export const ApiProvider = ({ children }) => {
       setIsLoading(false);
     } else {
       const responseJson = await response.json();
+      if(responseJson.detail && responseJson.detail.includes("token not valid")){
+        Alert.alert("Session Expired", "Please login again");
+        navigation.navigate("Login2");
+        setIsLoading(false);
+        return
+      }
       console.log("situations not OK", responseJson);
     }
   };
@@ -431,20 +463,28 @@ export const ApiProvider = ({ children }) => {
     if (response.ok) {
       const responseJson = await response.json();
       analysisData = responseJson;
-      console.log(JSON.stringify(responseJson));
+      console.log("Analysis response - ", JSON.stringify(responseJson));
 
 
       analysisData = {
         analysis: analysisData.data,
-        emotions: analysisData.coming_across_as,
+        emotions: analysisData["coming across as"],
         recommends: analysisData.data,
       };
-      console.log(JSON.stringify(responseJson));
+      console.log("analysis data", JSON.stringify(responseJson));
        // navigation.navigate("Analysis", {analysisData: responseJson});
       // setIsLoading(false);
     } else {
+      let responseJson = await response.json();
+      if(responseJson.detail && responseJson.detail.includes("token not valid")){
+        Alert.alert("Session Expired", "Please login again");
+        navigation.navigate("Login2");
+        setIsLoading(false);
+        return
+      }
+
       Alert.alert("An error occurred", "Something went wrong");
-      const responseJson = await response.text();
+      responseJson = await response.text();
       console.log("situations response put not OK", responseJson);
       return;
     }
@@ -476,8 +516,6 @@ export const ApiProvider = ({ children }) => {
       console.log("analysis response put not OK", responseJson);
       return;
     }
-
-    
   };
 
   const chatbotApi = async ({
@@ -516,6 +554,13 @@ export const ApiProvider = ({ children }) => {
       // );
       setQueryResult(responseJson.response.choices[0].message.content);
     } else {
+      const responseJson = await response.json();
+      if(responseJson.detail && responseJson.detail.includes("token not valid")){
+        Alert.alert("Session Expired", "Please login again");
+        navigation.navigate("Login2");
+        setIsLoading(false);
+        return
+      }
       Alert.alert("An error occurred", "Something went wrong");
       // const responseJson = await response.json();
       // console.log("situations response put not OK", responseJson);
@@ -535,6 +580,7 @@ export const ApiProvider = ({ children }) => {
         fetchSituations,
         submitSituationResponse,
         chatbotApi,
+        getToken,
       }}
     >
       {children}

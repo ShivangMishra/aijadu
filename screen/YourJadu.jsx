@@ -57,7 +57,7 @@ const YourJadu = ({ navigation }) => {
   const [emailSituationResponses, setEmailSituationResponses] = useState([]);
 
   const [selectedSituationIndex, setSelectedSituationIndex] = useState(0);
-  const [selecteEmailSituationIndex, setSelectedEmailSituationIndex] =
+  const [selectedEmailSituationIndex, setSelectedEmailSituationIndex] =
     useState(0);
 
   const [situations, setSituations] = useState([
@@ -214,8 +214,6 @@ const YourJadu = ({ navigation }) => {
               backgroundColor: selectedSituationIndex === 0 ? selectedTabColor : orange,
               borderTopLeftRadius: 13,
               width: "33%",
-              // height: "auto",
-              // height: 45,
               justifyContent: "center",
               alignItems: "center",
             }}
@@ -355,7 +353,7 @@ const YourJadu = ({ navigation }) => {
                   return;
                 }
                 submitSituationResponse({
-                  response: situationResponses[selectedSituationIndex],
+                  situationResponse: situationResponses[selectedSituationIndex],
                   situationId: situations[selectedSituationIndex].id,
                   navigation,
                 });
@@ -397,64 +395,75 @@ const YourJadu = ({ navigation }) => {
             height: 40,
             flexDirection: "row",
             borderBottomWidth: 1,
+            justifyContent: "space-between",
+            backgroundColor: black,
+            borderTopLeftRadius: 13,
+            borderTopRightRadius: 13,
           }}
         >
           <View
             style={{
               ...styles.youJaduHeaderContainer1,
-              backgroundColor: "#FEA01A",
+              backgroundColor: selectedEmailSituationIndex === 0 ? selectedTabColor : orange,
               borderTopLeftRadius: 13,
               width: "33%",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
+            <TouchableOpacity onPress={()=> setSelectedEmailSituationIndex(0)}>
             <Text
-              style={{ fontWeight: "700", fontSize: 10, textAlign: "center" }}
+              style={{ fontWeight: "700", fontSize: 10, textAlign: "center", color: selectedEmailSituationIndex === 0 ? white: black }}
             >
               {emailSituations[0].category}
             </Text>
+            </TouchableOpacity>
           </View>
           <View
             style={{
               ...styles.youJaduHeaderContainer2,
-              backgroundColor: "#360DFF",
-              width: "34%",
+              width: "33.3%",
               justifyContent: "center",
               alignItems: "center",
+              backgroundColor: selectedEmailSituationIndex === 1 ? selectedTabColor : orange,
             }}
           >
+            <TouchableOpacity onPress={()=> setSelectedEmailSituationIndex(1)}>
             <Text
               style={{
                 fontWeight: "700",
                 fontSize: 10,
                 textAlign: "center",
-                color: "white",
+                color: selectedEmailSituationIndex === 1 ? white: black,
               }}
             >
               {emailSituations[1].category}
             </Text>
+            </TouchableOpacity>
           </View>
           <View
             style={{
               ...styles.youJaduHeaderContainer3,
-              backgroundColor: "#FEA01A",
+              backgroundColor: selectedEmailSituationIndex === 2 ? selectedTabColor : orange,
               borderTopRightRadius: 13,
               width: "33%",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
+            <TouchableOpacity onPress={()=> setSelectedEmailSituationIndex(2)}>
             <Text
               style={{
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 10,
                 textAlign: "center",
+                color: selectedEmailSituationIndex === 2 ? white: black,
               }}
             >
               {emailSituations[2] ? emailSituations[2].category : "Default"}
             </Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View
@@ -503,12 +512,12 @@ const YourJadu = ({ navigation }) => {
             >
               {/* placeholder="I need this by yesterday! I don't care if
 you have to work till late night." */}
-              {emailSituations[selecteEmailSituationIndex]
-                ? emailSituations[selecteEmailSituationIndex].item_name +
+              {emailSituations[selectedEmailSituationIndex]
+                ? emailSituations[selectedEmailSituationIndex].item_name +
                   "\n" +
-                  emailSituations[selecteEmailSituationIndex].item_description +
+                  emailSituations[selectedEmailSituationIndex].item_description +
                   "\n" +
-                  situations[selecteEmailSituationIndex].role
+                  emailSituations[selectedEmailSituationIndex].role
                 : "No Email Situation"}
             </Text>
             <TextInput
@@ -520,7 +529,7 @@ you have to work till late night." */}
               placeholder="Type Your Response Here "
               onChangeText={(text) => {
                 const newEmailSituationResponses = [...emailSituationResponses];
-                newEmailSituationResponses[selecteEmailSituationIndex] = text;
+                newEmailSituationResponses[selectedEmailSituationIndex] = text;
                 setEmailSituationResponses(newEmailSituationResponses);
               }}
             />
@@ -535,12 +544,13 @@ you have to work till late night." */}
                 borderColor: "#371BC6",
               }}
               onPress={() => {
-                console.log("Submit");
-                submitSituationResponse({
-                  response: situationResponses[selectedSituationIndex],
-                  situationId: situations[selectedSituationIndex].id,
+                const response = {
+                  situationResponse: emailSituationResponses[selectedEmailSituationIndex],
+                  situationId: emailSituations[selectedEmailSituationIndex].id,
                   navigation,
-                });
+                }
+                console.log("Submit", JSON.stringify(response));
+                submitSituationResponse(response);
                 // fetchQuizResult();
               }}
             >

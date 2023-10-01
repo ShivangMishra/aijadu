@@ -78,7 +78,7 @@ export default function Analysis({ navigation, route }) {
   ];
 
   const CHART_DATA = [
-    { value: 50, label: "Happy" },
+    { value: 50, label: "inclusive" },
     { value: 80, label: "Sad" },
     { value: 90, label: "Angry" },
     { value: 70, label: "Fear" },
@@ -127,6 +127,7 @@ export default function Analysis({ navigation, route }) {
           words: [analysis.negative_traits],
         },
       ]);
+      console.log("emotions", emotions)
       setChartData(stringToArray(emotions));
     }
   }, [analysisData]);
@@ -229,7 +230,7 @@ export default function Analysis({ navigation, route }) {
     const chartD = arr.map((item) => {
       const entry = item.split(":");
       return {
-        label: entry[0],
+        label: entry[0].substring(1, entry[0].length - 1).trim(),
         value: parseInt(entry[1].trim()),
       };
     });
@@ -257,11 +258,17 @@ export default function Analysis({ navigation, route }) {
           width: "100%",
           marginTop: "5%",
           height: 300,
-          paddingLeft: "13.5    %",
+          paddingLeft: "5%",
           justifyContent: "center",
         }}
       >
         <BarChart data={chartData} 
+        barWidth={35}
+        width={250} // width of the chart
+        height={200} // height of the chart
+        barSpacing={5} // spacing between bars
+        xLabel="Bars" // x-axis label
+        yLabel="Values" // y-axis label
         frontColor={orange}
         />
       </View>
